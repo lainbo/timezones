@@ -88,10 +88,10 @@ export function TimezoneCard({
       style={{ transform: CSS.Transform.toString(transform), transition }}
       data-night={night}
       className={cn(
-        'group/card relative isolate min-w-0 rounded-[15px] border px-[23px] pt-[23px] pb-[17px] shadow-[0_3px_5px_#323c2702] transition-[box-shadow,border-color] duration-200 min-[1450px]:px-[27px] min-[1450px]:pt-[26px] min-[1450px]:pb-5 max-[1100px]:p-6 max-[700px]:rounded-xl max-[700px]:px-[17px] max-[700px]:pt-[19px] max-[700px]:pb-4 max-[480px]:px-[23px] max-[480px]:pt-[23px] max-[480px]:pb-[18px]',
-        night ? 'border-night-border bg-night' : 'border-border bg-card',
-        isBase && 'border-selected-border shadow-[0_0_0_1px_#a3af910e]',
-        isDragging && 'z-20 shadow-[0_12px_35px_#30362925]',
+        'group/card relative isolate min-w-0 rounded-[15px] border px-[23px] pt-[23px] pb-[17px] text-foreground shadow-xs transition-[box-shadow,border-color] duration-200 min-[1450px]:px-[27px] min-[1450px]:pt-[26px] min-[1450px]:pb-5 max-[1100px]:p-6 max-[700px]:rounded-xl max-[700px]:px-[17px] max-[700px]:pt-[19px] max-[700px]:pb-4 max-[480px]:px-[23px] max-[480px]:pt-[23px] max-[480px]:pb-[18px]',
+        night ? 'dark border-night-border bg-night' : 'border-border bg-card',
+        isBase && 'border-selected-border ring-1 ring-selected-border',
+        isDragging && 'z-20 shadow-2xl',
       )}
       aria-label={`${info.city}时区卡片`}
     >
@@ -172,30 +172,35 @@ export function TimezoneCard({
       <div className="mt-[9px] mb-[23px] flex min-h-5 items-center gap-[7px] text-[11px] text-muted-foreground max-[700px]:gap-1 max-[700px]:text-[10px] max-[480px]:mb-[22px] max-[480px]:text-[11px]">
         <span>{dateText(time)}</span>
         {dayDifference !== 0 && (
-          <span className="rounded bg-warning px-[5px] py-0.5 text-[9px] text-warning-foreground">
+          <span className="rounded bg-accent px-[5px] py-0.5 text-[9px] font-medium text-foreground">
             {dayDifference > 0 ? `+${dayDifference} 天` : `${dayDifference} 天`}
           </span>
         )}
-        <span className="ml-auto flex items-center gap-1 text-[10px] text-muted-foreground group-data-[night=true]/card:text-muted-foreground max-[700px]:gap-0 max-[700px]:text-[0px] max-[700px]:[&>svg]:w-[11px] max-[480px]:gap-[5px] max-[480px]:text-[10px]">
-          {night ? <Moon size={13} /> : <Sun size={14} />}
+        <span
+          className="ml-auto inline-flex shrink-0 items-center gap-1 rounded-full border border-border bg-accent/60 px-2 py-1 text-[10px] leading-none font-medium text-foreground"
+          title="按当地时间划分：06:00–18:59 为白天，19:00–05:59 为夜晚"
+        >
+          {night ? (
+            <Moon size={12} aria-hidden="true" />
+          ) : (
+            <Sun size={12} className="text-day-icon" aria-hidden="true" />
+          )}
           {night ? '夜晚' : '白天'}
         </span>
       </div>
       <div className="relative mx-px mb-4 h-[43px] has-[>input:focus-visible]:rounded has-[>input:focus-visible]:outline-2 has-[>input:focus-visible]:outline-offset-4 has-[>input:focus-visible]:outline-ring [&>input]:absolute [&>input]:-top-[7px] [&>input]:left-0 [&>input]:z-3 [&>input]:m-0 [&>input]:h-[38px] [&>input]:w-full [&>input]:cursor-ew-resize [&>input]:touch-pan-y [&>input]:opacity-0">
         <div
-          className="absolute inset-x-0 top-0 flex h-6 overflow-visible rounded [&>span]:relative [&>span]:min-w-0 [&>span]:flex-1 [&>span]:border-r [&>span]:border-background/45 [&>span:first-child]:rounded-l [&>span:last-child]:rounded-r [&_i]:absolute [&_i]:bottom-0 [&_i]:left-0 [&_i]:h-[5px] [&_i]:border-l [&_i]:border-ruler-tick [&_em]:absolute [&_em]:top-[31px] [&_em]:left-0 [&_em]:text-[9px] [&_em]:text-muted-foreground [&_em]:not-italic [&_em]:tabular-nums"
+          className="absolute inset-x-0 top-0 flex h-6 overflow-visible rounded [&>span]:relative [&>span]:min-w-0 [&>span]:flex-1 [&>span:first-child]:rounded-l [&>span:last-child]:rounded-r [&_em]:absolute [&_em]:top-[31px] [&_em]:left-0 [&_em]:text-[9px] [&_em]:text-muted-foreground [&_em]:not-italic [&_em]:tabular-nums"
           aria-hidden="true"
         >
           {ticks.map((tick, index) => (
             <span
-              className={
-                tick.daytime
-                  ? 'bg-ruler-day group-data-[night=true]/card:bg-ruler-day-dim'
-                  : 'bg-ruler-night group-data-[night=true]/card:bg-ruler-night-dim'
-              }
+              className={tick.daytime ? 'bg-ruler-day' : 'bg-ruler-night'}
               key={`${tick.hour}-${tick.offset}`}
             >
-              <i />
+              {index > 0 && (
+                <i className="absolute inset-y-0 left-0 w-px bg-background/45 after:absolute after:inset-x-0 after:bottom-0 after:h-[5px] after:bg-ruler-tick" />
+              )}
               {index % 6 === 0 && <em>{String(tick.hour).padStart(2, '0')}</em>}
             </span>
           ))}
@@ -220,7 +225,7 @@ export function TimezoneCard({
               ? { type: 'spring', stiffness: 160, damping: 26, mass: 0.8 }
               : { duration: 0 }
           }
-          className="pointer-events-none absolute -top-1 z-2 h-[30px] border-l border-marker [&>span]:absolute [&>span]:-top-px [&>span]:-left-[3px] [&>span]:block [&>span]:size-[5px] [&>span]:rounded-full [&>span]:bg-marker"
+          className="pointer-events-none absolute -top-1 z-2 h-[30px] border-l-2 border-marker shadow-[0_0_0_1px_var(--card)] [&>span]:absolute [&>span]:-top-px [&>span]:-left-1 [&>span]:block [&>span]:size-1.5 [&>span]:rounded-full [&>span]:bg-marker [&>span]:ring-2 [&>span]:ring-card"
           aria-hidden="true"
         >
           <span />

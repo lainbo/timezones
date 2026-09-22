@@ -7,7 +7,7 @@ function applyTheme(dark: boolean) {
   document.documentElement.classList.toggle('dark', dark)
   document
     .querySelector('meta[name="theme-color"]')
-    ?.setAttribute('content', dark ? '#141a17' : '#f6f6f2')
+    ?.setAttribute('content', dark ? '#111111' : '#f7f7f7')
 }
 
 export function ThemeSwitcher() {

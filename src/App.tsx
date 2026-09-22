@@ -147,13 +147,13 @@ export default function App() {
             <div className="flex items-center gap-[18px] max-[700px]:gap-2">
               <span
                 data-live={live}
-                className="flex items-center gap-2 text-xs tracking-[0.5px] text-muted-foreground [&>i]:size-1.5 [&>i]:rounded-full [&>i]:bg-marker data-[live=true]:[&>i]:bg-success data-[live=true]:[&>i]:shadow-[0_0_0_3px_#6a8a6410] max-[700px]:text-[10px]"
+                className="flex items-center gap-2 text-xs tracking-[0.5px] text-muted-foreground [&>i]:size-1.5 [&>i]:rounded-full [&>i]:bg-marker data-[live=true]:[&>i]:bg-success data-[live=true]:[&>i]:ring-3 data-[live=true]:[&>i]:ring-success/10 max-[700px]:text-[10px]"
               >
                 <i />
                 {live ? '与此刻同步' : '自定义时间'}
               </span>
               <div
-                className="flex gap-0.5 rounded-lg bg-muted p-1 [&>button]:rounded-[5px] [&>button]:border-0 [&>button]:bg-transparent [&>button]:px-2.5 [&>button]:py-1.5 [&>button]:text-xs [&>button]:text-muted-foreground [&>button[aria-pressed=true]]:bg-card [&>button[aria-pressed=true]]:text-foreground [&>button[aria-pressed=true]]:shadow-[0_1px_4px_#28332110] max-[700px]:[&>button]:px-[7px] max-[700px]:[&>button]:py-[5px] max-[700px]:[&>button]:text-[10px]"
+                className="flex gap-0.5 rounded-lg bg-muted p-1 [&>button]:rounded-[5px] [&>button]:border-0 [&>button]:bg-transparent [&>button]:px-2.5 [&>button]:py-1.5 [&>button]:text-xs [&>button]:text-muted-foreground [&>button[aria-pressed=true]]:bg-card [&>button[aria-pressed=true]]:text-foreground [&>button[aria-pressed=true]]:shadow-sm max-[700px]:[&>button]:px-[7px] max-[700px]:[&>button]:py-[5px] max-[700px]:[&>button]:text-[10px]"
                 aria-label="时间显示格式"
               >
                 <button
@@ -260,7 +260,7 @@ export default function App() {
                     拖动手柄调整顺序
                   </span>
                   <Button
-                    className="h-[34px] rounded-[7px] px-[13px] py-0 text-xs shadow-[0_2px_3px_#ad533312] has-[>svg]:px-[13px] max-[700px]:h-8"
+                    className="h-[34px] rounded-[7px] px-[13px] py-0 text-xs shadow-xs has-[>svg]:px-[13px] max-[700px]:h-8"
                     onClick={() => setPickerInstant(instant)}
                   >
                     <Plus size={17} />
@@ -339,7 +339,7 @@ export default function App() {
                 <span>点击大号时间精确换算，也可以拖动卡片下方的时间刻度。</span>
               </div>
               <span className="flex shrink-0 items-center gap-1.5 text-[10px] [&>i]:ml-1.5 [&>i]:size-[7px] [&>i]:rounded-[2px] max-[700px]:hidden">
-                <i className="bg-ruler-day" />
+                <i className="border border-input bg-ruler-day" />
                 白天
                 <i className="bg-ruler-night" />
                 夜晚
@@ -385,7 +385,7 @@ export default function App() {
           )}
           {notice && (
             <div
-              className="fixed bottom-[30px] left-1/2 z-80 flex max-w-[90vw] -translate-x-1/2 items-center gap-2 rounded-[10px] border border-border bg-card px-[18px] py-3 text-xs text-foreground shadow-[0_8px_30px_#39452c14]"
+              className="fixed bottom-[30px] left-1/2 z-80 flex max-w-[90vw] -translate-x-1/2 items-center gap-2 rounded-[10px] border border-border bg-card px-[18px] py-3 text-xs text-foreground shadow-lg"
               role="status"
             >
               <Check size={16} />

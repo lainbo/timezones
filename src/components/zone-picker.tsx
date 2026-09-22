@@ -50,7 +50,7 @@ export function ZonePicker({ selected, instant, onClose, onSave }: Props) {
   function renderRows(rows: typeof catalog) {
     return rows.map((zone) => (
       <label
-        className="flex min-h-[66px] cursor-pointer items-center gap-[13px] rounded-lg px-[13px] py-3 [content-visibility:auto] [contain-intrinsic-size:auto_66px] hover:bg-accent data-[selected=true]:bg-selected"
+        className="flex min-h-[54px] min-w-0 cursor-pointer items-center gap-2.5 rounded-lg px-3 py-2 [content-visibility:auto] [contain-intrinsic-size:auto_36px] data-[selected=false]:hover:bg-accent/50 data-[selected=true]:bg-selected"
         key={zone.id}
         data-selected={draftSet.has(zone.id)}
       >
@@ -59,16 +59,16 @@ export function ZonePicker({ selected, instant, onClose, onSave }: Props) {
           onCheckedChange={(checked) => toggle(zone.id, checked === true)}
           aria-label={`${zone.city} ${zone.id}`}
         />
-        <span className="flex min-w-0 flex-col gap-[5px]">
-          <span className="flex flex-wrap items-center gap-2 text-[13px] text-foreground [&>span]:text-[11px] [&>span]:text-muted-foreground">
+        <span className="flex min-w-0 flex-1 flex-col gap-0.5">
+          <span className="flex flex-wrap items-center gap-x-2 text-[13px] leading-[18px] text-foreground [&>span]:text-[11px] [&>span]:text-muted-foreground">
             {zone.city}
             <span>{zone.region}</span>
           </span>
-          <span className="text-[11px] text-muted-foreground [overflow-wrap:anywhere]">
+          <span className="text-[11px] leading-4 text-muted-foreground [overflow-wrap:anywhere]">
             {zone.id}
           </span>
         </span>
-        <span className="ml-auto text-xs whitespace-nowrap text-muted-foreground tabular-nums">
+        <span className="ml-auto shrink-0 text-xs whitespace-nowrap text-muted-foreground tabular-nums">
           {offsetText(zone.offset)}
         </span>
       </label>
@@ -82,7 +82,7 @@ export function ZonePicker({ selected, instant, onClose, onSave }: Props) {
       }}
     >
       <DialogContent
-        className="w-[calc(100vw-32px)] max-w-[560px] gap-0 overflow-hidden rounded-[18px] border-border bg-popover p-0 pt-7 shadow-[0_25px_100px_#1a281e30] sm:max-w-[560px]"
+        className="w-[calc(100vw-32px)] max-w-[760px] gap-0 overflow-hidden rounded-[18px] border-border bg-popover p-0 pt-7 shadow-2xl sm:max-w-[760px]"
         aria-describedby="zone-description"
       >
         <DialogHeader className="px-7 text-left max-[700px]:px-[22px]">
@@ -97,10 +97,10 @@ export function ZonePicker({ selected, instant, onClose, onSave }: Props) {
             选择你关心的城市，让世界的时间同步呈现。
           </DialogDescription>
         </DialogHeader>
-        <div className="mx-6 mt-[23px] mb-[15px] flex shrink-0 items-center gap-[9px] rounded-lg border border-border bg-card px-3 text-muted-foreground focus-within:border-selected-border focus-within:shadow-[0_0_0_3px_#a2b18f15] [&>button]:border-0 [&>button]:bg-transparent [&>button]:p-[5px] [&>button]:text-muted-foreground">
+        <div className="mx-6 mt-[23px] mb-[15px] flex shrink-0 items-center gap-[9px] rounded-lg border border-border bg-card px-3 text-muted-foreground focus-within:border-selected-border focus-within:ring-3 focus-within:ring-ring/15 [&>button]:border-0 [&>button]:bg-transparent [&>button]:p-[5px] [&>button]:text-muted-foreground">
           <Search size={18} />
           <Input
-            className="h-[42px] border-0 pl-0 text-xs shadow-none focus-visible:border-transparent focus-visible:ring-0 md:text-xs"
+            className="h-[42px] border-0 pl-0 text-xs shadow-none focus-visible:border-transparent focus-visible:ring-0 md:text-xs dark:bg-transparent"
             autoFocus
             aria-label="搜索时区"
             placeholder="搜索城市、时区或 UTC 偏移，如 台北 / +8"
@@ -120,7 +120,7 @@ export function ZonePicker({ selected, instant, onClose, onSave }: Props) {
                 <span>已添加的时区</span>
                 <span>{pinned.length}</span>
               </div>
-              <div className="flex flex-col gap-1.5">{renderRows(pinned)}</div>
+              <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">{renderRows(pinned)}</div>
             </>
           )}
           {remaining.length > 0 && (
@@ -129,7 +129,7 @@ export function ZonePicker({ selected, instant, onClose, onSave }: Props) {
                 <span>{query ? '搜索结果' : '全部时区'}</span>
                 <span>按 UTC 偏移排序</span>
               </div>
-              <div className="flex flex-col gap-1.5">{renderRows(remaining)}</div>
+              <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">{renderRows(remaining)}</div>
             </>
           )}
           {filtered.length === 0 && (
