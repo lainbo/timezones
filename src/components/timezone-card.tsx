@@ -23,6 +23,21 @@ function nearestRotation(current: number, target: number) {
   return current + ((((target - current) % 360) + 540) % 360) - 180
 }
 
+function isDaylight(hour: number) {
+  return hour >= 6 && hour < 18
+}
+
+function dayPart(hour: number, minute: number) {
+  const minutes = hour * 60 + minute
+  if (minutes < 60) return { name: '半夜', range: '00:00–01:00' }
+  if (minutes < 6 * 60) return { name: '凌晨', range: '01:00–06:00' }
+  if (minutes < 12 * 60) return { name: '上午', range: '06:00–12:00' }
+  if (minutes < 13 * 60) return { name: '中午', range: '12:00–13:00' }
+  if (minutes < 18 * 60) return { name: '下午', range: '13:00–18:00' }
+  if (minutes < 19 * 60) return { name: '傍晚', range: '18:00–19:00' }
+  return { name: '晚上', range: '19:00–24:00' }
+}
+
 export function TimezoneCard({
   id,
   instant,
@@ -69,11 +84,13 @@ export function TimezoneCard({
   const end = start.add({ days: 1 }).startOfDay()
   const totalMinutes = (end.epochMilliseconds - start.epochMilliseconds) / 60000
   const elapsed = (instant.epochMilliseconds - start.epochMilliseconds) / 60000
-  const night = time.hour < 6 || time.hour >= 19
+  const daylight = isDaylight(time.hour)
+  const night = !daylight
+  const part = dayPart(time.hour, time.minute)
   const isBase = id === base
   const ticks = Array.from({ length: Math.ceil(totalMinutes / 60) }, (_, index) => {
     const tick = start.add({ hours: index })
-    return { hour: tick.hour, offset: tick.offset, daytime: tick.hour >= 6 && tick.hour < 19 }
+    return { hour: tick.hour, offset: tick.offset, daytime: isDaylight(tick.hour) }
   })
   const difference =
     offsetDifference === 0
@@ -178,14 +195,14 @@ export function TimezoneCard({
         )}
         <span
           className="ml-auto inline-flex shrink-0 items-center gap-1 rounded-full border border-border bg-accent/60 px-2 py-1 text-[10px] leading-none font-medium text-foreground"
-          title="按当地时间划分：06:00–18:59 为白天，19:00–05:59 为夜晚"
+          title={`当地时间 ${part.range}`}
         >
-          {night ? (
-            <Moon size={12} aria-hidden="true" />
-          ) : (
+          {daylight ? (
             <Sun size={12} className="text-day-icon" aria-hidden="true" />
+          ) : (
+            <Moon size={12} aria-hidden="true" />
           )}
-          {night ? '夜晚' : '白天'}
+          {part.name}
         </span>
       </div>
       <div className="relative mx-px mb-4 h-[43px] has-[>input:focus-visible]:rounded has-[>input:focus-visible]:outline-2 has-[>input:focus-visible]:outline-offset-4 has-[>input:focus-visible]:outline-ring [&>input]:absolute [&>input]:-top-[7px] [&>input]:left-0 [&>input]:z-3 [&>input]:m-0 [&>input]:h-[38px] [&>input]:w-full [&>input]:cursor-ew-resize [&>input]:touch-pan-y [&>input]:opacity-0">

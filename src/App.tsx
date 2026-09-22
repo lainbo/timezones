@@ -145,13 +145,6 @@ export default function App() {
               </span>
             </a>
             <div className="flex items-center gap-[18px] max-[700px]:gap-2">
-              <span
-                data-live={live}
-                className="flex items-center gap-2 text-xs tracking-[0.5px] text-muted-foreground [&>i]:size-1.5 [&>i]:rounded-full [&>i]:bg-marker data-[live=true]:[&>i]:bg-success data-[live=true]:[&>i]:ring-3 data-[live=true]:[&>i]:ring-success/10 max-[700px]:text-[10px]"
-              >
-                <i />
-                {live ? '与此刻同步' : '自定义时间'}
-              </span>
               <div
                 className="flex gap-0.5 rounded-lg bg-muted p-1 [&>button]:rounded-[5px] [&>button]:border-0 [&>button]:bg-transparent [&>button]:px-2.5 [&>button]:py-1.5 [&>button]:text-xs [&>button]:text-muted-foreground [&>button[aria-pressed=true]]:bg-card [&>button[aria-pressed=true]]:text-foreground [&>button[aria-pressed=true]]:shadow-sm max-[700px]:[&>button]:px-[7px] max-[700px]:[&>button]:py-[5px] max-[700px]:[&>button]:text-[10px]"
                 aria-label="时间显示格式"
@@ -235,7 +228,7 @@ export default function App() {
               </div>
               <span className="ml-auto flex items-center gap-[7px] text-[11px] text-muted-foreground max-[1100px]:hidden">
                 <span className="size-1 rounded-full bg-muted-foreground" />
-                {live ? '正在显示当前时间' : '正在预览指定时间'}
+                {live ? '正在显示当前时间' : `正在以「${baseInfo.city}」为基准预览`}
               </span>
               <Button
                 variant="outline"
@@ -251,25 +244,6 @@ export default function App() {
               </Button>
             </section>
             <section className="mt-[35px] max-[700px]:mt-7" aria-label="世界时区">
-              <div className="mb-[19px] flex items-center justify-between gap-3 max-[700px]:mb-[15px]">
-                <div className="flex items-center gap-2.5 [&>h2]:m-0 [&>h2]:text-[15px] [&>h2]:font-[570] [&>span]:min-w-[23px] [&>span]:rounded-[5px] [&>span]:border [&>span]:border-border [&>span]:text-center [&>span]:text-[11px] [&>span]:leading-[19px] [&>span]:text-muted-foreground [&>span]:tabular-nums max-[700px]:[&>h2]:text-sm">
-                  <h2>我的时区</h2>
-                  <span>{zones.length.toString().padStart(2, '0')}</span>
-                </div>
-                <div className="flex items-center gap-[22px]">
-                  <span className="flex items-center gap-[5px] text-[11px] text-muted-foreground max-[700px]:hidden">
-                    <GripVertical size={15} />
-                    拖动手柄调整顺序
-                  </span>
-                  <Button
-                    className="h-[34px] rounded-[7px] px-[13px] py-0 text-xs shadow-xs has-[>svg]:px-[13px] max-[700px]:h-8"
-                    onClick={() => setPickerInstant(instant)}
-                  >
-                    <Plus size={17} />
-                    添加时区
-                  </Button>
-                </div>
-              </div>
               {zones.length > 0 ? (
                 <DndContext
                   sensors={sensors}
