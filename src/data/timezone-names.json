@@ -1,0 +1,2234 @@
+{
+  "Pacific/Honolulu": {
+    "city": "檀香山",
+    "country": "US"
+  },
+  "Pacific/Pago_Pago": {
+    "city": "帕果帕果",
+    "country": "AS"
+  },
+  "Pacific/Rarotonga": {
+    "city": "拉罗汤加",
+    "country": "CK"
+  },
+  "Pacific/Easter": {
+    "city": "复活节岛",
+    "country": "CL"
+  },
+  "Pacific/Galapagos": {
+    "city": "科隆群岛",
+    "country": "EC"
+  },
+  "Pacific/Fiji": {
+    "city": "斐济",
+    "country": "FJ"
+  },
+  "Pacific/Truk": {
+    "city": "特鲁克群岛",
+    "country": "FM"
+  },
+  "Pacific/Ponape": {
+    "city": "波纳佩岛",
+    "country": "FM"
+  },
+  "Pacific/Kosrae": {
+    "city": "库赛埃",
+    "country": "FM"
+  },
+  "Pacific/Guam": {
+    "city": "关岛",
+    "country": "GU"
+  },
+  "Pacific/Enderbury": {
+    "city": "坎顿岛",
+    "country": "KI"
+  },
+  "Pacific/Kiritimati": {
+    "city": "基里地马地岛",
+    "country": "KI"
+  },
+  "Pacific/Tarawa": {
+    "city": "塔拉瓦",
+    "country": "KI"
+  },
+  "Pacific/Kwajalein": {
+    "city": "夸贾林",
+    "country": "MH"
+  },
+  "Pacific/Majuro": {
+    "city": "马朱罗",
+    "country": "MH"
+  },
+  "Pacific/Saipan": {
+    "city": "塞班",
+    "country": "MP"
+  },
+  "Pacific/Noumea": {
+    "city": "努美阿",
+    "country": "NC"
+  },
+  "Pacific/Norfolk": {
+    "city": "诺福克",
+    "country": "NF"
+  },
+  "Pacific/Nauru": {
+    "city": "瑙鲁",
+    "country": "NR"
+  },
+  "Pacific/Niue": {
+    "city": "纽埃",
+    "country": "NU"
+  },
+  "Pacific/Chatham": {
+    "city": "查塔姆",
+    "country": "NZ"
+  },
+  "Pacific/Auckland": {
+    "city": "奥克兰",
+    "country": "NZ"
+  },
+  "Pacific/Tahiti": {
+    "city": "塔希提",
+    "country": "PF"
+  },
+  "Pacific/Marquesas": {
+    "city": "马克萨斯",
+    "country": "PF"
+  },
+  "Pacific/Gambier": {
+    "city": "甘比尔",
+    "country": "PF"
+  },
+  "Pacific/Port_Moresby": {
+    "city": "莫尔兹比港",
+    "country": "PG"
+  },
+  "Pacific/Bougainville": {
+    "city": "布干维尔",
+    "country": "PG"
+  },
+  "Pacific/Pitcairn": {
+    "city": "皮特凯恩",
+    "country": "PN"
+  },
+  "Pacific/Palau": {
+    "city": "帕劳",
+    "country": "PW"
+  },
+  "Pacific/Guadalcanal": {
+    "city": "瓜达尔卡纳尔",
+    "country": "SB"
+  },
+  "Pacific/Fakaofo": {
+    "city": "法考福",
+    "country": "TK"
+  },
+  "Pacific/Tongatapu": {
+    "city": "东加塔布",
+    "country": "TO"
+  },
+  "Pacific/Funafuti": {
+    "city": "富纳富提",
+    "country": "TV"
+  },
+  "Pacific/Midway": {
+    "city": "中途岛",
+    "country": "UM"
+  },
+  "Pacific/Wake": {
+    "city": "威克",
+    "country": "UM"
+  },
+  "Pacific/Efate": {
+    "city": "埃法特",
+    "country": "VU"
+  },
+  "Pacific/Wallis": {
+    "city": "瓦利斯",
+    "country": "WF"
+  },
+  "Pacific/Apia": {
+    "city": "阿皮亚",
+    "country": "WS"
+  },
+  "Etc/Unknown": {
+    "city": "未知地点",
+    "country": "UN"
+  },
+  "Europe/Andorra": {
+    "city": "安道尔",
+    "country": "AD"
+  },
+  "Europe/Tirane": {
+    "city": "地拉那",
+    "country": "AL"
+  },
+  "Europe/Vienna": {
+    "city": "维也纳",
+    "country": "AT"
+  },
+  "Europe/Mariehamn": {
+    "city": "玛丽港",
+    "country": "AX"
+  },
+  "Europe/Sarajevo": {
+    "city": "萨拉热窝",
+    "country": "BA"
+  },
+  "Europe/Brussels": {
+    "city": "布鲁塞尔",
+    "country": "BE"
+  },
+  "Europe/Sofia": {
+    "city": "索非亚",
+    "country": "BG"
+  },
+  "Europe/Minsk": {
+    "city": "明斯克",
+    "country": "BY"
+  },
+  "Europe/Zurich": {
+    "city": "苏黎世",
+    "country": "CH"
+  },
+  "Europe/Prague": {
+    "city": "布拉格",
+    "country": "CZ"
+  },
+  "Europe/Busingen": {
+    "city": "布辛根",
+    "country": "DE"
+  },
+  "Europe/Berlin": {
+    "city": "柏林",
+    "country": "DE"
+  },
+  "Europe/Copenhagen": {
+    "city": "哥本哈根",
+    "country": "DK"
+  },
+  "Europe/Tallinn": {
+    "city": "塔林",
+    "country": "EE"
+  },
+  "Europe/Madrid": {
+    "city": "马德里",
+    "country": "ES"
+  },
+  "Europe/Helsinki": {
+    "city": "赫尔辛基",
+    "country": "FI"
+  },
+  "Europe/Paris": {
+    "city": "巴黎",
+    "country": "FR"
+  },
+  "Europe/London": {
+    "city": "伦敦",
+    "country": "GB"
+  },
+  "Europe/Guernsey": {
+    "city": "根西岛",
+    "country": "GG"
+  },
+  "Europe/Gibraltar": {
+    "city": "直布罗陀",
+    "country": "GI"
+  },
+  "Europe/Athens": {
+    "city": "雅典",
+    "country": "GR"
+  },
+  "Europe/Zagreb": {
+    "city": "萨格勒布",
+    "country": "HR"
+  },
+  "Europe/Budapest": {
+    "city": "布达佩斯",
+    "country": "HU"
+  },
+  "Europe/Dublin": {
+    "city": "都柏林",
+    "country": "IE"
+  },
+  "Europe/Isle_of_Man": {
+    "city": "马恩岛",
+    "country": "IM"
+  },
+  "Europe/Rome": {
+    "city": "罗马",
+    "country": "IT"
+  },
+  "Europe/Jersey": {
+    "city": "泽西岛",
+    "country": "JE"
+  },
+  "Europe/Vaduz": {
+    "city": "瓦杜兹",
+    "country": "LI"
+  },
+  "Europe/Vilnius": {
+    "city": "维尔纽斯",
+    "country": "LT"
+  },
+  "Europe/Luxembourg": {
+    "city": "卢森堡",
+    "country": "LU"
+  },
+  "Europe/Riga": {
+    "city": "里加",
+    "country": "LV"
+  },
+  "Europe/Monaco": {
+    "city": "摩纳哥",
+    "country": "MC"
+  },
+  "Europe/Chisinau": {
+    "city": "基希讷乌",
+    "country": "MD"
+  },
+  "Europe/Podgorica": {
+    "city": "波德戈里察",
+    "country": "ME"
+  },
+  "Europe/Skopje": {
+    "city": "斯科普里",
+    "country": "MK"
+  },
+  "Europe/Malta": {
+    "city": "马耳他",
+    "country": "MT"
+  },
+  "Europe/Amsterdam": {
+    "city": "阿姆斯特丹",
+    "country": "NL"
+  },
+  "Europe/Oslo": {
+    "city": "奥斯陆",
+    "country": "NO"
+  },
+  "Europe/Warsaw": {
+    "city": "华沙",
+    "country": "PL"
+  },
+  "Europe/Lisbon": {
+    "city": "里斯本",
+    "country": "PT"
+  },
+  "Europe/Bucharest": {
+    "city": "布加勒斯特",
+    "country": "RO"
+  },
+  "Europe/Belgrade": {
+    "city": "贝尔格莱德",
+    "country": "RS"
+  },
+  "Europe/Kaliningrad": {
+    "city": "加里宁格勒",
+    "country": "RU"
+  },
+  "Europe/Moscow": {
+    "city": "莫斯科",
+    "country": "RU"
+  },
+  "Europe/Volgograd": {
+    "city": "伏尔加格勒",
+    "country": "RU"
+  },
+  "Europe/Saratov": {
+    "city": "萨拉托夫",
+    "country": "RU"
+  },
+  "Europe/Astrakhan": {
+    "city": "阿斯特拉罕",
+    "country": "RU"
+  },
+  "Europe/Ulyanovsk": {
+    "city": "乌里扬诺夫斯克",
+    "country": "RU"
+  },
+  "Europe/Kirov": {
+    "city": "基洛夫",
+    "country": "RU"
+  },
+  "Europe/Samara": {
+    "city": "萨马拉",
+    "country": "RU"
+  },
+  "Europe/Stockholm": {
+    "city": "斯德哥尔摩",
+    "country": "SE"
+  },
+  "Europe/Ljubljana": {
+    "city": "卢布尔雅那",
+    "country": "SI"
+  },
+  "Europe/Bratislava": {
+    "city": "布拉迪斯拉发",
+    "country": "SK"
+  },
+  "Europe/San_Marino": {
+    "city": "圣马力诺",
+    "country": "SM"
+  },
+  "Europe/Istanbul": {
+    "city": "伊斯坦布尔",
+    "country": "TR"
+  },
+  "Europe/Kiev": {
+    "city": "基辅",
+    "country": "UA"
+  },
+  "Europe/Simferopol": {
+    "city": "辛菲罗波尔",
+    "country": "UA"
+  },
+  "Europe/Vatican": {
+    "city": "梵蒂冈",
+    "country": "VA"
+  },
+  "Asia/Dubai": {
+    "city": "迪拜",
+    "country": "AE"
+  },
+  "Asia/Kabul": {
+    "city": "喀布尔",
+    "country": "AF"
+  },
+  "Asia/Yerevan": {
+    "city": "埃里温",
+    "country": "AM"
+  },
+  "Asia/Baku": {
+    "city": "巴库",
+    "country": "AZ"
+  },
+  "Asia/Dhaka": {
+    "city": "达卡",
+    "country": "BD"
+  },
+  "Asia/Bahrain": {
+    "city": "巴林",
+    "country": "BH"
+  },
+  "Asia/Brunei": {
+    "city": "文莱",
+    "country": "BN"
+  },
+  "Asia/Thimphu": {
+    "city": "廷布",
+    "country": "BT"
+  },
+  "Asia/Urumqi": {
+    "city": "乌鲁木齐",
+    "country": "CN"
+  },
+  "Asia/Shanghai": {
+    "city": "上海",
+    "country": "CN"
+  },
+  "Asia/Nicosia": {
+    "city": "尼科西亚",
+    "country": "CY"
+  },
+  "Asia/Famagusta": {
+    "city": "法马古斯塔",
+    "country": "CY"
+  },
+  "Asia/Tbilisi": {
+    "city": "第比利斯",
+    "country": "GE"
+  },
+  "Asia/Hong_Kong": {
+    "city": "香港",
+    "country": "HK"
+  },
+  "Asia/Jakarta": {
+    "city": "雅加达",
+    "country": "ID"
+  },
+  "Asia/Pontianak": {
+    "city": "坤甸",
+    "country": "ID"
+  },
+  "Asia/Makassar": {
+    "city": "望加锡",
+    "country": "ID"
+  },
+  "Asia/Jayapura": {
+    "city": "查亚普拉",
+    "country": "ID"
+  },
+  "Asia/Jerusalem": {
+    "city": "耶路撒冷",
+    "country": "IL"
+  },
+  "Asia/Calcutta": {
+    "city": "加尔各答",
+    "country": "IN"
+  },
+  "Asia/Baghdad": {
+    "city": "巴格达",
+    "country": "IQ"
+  },
+  "Asia/Tehran": {
+    "city": "德黑兰",
+    "country": "IR"
+  },
+  "Asia/Amman": {
+    "city": "安曼",
+    "country": "JO"
+  },
+  "Asia/Tokyo": {
+    "city": "东京",
+    "country": "JP"
+  },
+  "Asia/Bishkek": {
+    "city": "比什凯克",
+    "country": "KG"
+  },
+  "Asia/Phnom_Penh": {
+    "city": "金边",
+    "country": "KH"
+  },
+  "Asia/Pyongyang": {
+    "city": "平壤",
+    "country": "KP"
+  },
+  "Asia/Seoul": {
+    "city": "首尔",
+    "country": "KR"
+  },
+  "Asia/Kuwait": {
+    "city": "科威特",
+    "country": "KW"
+  },
+  "Asia/Aqtau": {
+    "city": "阿克套",
+    "country": "KZ"
+  },
+  "Asia/Oral": {
+    "city": "乌拉尔",
+    "country": "KZ"
+  },
+  "Asia/Atyrau": {
+    "city": "阿特劳",
+    "country": "KZ"
+  },
+  "Asia/Aqtobe": {
+    "city": "阿克托别",
+    "country": "KZ"
+  },
+  "Asia/Qostanay": {
+    "city": "库斯塔奈",
+    "country": "KZ"
+  },
+  "Asia/Qyzylorda": {
+    "city": "克孜洛尔达",
+    "country": "KZ"
+  },
+  "Asia/Almaty": {
+    "city": "阿拉木图",
+    "country": "KZ"
+  },
+  "Asia/Vientiane": {
+    "city": "万象",
+    "country": "LA"
+  },
+  "Asia/Beirut": {
+    "city": "贝鲁特",
+    "country": "LB"
+  },
+  "Asia/Colombo": {
+    "city": "科伦坡",
+    "country": "LK"
+  },
+  "Asia/Rangoon": {
+    "city": "仰光",
+    "country": "MM"
+  },
+  "Asia/Hovd": {
+    "city": "科布多",
+    "country": "MN"
+  },
+  "Asia/Ulaanbaatar": {
+    "city": "乌兰巴托",
+    "country": "MN"
+  },
+  "Asia/Macau": {
+    "city": "澳门",
+    "country": "MO"
+  },
+  "Asia/Kuala_Lumpur": {
+    "city": "吉隆坡",
+    "country": "MY"
+  },
+  "Asia/Kuching": {
+    "city": "古晋",
+    "country": "MY"
+  },
+  "Asia/Katmandu": {
+    "city": "加德满都",
+    "country": "NP"
+  },
+  "Asia/Muscat": {
+    "city": "马斯喀特",
+    "country": "OM"
+  },
+  "Asia/Manila": {
+    "city": "马尼拉",
+    "country": "PH"
+  },
+  "Asia/Karachi": {
+    "city": "卡拉奇",
+    "country": "PK"
+  },
+  "Asia/Gaza": {
+    "city": "加沙",
+    "country": "PS"
+  },
+  "Asia/Hebron": {
+    "city": "希伯伦",
+    "country": "PS"
+  },
+  "Asia/Qatar": {
+    "city": "卡塔尔",
+    "country": "QA"
+  },
+  "Asia/Yekaterinburg": {
+    "city": "叶卡捷琳堡",
+    "country": "RU"
+  },
+  "Asia/Omsk": {
+    "city": "鄂木斯克",
+    "country": "RU"
+  },
+  "Asia/Novosibirsk": {
+    "city": "新西伯利亚",
+    "country": "RU"
+  },
+  "Asia/Barnaul": {
+    "city": "巴尔瑙尔",
+    "country": "RU"
+  },
+  "Asia/Tomsk": {
+    "city": "托木斯克",
+    "country": "RU"
+  },
+  "Asia/Novokuznetsk": {
+    "city": "新库兹涅茨克",
+    "country": "RU"
+  },
+  "Asia/Krasnoyarsk": {
+    "city": "克拉斯诺亚尔斯克",
+    "country": "RU"
+  },
+  "Asia/Irkutsk": {
+    "city": "伊尔库茨克",
+    "country": "RU"
+  },
+  "Asia/Chita": {
+    "city": "赤塔",
+    "country": "RU"
+  },
+  "Asia/Yakutsk": {
+    "city": "雅库茨克",
+    "country": "RU"
+  },
+  "Asia/Vladivostok": {
+    "city": "海参崴",
+    "country": "RU"
+  },
+  "Asia/Khandyga": {
+    "city": "汉德加",
+    "country": "RU"
+  },
+  "Asia/Sakhalin": {
+    "city": "萨哈林",
+    "country": "RU"
+  },
+  "Asia/Ust-Nera": {
+    "city": "乌斯内拉",
+    "country": "RU"
+  },
+  "Asia/Magadan": {
+    "city": "马加丹",
+    "country": "RU"
+  },
+  "Asia/Srednekolymsk": {
+    "city": "中科雷姆斯克",
+    "country": "RU"
+  },
+  "Asia/Kamchatka": {
+    "city": "堪察加",
+    "country": "RU"
+  },
+  "Asia/Anadyr": {
+    "city": "阿纳德尔",
+    "country": "RU"
+  },
+  "Asia/Riyadh": {
+    "city": "利雅得",
+    "country": "SA"
+  },
+  "Asia/Singapore": {
+    "city": "新加坡",
+    "country": "SG"
+  },
+  "Asia/Damascus": {
+    "city": "大马士革",
+    "country": "SY"
+  },
+  "Asia/Bangkok": {
+    "city": "曼谷",
+    "country": "TH"
+  },
+  "Asia/Dushanbe": {
+    "city": "杜尚别",
+    "country": "TJ"
+  },
+  "Asia/Dili": {
+    "city": "帝力",
+    "country": "TL"
+  },
+  "Asia/Ashgabat": {
+    "city": "阿什哈巴德",
+    "country": "TM"
+  },
+  "Asia/Taipei": {
+    "city": "台北",
+    "country": "TW"
+  },
+  "Asia/Samarkand": {
+    "city": "撒马尔罕",
+    "country": "UZ"
+  },
+  "Asia/Tashkent": {
+    "city": "塔什干",
+    "country": "UZ"
+  },
+  "Asia/Saigon": {
+    "city": "胡志明市",
+    "country": "VN"
+  },
+  "Asia/Aden": {
+    "city": "亚丁",
+    "country": "YE"
+  },
+  "America/Antigua": {
+    "city": "安提瓜",
+    "country": "AG"
+  },
+  "America/Anguilla": {
+    "city": "安圭拉",
+    "country": "AI"
+  },
+  "America/Argentina/Rio_Gallegos": {
+    "city": "里奥加耶戈斯",
+    "country": "AR"
+  },
+  "America/Argentina/San_Juan": {
+    "city": "圣胡安",
+    "country": "AR"
+  },
+  "America/Argentina/Ushuaia": {
+    "city": "乌斯怀亚",
+    "country": "AR"
+  },
+  "America/Argentina/La_Rioja": {
+    "city": "拉里奥哈",
+    "country": "AR"
+  },
+  "America/Argentina/San_Luis": {
+    "city": "圣路易斯",
+    "country": "AR"
+  },
+  "America/Argentina/Salta": {
+    "city": "萨尔塔",
+    "country": "AR"
+  },
+  "America/Argentina/Tucuman": {
+    "city": "图库曼",
+    "country": "AR"
+  },
+  "America/Mendoza": {
+    "city": "门多萨",
+    "country": "AR"
+  },
+  "America/Catamarca": {
+    "city": "卡塔马卡",
+    "country": "AR"
+  },
+  "America/Jujuy": {
+    "city": "胡胡伊",
+    "country": "AR"
+  },
+  "America/Cordoba": {
+    "city": "科尔多瓦",
+    "country": "AR"
+  },
+  "America/Buenos_Aires": {
+    "city": "布宜诺斯艾利斯",
+    "country": "AR"
+  },
+  "America/Aruba": {
+    "city": "阿鲁巴",
+    "country": "AW"
+  },
+  "America/Barbados": {
+    "city": "巴巴多斯",
+    "country": "BB"
+  },
+  "America/St_Barthelemy": {
+    "city": "圣巴泰勒米岛",
+    "country": "BL"
+  },
+  "America/La_Paz": {
+    "city": "拉巴斯",
+    "country": "BO"
+  },
+  "America/Kralendijk": {
+    "city": "克拉伦代克",
+    "country": "BQ"
+  },
+  "America/Eirunepe": {
+    "city": "依伦尼贝",
+    "country": "BR"
+  },
+  "America/Rio_Branco": {
+    "city": "里奥布郎库",
+    "country": "BR"
+  },
+  "America/Porto_Velho": {
+    "city": "波多韦柳",
+    "country": "BR"
+  },
+  "America/Boa_Vista": {
+    "city": "博阿维斯塔",
+    "country": "BR"
+  },
+  "America/Manaus": {
+    "city": "马瑙斯",
+    "country": "BR"
+  },
+  "America/Cuiaba": {
+    "city": "库亚巴",
+    "country": "BR"
+  },
+  "America/Santarem": {
+    "city": "圣塔伦",
+    "country": "BR"
+  },
+  "America/Campo_Grande": {
+    "city": "大坎普",
+    "country": "BR"
+  },
+  "America/Belem": {
+    "city": "贝伦",
+    "country": "BR"
+  },
+  "America/Araguaina": {
+    "city": "阿拉瓜伊纳",
+    "country": "BR"
+  },
+  "America/Sao_Paulo": {
+    "city": "圣保罗",
+    "country": "BR"
+  },
+  "America/Bahia": {
+    "city": "巴伊亚",
+    "country": "BR"
+  },
+  "America/Fortaleza": {
+    "city": "福塔雷萨",
+    "country": "BR"
+  },
+  "America/Maceio": {
+    "city": "马塞约",
+    "country": "BR"
+  },
+  "America/Recife": {
+    "city": "累西腓",
+    "country": "BR"
+  },
+  "America/Noronha": {
+    "city": "洛罗尼亚",
+    "country": "BR"
+  },
+  "America/Nassau": {
+    "city": "拿骚",
+    "country": "BS"
+  },
+  "America/Belize": {
+    "city": "伯利兹",
+    "country": "BZ"
+  },
+  "America/Dawson": {
+    "city": "道森",
+    "country": "CA"
+  },
+  "America/Whitehorse": {
+    "city": "怀特霍斯",
+    "country": "CA"
+  },
+  "America/Inuvik": {
+    "city": "伊努维克",
+    "country": "CA"
+  },
+  "America/Vancouver": {
+    "city": "温哥华",
+    "country": "CA"
+  },
+  "America/Fort_Nelson": {
+    "city": "纳尔逊堡",
+    "country": "CA"
+  },
+  "America/Dawson_Creek": {
+    "city": "道森克里克",
+    "country": "CA"
+  },
+  "America/Creston": {
+    "city": "克雷斯顿",
+    "country": "CA"
+  },
+  "America/Edmonton": {
+    "city": "埃德蒙顿",
+    "country": "CA"
+  },
+  "America/Swift_Current": {
+    "city": "斯威夫特卡伦特",
+    "country": "CA"
+  },
+  "America/Cambridge_Bay": {
+    "city": "剑桥湾",
+    "country": "CA"
+  },
+  "America/Regina": {
+    "city": "里贾纳",
+    "country": "CA"
+  },
+  "America/Winnipeg": {
+    "city": "温尼伯",
+    "country": "CA"
+  },
+  "America/Resolute": {
+    "city": "雷索卢特",
+    "country": "CA"
+  },
+  "America/Rankin_Inlet": {
+    "city": "兰今湾",
+    "country": "CA"
+  },
+  "America/Coral_Harbour": {
+    "city": "阿蒂科肯",
+    "country": "CA"
+  },
+  "America/Toronto": {
+    "city": "多伦多",
+    "country": "CA"
+  },
+  "America/Iqaluit": {
+    "city": "伊魁特",
+    "country": "CA"
+  },
+  "America/Moncton": {
+    "city": "蒙克顿",
+    "country": "CA"
+  },
+  "America/Halifax": {
+    "city": "哈利法克斯",
+    "country": "CA"
+  },
+  "America/Goose_Bay": {
+    "city": "古斯湾",
+    "country": "CA"
+  },
+  "America/Glace_Bay": {
+    "city": "格莱斯贝",
+    "country": "CA"
+  },
+  "America/Blanc-Sablon": {
+    "city": "布兰克萨布隆",
+    "country": "CA"
+  },
+  "America/St_Johns": {
+    "city": "圣约翰斯",
+    "country": "CA"
+  },
+  "America/Coyhaique": {
+    "city": "科伊艾克",
+    "country": "CL"
+  },
+  "America/Punta_Arenas": {
+    "city": "蓬塔阿雷纳斯",
+    "country": "CL"
+  },
+  "America/Santiago": {
+    "city": "圣地亚哥",
+    "country": "CL"
+  },
+  "America/Bogota": {
+    "city": "波哥大",
+    "country": "CO"
+  },
+  "America/Costa_Rica": {
+    "city": "哥斯达黎加",
+    "country": "CR"
+  },
+  "America/Havana": {
+    "city": "哈瓦那",
+    "country": "CU"
+  },
+  "America/Curacao": {
+    "city": "库拉索",
+    "country": "CW"
+  },
+  "America/Dominica": {
+    "city": "多米尼加",
+    "country": "DM"
+  },
+  "America/Santo_Domingo": {
+    "city": "圣多明各",
+    "country": "DO"
+  },
+  "America/Guayaquil": {
+    "city": "瓜亚基尔",
+    "country": "EC"
+  },
+  "America/Grenada": {
+    "city": "格林纳达",
+    "country": "GD"
+  },
+  "America/Cayenne": {
+    "city": "卡宴",
+    "country": "GF"
+  },
+  "America/Thule": {
+    "city": "图勒",
+    "country": "GL"
+  },
+  "America/Godthab": {
+    "city": "努克",
+    "country": "GL"
+  },
+  "America/Scoresbysund": {
+    "city": "斯科列斯比桑德",
+    "country": "GL"
+  },
+  "America/Danmarkshavn": {
+    "city": "丹马沙文",
+    "country": "GL"
+  },
+  "America/Guadeloupe": {
+    "city": "瓜德罗普",
+    "country": "GP"
+  },
+  "America/Guatemala": {
+    "city": "危地马拉",
+    "country": "GT"
+  },
+  "America/Guyana": {
+    "city": "圭亚那",
+    "country": "GY"
+  },
+  "America/Tegucigalpa": {
+    "city": "特古西加尔巴",
+    "country": "HN"
+  },
+  "America/Port-au-Prince": {
+    "city": "太子港",
+    "country": "HT"
+  },
+  "America/Jamaica": {
+    "city": "牙买加",
+    "country": "JM"
+  },
+  "America/St_Kitts": {
+    "city": "圣基茨",
+    "country": "KN"
+  },
+  "America/Cayman": {
+    "city": "开曼",
+    "country": "KY"
+  },
+  "America/St_Lucia": {
+    "city": "圣卢西亚",
+    "country": "LC"
+  },
+  "America/Marigot": {
+    "city": "马里戈特",
+    "country": "MF"
+  },
+  "America/Martinique": {
+    "city": "马提尼克",
+    "country": "MQ"
+  },
+  "America/Montserrat": {
+    "city": "蒙特塞拉特",
+    "country": "MS"
+  },
+  "America/Tijuana": {
+    "city": "蒂华纳",
+    "country": "MX"
+  },
+  "America/Hermosillo": {
+    "city": "埃莫西约",
+    "country": "MX"
+  },
+  "America/Ciudad_Juarez": {
+    "city": "华雷斯城",
+    "country": "MX"
+  },
+  "America/Mazatlan": {
+    "city": "马萨特兰",
+    "country": "MX"
+  },
+  "America/Chihuahua": {
+    "city": "奇瓦瓦",
+    "country": "MX"
+  },
+  "America/Bahia_Banderas": {
+    "city": "巴伊亚班德拉斯",
+    "country": "MX"
+  },
+  "America/Ojinaga": {
+    "city": "奥希纳加",
+    "country": "MX"
+  },
+  "America/Monterrey": {
+    "city": "蒙特雷",
+    "country": "MX"
+  },
+  "America/Mexico_City": {
+    "city": "墨西哥城",
+    "country": "MX"
+  },
+  "America/Matamoros": {
+    "city": "马塔莫罗斯",
+    "country": "MX"
+  },
+  "America/Merida": {
+    "city": "梅里达",
+    "country": "MX"
+  },
+  "America/Cancun": {
+    "city": "坎昆",
+    "country": "MX"
+  },
+  "America/Managua": {
+    "city": "马那瓜",
+    "country": "NI"
+  },
+  "America/Panama": {
+    "city": "巴拿马",
+    "country": "PA"
+  },
+  "America/Lima": {
+    "city": "利马",
+    "country": "PE"
+  },
+  "America/Miquelon": {
+    "city": "密克隆",
+    "country": "PM"
+  },
+  "America/Puerto_Rico": {
+    "city": "波多黎各",
+    "country": "PR"
+  },
+  "America/Asuncion": {
+    "city": "亚松森",
+    "country": "PY"
+  },
+  "America/Paramaribo": {
+    "city": "帕拉马里博",
+    "country": "SR"
+  },
+  "America/El_Salvador": {
+    "city": "萨尔瓦多",
+    "country": "SV"
+  },
+  "America/Lower_Princes": {
+    "city": "下太子区",
+    "country": "SX"
+  },
+  "America/Grand_Turk": {
+    "city": "大特克",
+    "country": "TC"
+  },
+  "America/Port_of_Spain": {
+    "city": "西班牙港",
+    "country": "TT"
+  },
+  "America/Adak": {
+    "city": "埃达克",
+    "country": "US"
+  },
+  "America/Nome": {
+    "city": "诺姆",
+    "country": "US"
+  },
+  "America/Anchorage": {
+    "city": "安克雷奇",
+    "country": "US"
+  },
+  "America/Yakutat": {
+    "city": "亚库塔特",
+    "country": "US"
+  },
+  "America/Sitka": {
+    "city": "锡特卡",
+    "country": "US"
+  },
+  "America/Juneau": {
+    "city": "朱诺",
+    "country": "US"
+  },
+  "America/Metlakatla": {
+    "city": "梅特拉卡特拉",
+    "country": "US"
+  },
+  "America/Los_Angeles": {
+    "city": "洛杉矶",
+    "country": "US"
+  },
+  "America/Boise": {
+    "city": "博伊西",
+    "country": "US"
+  },
+  "America/Phoenix": {
+    "city": "凤凰城",
+    "country": "US"
+  },
+  "America/Denver": {
+    "city": "丹佛",
+    "country": "US"
+  },
+  "America/North_Dakota/Beulah": {
+    "city": "北达科他州比尤拉",
+    "country": "US"
+  },
+  "America/North_Dakota/New_Salem": {
+    "city": "北达科他州新塞勒姆",
+    "country": "US"
+  },
+  "America/North_Dakota/Center": {
+    "city": "北达科他州申特",
+    "country": "US"
+  },
+  "America/Chicago": {
+    "city": "芝加哥",
+    "country": "US"
+  },
+  "America/Menominee": {
+    "city": "梅诺米尼",
+    "country": "US"
+  },
+  "America/Indiana/Vincennes": {
+    "city": "印第安纳州温森斯",
+    "country": "US"
+  },
+  "America/Indiana/Petersburg": {
+    "city": "印第安纳州彼得斯堡",
+    "country": "US"
+  },
+  "America/Indiana/Tell_City": {
+    "city": "印第安纳州特尔城",
+    "country": "US"
+  },
+  "America/Indiana/Knox": {
+    "city": "印第安纳州诺克斯",
+    "country": "US"
+  },
+  "America/Indiana/Winamac": {
+    "city": "印第安纳州威纳马克",
+    "country": "US"
+  },
+  "America/Indiana/Marengo": {
+    "city": "印第安纳州马伦戈",
+    "country": "US"
+  },
+  "America/Indiana/Vevay": {
+    "city": "印第安纳州维维市",
+    "country": "US"
+  },
+  "America/Indianapolis": {
+    "city": "印第安纳波利斯",
+    "country": "US"
+  },
+  "America/Louisville": {
+    "city": "路易斯维尔",
+    "country": "US"
+  },
+  "America/Kentucky/Monticello": {
+    "city": "肯塔基州蒙蒂塞洛",
+    "country": "US"
+  },
+  "America/Detroit": {
+    "city": "底特律",
+    "country": "US"
+  },
+  "America/New_York": {
+    "city": "纽约",
+    "country": "US"
+  },
+  "America/Montevideo": {
+    "city": "蒙得维的亚",
+    "country": "UY"
+  },
+  "America/St_Vincent": {
+    "city": "圣文森特",
+    "country": "VC"
+  },
+  "America/Caracas": {
+    "city": "加拉加斯",
+    "country": "VE"
+  },
+  "America/Tortola": {
+    "city": "托尔托拉",
+    "country": "VG"
+  },
+  "America/St_Thomas": {
+    "city": "圣托马斯",
+    "country": "VI"
+  },
+  "Africa/Luanda": {
+    "city": "罗安达",
+    "country": "AO"
+  },
+  "Africa/Ouagadougou": {
+    "city": "瓦加杜古",
+    "country": "BF"
+  },
+  "Africa/Bujumbura": {
+    "city": "布琼布拉",
+    "country": "BI"
+  },
+  "Africa/Porto-Novo": {
+    "city": "波多诺伏",
+    "country": "BJ"
+  },
+  "Africa/Gaborone": {
+    "city": "哈博罗内",
+    "country": "BW"
+  },
+  "Africa/Kinshasa": {
+    "city": "金沙萨",
+    "country": "CD"
+  },
+  "Africa/Lubumbashi": {
+    "city": "卢本巴希",
+    "country": "CD"
+  },
+  "Africa/Bangui": {
+    "city": "班吉",
+    "country": "CF"
+  },
+  "Africa/Brazzaville": {
+    "city": "布拉柴维尔",
+    "country": "CG"
+  },
+  "Africa/Abidjan": {
+    "city": "阿比让",
+    "country": "CI"
+  },
+  "Africa/Douala": {
+    "city": "杜阿拉",
+    "country": "CM"
+  },
+  "Africa/Djibouti": {
+    "city": "吉布提",
+    "country": "DJ"
+  },
+  "Africa/Algiers": {
+    "city": "阿尔及尔",
+    "country": "DZ"
+  },
+  "Africa/Cairo": {
+    "city": "开罗",
+    "country": "EG"
+  },
+  "Africa/El_Aaiun": {
+    "city": "阿尤恩",
+    "country": "EH"
+  },
+  "Africa/Asmera": {
+    "city": "阿斯马拉",
+    "country": "ER"
+  },
+  "Africa/Ceuta": {
+    "city": "休达",
+    "country": "ES"
+  },
+  "Africa/Addis_Ababa": {
+    "city": "亚的斯亚贝巴",
+    "country": "ET"
+  },
+  "Africa/Libreville": {
+    "city": "利伯维尔",
+    "country": "GA"
+  },
+  "Africa/Accra": {
+    "city": "阿克拉",
+    "country": "GH"
+  },
+  "Africa/Banjul": {
+    "city": "班珠尔",
+    "country": "GM"
+  },
+  "Africa/Conakry": {
+    "city": "科纳克里",
+    "country": "GN"
+  },
+  "Africa/Malabo": {
+    "city": "马拉博",
+    "country": "GQ"
+  },
+  "Africa/Bissau": {
+    "city": "比绍",
+    "country": "GW"
+  },
+  "Africa/Nairobi": {
+    "city": "内罗毕",
+    "country": "KE"
+  },
+  "Africa/Monrovia": {
+    "city": "蒙罗维亚",
+    "country": "LR"
+  },
+  "Africa/Maseru": {
+    "city": "马塞卢",
+    "country": "LS"
+  },
+  "Africa/Tripoli": {
+    "city": "的黎波里",
+    "country": "LY"
+  },
+  "Africa/Casablanca": {
+    "city": "卡萨布兰卡",
+    "country": "MA"
+  },
+  "Africa/Bamako": {
+    "city": "巴马科",
+    "country": "ML"
+  },
+  "Africa/Nouakchott": {
+    "city": "努瓦克肖特",
+    "country": "MR"
+  },
+  "Africa/Blantyre": {
+    "city": "布兰太尔",
+    "country": "MW"
+  },
+  "Africa/Maputo": {
+    "city": "马普托",
+    "country": "MZ"
+  },
+  "Africa/Windhoek": {
+    "city": "温得和克",
+    "country": "NA"
+  },
+  "Africa/Niamey": {
+    "city": "尼亚美",
+    "country": "NE"
+  },
+  "Africa/Lagos": {
+    "city": "拉各斯",
+    "country": "NG"
+  },
+  "Africa/Kigali": {
+    "city": "基加利",
+    "country": "RW"
+  },
+  "Africa/Khartoum": {
+    "city": "喀土穆",
+    "country": "SD"
+  },
+  "Africa/Freetown": {
+    "city": "弗里敦",
+    "country": "SL"
+  },
+  "Africa/Dakar": {
+    "city": "达喀尔",
+    "country": "SN"
+  },
+  "Africa/Mogadishu": {
+    "city": "摩加迪沙",
+    "country": "SO"
+  },
+  "Africa/Juba": {
+    "city": "朱巴",
+    "country": "SS"
+  },
+  "Africa/Sao_Tome": {
+    "city": "圣多美",
+    "country": "ST"
+  },
+  "Africa/Mbabane": {
+    "city": "姆巴巴纳",
+    "country": "SZ"
+  },
+  "Africa/Ndjamena": {
+    "city": "恩贾梅纳",
+    "country": "TD"
+  },
+  "Africa/Lome": {
+    "city": "洛美",
+    "country": "TG"
+  },
+  "Africa/Tunis": {
+    "city": "突尼斯",
+    "country": "TN"
+  },
+  "Africa/Dar_es_Salaam": {
+    "city": "达累斯萨拉姆",
+    "country": "TZ"
+  },
+  "Africa/Kampala": {
+    "city": "坎帕拉",
+    "country": "UG"
+  },
+  "Africa/Johannesburg": {
+    "city": "约翰内斯堡",
+    "country": "ZA"
+  },
+  "Africa/Lusaka": {
+    "city": "卢萨卡",
+    "country": "ZM"
+  },
+  "Africa/Harare": {
+    "city": "哈拉雷",
+    "country": "ZW"
+  },
+  "Antarctica/Rothera": {
+    "city": "罗瑟拉",
+    "country": "AQ"
+  },
+  "Antarctica/Palmer": {
+    "city": "帕尔默",
+    "country": "AQ"
+  },
+  "Antarctica/Troll": {
+    "city": "特罗尔",
+    "country": "AQ"
+  },
+  "Antarctica/Syowa": {
+    "city": "昭和",
+    "country": "AQ"
+  },
+  "Antarctica/Mawson": {
+    "city": "莫森",
+    "country": "AQ"
+  },
+  "Antarctica/Davis": {
+    "city": "戴维斯",
+    "country": "AQ"
+  },
+  "Antarctica/Vostok": {
+    "city": "沃斯托克",
+    "country": "AQ"
+  },
+  "Antarctica/Casey": {
+    "city": "卡塞",
+    "country": "AQ"
+  },
+  "Antarctica/DumontDUrville": {
+    "city": "迪蒙·迪维尔",
+    "country": "AQ"
+  },
+  "Antarctica/McMurdo": {
+    "city": "麦克默多",
+    "country": "AQ"
+  },
+  "Antarctica/Macquarie": {
+    "city": "麦夸里岛",
+    "country": "AU"
+  },
+  "Australia/Perth": {
+    "city": "珀斯",
+    "country": "AU"
+  },
+  "Australia/Eucla": {
+    "city": "尤克拉",
+    "country": "AU"
+  },
+  "Australia/Darwin": {
+    "city": "达尔文",
+    "country": "AU"
+  },
+  "Australia/Adelaide": {
+    "city": "阿德莱德",
+    "country": "AU"
+  },
+  "Australia/Broken_Hill": {
+    "city": "布罗肯希尔",
+    "country": "AU"
+  },
+  "Australia/Melbourne": {
+    "city": "墨尔本",
+    "country": "AU"
+  },
+  "Australia/Hobart": {
+    "city": "霍巴特",
+    "country": "AU"
+  },
+  "Australia/Lindeman": {
+    "city": "林德曼",
+    "country": "AU"
+  },
+  "Australia/Sydney": {
+    "city": "悉尼",
+    "country": "AU"
+  },
+  "Australia/Brisbane": {
+    "city": "布里斯班",
+    "country": "AU"
+  },
+  "Australia/Lord_Howe": {
+    "city": "豪勋爵岛",
+    "country": "AU"
+  },
+  "Atlantic/Bermuda": {
+    "city": "百慕大",
+    "country": "BM"
+  },
+  "Atlantic/Cape_Verde": {
+    "city": "佛得角",
+    "country": "CV"
+  },
+  "Atlantic/Canary": {
+    "city": "加那利",
+    "country": "ES"
+  },
+  "Atlantic/Stanley": {
+    "city": "斯坦利",
+    "country": "FK"
+  },
+  "Atlantic/Faeroe": {
+    "city": "法罗",
+    "country": "FO"
+  },
+  "Atlantic/South_Georgia": {
+    "city": "南乔治亚",
+    "country": "GS"
+  },
+  "Atlantic/Reykjavik": {
+    "city": "雷克雅未克",
+    "country": "IS"
+  },
+  "Atlantic/Azores": {
+    "city": "亚速尔群岛",
+    "country": "PT"
+  },
+  "Atlantic/Madeira": {
+    "city": "马德拉",
+    "country": "PT"
+  },
+  "Atlantic/St_Helena": {
+    "city": "圣赫勒拿",
+    "country": "SH"
+  },
+  "Indian/Cocos": {
+    "city": "可可斯",
+    "country": "CC"
+  },
+  "Indian/Christmas": {
+    "city": "圣诞岛",
+    "country": "CX"
+  },
+  "Indian/Chagos": {
+    "city": "查戈斯",
+    "country": "IO"
+  },
+  "Indian/Comoro": {
+    "city": "科摩罗",
+    "country": "KM"
+  },
+  "Indian/Antananarivo": {
+    "city": "安塔那那利佛",
+    "country": "MG"
+  },
+  "Indian/Mauritius": {
+    "city": "毛里求斯",
+    "country": "MU"
+  },
+  "Indian/Maldives": {
+    "city": "马尔代夫",
+    "country": "MV"
+  },
+  "Indian/Reunion": {
+    "city": "留尼汪",
+    "country": "RE"
+  },
+  "Indian/Mahe": {
+    "city": "马埃岛",
+    "country": "SC"
+  },
+  "Indian/Kerguelen": {
+    "city": "凯尔盖朗",
+    "country": "TF"
+  },
+  "Indian/Mayotte": {
+    "city": "马约特",
+    "country": "YT"
+  },
+  "Arctic/Longyearbyen": {
+    "city": "朗伊尔城",
+    "country": "SJ"
+  },
+  "Antarctica/South_Pole": {
+    "city": "麦克默多",
+    "country": "AQ"
+  },
+  "America/Argentina/Buenos_Aires": {
+    "city": "布宜诺斯艾利斯",
+    "country": "AR"
+  },
+  "America/Argentina/Cordoba": {
+    "city": "科尔多瓦",
+    "country": "AR"
+  },
+  "America/Rosario": {
+    "city": "科尔多瓦",
+    "country": "AR"
+  },
+  "America/Argentina/Catamarca": {
+    "city": "卡塔马卡",
+    "country": "AR"
+  },
+  "America/Argentina/ComodRivadavia": {
+    "city": "卡塔马卡",
+    "country": "AR"
+  },
+  "America/Argentina/Jujuy": {
+    "city": "胡胡伊",
+    "country": "AR"
+  },
+  "America/Argentina/Mendoza": {
+    "city": "门多萨",
+    "country": "AR"
+  },
+  "Pacific/Samoa": {
+    "city": "帕果帕果",
+    "country": "AS"
+  },
+  "US/Samoa": {
+    "city": "帕果帕果",
+    "country": "AS"
+  },
+  "Australia/South": {
+    "city": "阿德莱德",
+    "country": "AU"
+  },
+  "Australia/Yancowinna": {
+    "city": "布罗肯希尔",
+    "country": "AU"
+  },
+  "Australia/Queensland": {
+    "city": "布里斯班",
+    "country": "AU"
+  },
+  "Australia/North": {
+    "city": "达尔文",
+    "country": "AU"
+  },
+  "Australia/Tasmania": {
+    "city": "霍巴特",
+    "country": "AU"
+  },
+  "Australia/Currie": {
+    "city": "霍巴特",
+    "country": "AU"
+  },
+  "Australia/LHI": {
+    "city": "豪勋爵岛",
+    "country": "AU"
+  },
+  "Australia/Victoria": {
+    "city": "墨尔本",
+    "country": "AU"
+  },
+  "Australia/West": {
+    "city": "珀斯",
+    "country": "AU"
+  },
+  "Australia/ACT": {
+    "city": "悉尼",
+    "country": "AU"
+  },
+  "Australia/Canberra": {
+    "city": "悉尼",
+    "country": "AU"
+  },
+  "Australia/NSW": {
+    "city": "悉尼",
+    "country": "AU"
+  },
+  "Asia/Dacca": {
+    "city": "达卡",
+    "country": "BD"
+  },
+  "CET": {
+    "city": "布鲁塞尔",
+    "country": "BE"
+  },
+  "MET": {
+    "city": "布鲁塞尔",
+    "country": "BE"
+  },
+  "Brazil/DeNoronha": {
+    "city": "洛罗尼亚",
+    "country": "BR"
+  },
+  "Brazil/West": {
+    "city": "马瑙斯",
+    "country": "BR"
+  },
+  "America/Porto_Acre": {
+    "city": "里奥布郎库",
+    "country": "BR"
+  },
+  "Brazil/Acre": {
+    "city": "里奥布郎库",
+    "country": "BR"
+  },
+  "Brazil/East": {
+    "city": "圣保罗",
+    "country": "BR"
+  },
+  "Asia/Thimbu": {
+    "city": "廷布",
+    "country": "BT"
+  },
+  "Canada/Mountain": {
+    "city": "埃德蒙顿",
+    "country": "CA"
+  },
+  "America/Yellowknife": {
+    "city": "埃德蒙顿",
+    "country": "CA"
+  },
+  "Canada/Atlantic": {
+    "city": "哈利法克斯",
+    "country": "CA"
+  },
+  "America/Pangnirtung": {
+    "city": "伊魁特",
+    "country": "CA"
+  },
+  "Canada/East-Saskatchewan": {
+    "city": "里贾纳",
+    "country": "CA"
+  },
+  "Canada/Saskatchewan": {
+    "city": "里贾纳",
+    "country": "CA"
+  },
+  "Canada/Newfoundland": {
+    "city": "圣约翰斯",
+    "country": "CA"
+  },
+  "America/Montreal": {
+    "city": "多伦多",
+    "country": "CA"
+  },
+  "Canada/Eastern": {
+    "city": "多伦多",
+    "country": "CA"
+  },
+  "America/Nipigon": {
+    "city": "多伦多",
+    "country": "CA"
+  },
+  "America/Thunder_Bay": {
+    "city": "多伦多",
+    "country": "CA"
+  },
+  "Canada/Pacific": {
+    "city": "温哥华",
+    "country": "CA"
+  },
+  "Canada/Central": {
+    "city": "温尼伯",
+    "country": "CA"
+  },
+  "America/Rainy_River": {
+    "city": "温尼伯",
+    "country": "CA"
+  },
+  "Canada/Yukon": {
+    "city": "怀特霍斯",
+    "country": "CA"
+  },
+  "America/Atikokan": {
+    "city": "阿蒂科肯",
+    "country": "CA"
+  },
+  "Chile/EasterIsland": {
+    "city": "复活节岛",
+    "country": "CL"
+  },
+  "Chile/Continental": {
+    "city": "圣地亚哥",
+    "country": "CL"
+  },
+  "Asia/Chongqing": {
+    "city": "上海",
+    "country": "CN"
+  },
+  "Asia/Chungking": {
+    "city": "上海",
+    "country": "CN"
+  },
+  "Asia/Harbin": {
+    "city": "上海",
+    "country": "CN"
+  },
+  "PRC": {
+    "city": "上海",
+    "country": "CN"
+  },
+  "Asia/Kashgar": {
+    "city": "乌鲁木齐",
+    "country": "CN"
+  },
+  "Cuba": {
+    "city": "哈瓦那",
+    "country": "CU"
+  },
+  "Europe/Nicosia": {
+    "city": "尼科西亚",
+    "country": "CY"
+  },
+  "Egypt": {
+    "city": "开罗",
+    "country": "EG"
+  },
+  "Africa/Asmara": {
+    "city": "阿斯马拉",
+    "country": "ER"
+  },
+  "Pacific/Pohnpei": {
+    "city": "波纳佩岛",
+    "country": "FM"
+  },
+  "Pacific/Chuuk": {
+    "city": "特鲁克群岛",
+    "country": "FM"
+  },
+  "Pacific/Yap": {
+    "city": "特鲁克群岛",
+    "country": "FM"
+  },
+  "Atlantic/Faroe": {
+    "city": "法罗",
+    "country": "FO"
+  },
+  "Europe/Belfast": {
+    "city": "伦敦",
+    "country": "GB"
+  },
+  "GB": {
+    "city": "伦敦",
+    "country": "GB"
+  },
+  "GB-Eire": {
+    "city": "伦敦",
+    "country": "GB"
+  },
+  "America/Nuuk": {
+    "city": "努克",
+    "country": "GL"
+  },
+  "EET": {
+    "city": "雅典",
+    "country": "GR"
+  },
+  "Hongkong": {
+    "city": "香港",
+    "country": "HK"
+  },
+  "Asia/Ujung_Pandang": {
+    "city": "望加锡",
+    "country": "ID"
+  },
+  "Eire": {
+    "city": "都柏林",
+    "country": "IE"
+  },
+  "Asia/Kolkata": {
+    "city": "加尔各答",
+    "country": "IN"
+  },
+  "Iran": {
+    "city": "德黑兰",
+    "country": "IR"
+  },
+  "Iceland": {
+    "city": "雷克雅未克",
+    "country": "IS"
+  },
+  "Asia/Tel_Aviv": {
+    "city": "耶路撒冷",
+    "country": "IL"
+  },
+  "Israel": {
+    "city": "耶路撒冷",
+    "country": "IL"
+  },
+  "Jamaica": {
+    "city": "牙买加",
+    "country": "JM"
+  },
+  "Japan": {
+    "city": "东京",
+    "country": "JP"
+  },
+  "Pacific/Kanton": {
+    "city": "坎顿岛",
+    "country": "KI"
+  },
+  "ROK": {
+    "city": "首尔",
+    "country": "KR"
+  },
+  "Libya": {
+    "city": "的黎波里",
+    "country": "LY"
+  },
+  "Europe/Tiraspol": {
+    "city": "基希讷乌",
+    "country": "MD"
+  },
+  "Kwajalein": {
+    "city": "夸贾林",
+    "country": "MH"
+  },
+  "Africa/Timbuktu": {
+    "city": "巴马科",
+    "country": "ML"
+  },
+  "Asia/Yangon": {
+    "city": "仰光",
+    "country": "MM"
+  },
+  "Asia/Ulan_Bator": {
+    "city": "乌兰巴托",
+    "country": "MN"
+  },
+  "Asia/Choibalsan": {
+    "city": "乌兰巴托",
+    "country": "MN"
+  },
+  "Asia/Macao": {
+    "city": "澳门",
+    "country": "MO"
+  },
+  "Mexico/General": {
+    "city": "墨西哥城",
+    "country": "MX"
+  },
+  "Mexico/BajaSur": {
+    "city": "马萨特兰",
+    "country": "MX"
+  },
+  "America/Ensenada": {
+    "city": "蒂华纳",
+    "country": "MX"
+  },
+  "Mexico/BajaNorte": {
+    "city": "蒂华纳",
+    "country": "MX"
+  },
+  "America/Santa_Isabel": {
+    "city": "蒂华纳",
+    "country": "MX"
+  },
+  "Asia/Kathmandu": {
+    "city": "加德满都",
+    "country": "NP"
+  },
+  "NZ": {
+    "city": "奥克兰",
+    "country": "NZ"
+  },
+  "NZ-CHAT": {
+    "city": "查塔姆",
+    "country": "NZ"
+  },
+  "EST": {
+    "city": "巴拿马",
+    "country": "PA"
+  },
+  "Poland": {
+    "city": "华沙",
+    "country": "PL"
+  },
+  "Portugal": {
+    "city": "里斯本",
+    "country": "PT"
+  },
+  "WET": {
+    "city": "里斯本",
+    "country": "PT"
+  },
+  "W-SU": {
+    "city": "莫斯科",
+    "country": "RU"
+  },
+  "Singapore": {
+    "city": "新加坡",
+    "country": "SG"
+  },
+  "Atlantic/Jan_Mayen": {
+    "city": "朗伊尔城",
+    "country": "SJ"
+  },
+  "Asia/Ashkhabad": {
+    "city": "阿什哈巴德",
+    "country": "TM"
+  },
+  "Asia/Istanbul": {
+    "city": "伊斯坦布尔",
+    "country": "TR"
+  },
+  "Turkey": {
+    "city": "伊斯坦布尔",
+    "country": "TR"
+  },
+  "ROC": {
+    "city": "台北",
+    "country": "TW"
+  },
+  "Europe/Kyiv": {
+    "city": "基辅",
+    "country": "UA"
+  },
+  "Europe/Zaporozhye": {
+    "city": "基辅",
+    "country": "UA"
+  },
+  "Europe/Uzhgorod": {
+    "city": "基辅",
+    "country": "UA"
+  },
+  "Factory": {
+    "city": "未知地点",
+    "country": "UN"
+  },
+  "America/Atka": {
+    "city": "埃达克",
+    "country": "US"
+  },
+  "US/Aleutian": {
+    "city": "埃达克",
+    "country": "US"
+  },
+  "US/Alaska": {
+    "city": "安克雷奇",
+    "country": "US"
+  },
+  "US/Central": {
+    "city": "芝加哥",
+    "country": "US"
+  },
+  "CST6CDT": {
+    "city": "芝加哥",
+    "country": "US"
+  },
+  "America/Shiprock": {
+    "city": "丹佛",
+    "country": "US"
+  },
+  "Navajo": {
+    "city": "丹佛",
+    "country": "US"
+  },
+  "US/Mountain": {
+    "city": "丹佛",
+    "country": "US"
+  },
+  "MST7MDT": {
+    "city": "丹佛",
+    "country": "US"
+  },
+  "US/Michigan": {
+    "city": "底特律",
+    "country": "US"
+  },
+  "US/Hawaii": {
+    "city": "檀香山",
+    "country": "US"
+  },
+  "Pacific/Johnston": {
+    "city": "檀香山",
+    "country": "US"
+  },
+  "HST": {
+    "city": "檀香山",
+    "country": "US"
+  },
+  "America/Fort_Wayne": {
+    "city": "印第安纳波利斯",
+    "country": "US"
+  },
+  "America/Indiana/Indianapolis": {
+    "city": "印第安纳波利斯",
+    "country": "US"
+  },
+  "US/East-Indiana": {
+    "city": "印第安纳波利斯",
+    "country": "US"
+  },
+  "America/Knox_IN": {
+    "city": "印第安纳州诺克斯",
+    "country": "US"
+  },
+  "US/Indiana-Starke": {
+    "city": "印第安纳州诺克斯",
+    "country": "US"
+  },
+  "US/Pacific": {
+    "city": "洛杉矶",
+    "country": "US"
+  },
+  "US/Pacific-New": {
+    "city": "洛杉矶",
+    "country": "US"
+  },
+  "PST8PDT": {
+    "city": "洛杉矶",
+    "country": "US"
+  },
+  "America/Kentucky/Louisville": {
+    "city": "路易斯维尔",
+    "country": "US"
+  },
+  "US/Eastern": {
+    "city": "纽约",
+    "country": "US"
+  },
+  "EST5EDT": {
+    "city": "纽约",
+    "country": "US"
+  },
+  "US/Arizona": {
+    "city": "凤凰城",
+    "country": "US"
+  },
+  "MST": {
+    "city": "凤凰城",
+    "country": "US"
+  },
+  "America/Virgin": {
+    "city": "圣托马斯",
+    "country": "VI"
+  },
+  "Asia/Ho_Chi_Minh": {
+    "city": "胡志明市",
+    "country": "VN"
+  },
+  "UTC": {
+    "city": "协调世界时",
+    "country": ""
+  }
+}

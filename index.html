@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f6f2" />
+    <script>
+      ;(() => {
+        let theme = 'system'
+        try {
+          const saved = localStorage.getItem('same-moment.theme')
+          if (saved === 'light' || saved === 'dark') theme = saved
+        } catch {}
+        const dark =
+          theme === 'dark' ||
+          (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        document.documentElement.dataset.theme = theme
+        document.documentElement.classList.toggle('dark', dark)
+        document.querySelector('meta[name="theme-color"]').content = dark ? '#141a17' : '#f6f6f2'
+      })()
+    </script>
+    <meta
+      name="description"
+      content="同刻：简洁的世界时钟与时区换算工具。搜索中文城市、IANA 时区或 UTC 偏移，轻松比较世界各地的时间。"
+    />
+    <title>同刻 · 世界时间与时区换算</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
