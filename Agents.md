@@ -113,6 +113,15 @@ React 19、TypeScript 6、Vite 8（Rolldown）、Tailwind CSS 4、shadcn/ui（Ra
 
 读取偏好时校验时区并去重，移除基准城市后选取可用基准。存储不可用时，当前页面操作仍应生效。自定义换算时间不持久化，刷新后回到实时时间。修改存储结构时考虑已有浏览器数据。
 
+## 仓库与部署
+
+- 开源仓库：<https://github.com/lainbo/timezones>，默认分支 `main`，项目代码使用 MIT 许可证。保留 CLDR 数据的 Unicode 许可证。
+- Cloudflare Pages 项目：`tongke-timezones`，线上地址：<https://tongke-timezones.pages.dev/>。
+- 部署通过 Cloudflare Pages 的 Git 集成连接该仓库，推送到 `main` 自动发布生产版本。部署配置在 Pages 控制台维护。
+- 构建在仓库根目录执行 `pnpm build`，发布目录为 `dist`。Node.js 由 `.node-version` 固定为 `24.20.0`；生产和预览环境使用 `PNPM_VERSION=12.5.1`，与 `packageManager` 保持一致。
+- 发布前检查待提交文件，凭据、本地环境文件、`node_modules`、`dist` 和 `.wrangler` 由 `.gitignore` 排除。提交及推送应在当前任务授权范围内进行。
+- 发布后确认 Pages 部署成功且关联正确的 Git 提交，再检查线上页面；本地构建通过不能单独代表远端部署完成。
+
 ## 修改与验证
 
 - 修改前阅读相关代码、调用位置和已有验证结果，取得足以支持改动的直接证据。代码无法解释行为或涉及历史回归时，再查阅可用的 Git 历史。

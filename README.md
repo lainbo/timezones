@@ -2,6 +2,8 @@
 
 一个可以本地运行的中文世界时钟。修改任意城市的日期和时间，所有卡片同步换算，显示 UTC 偏移、相对时差和跨日提示。
 
+[在线使用](https://tongke-timezones.pages.dev/) · [GitHub 仓库](https://github.com/lainbo/timezones)
+
 ## 本地运行
 
 需要 Node.js 22.12+ 或 24+、pnpm 12。
@@ -52,6 +54,22 @@ pnpm format
 ## 技术栈
 
 React 19、TypeScript、Vite 8（Rolldown）、shadcn/ui（Radix）、Tailwind CSS 4、framer-motion、dnd-kit、Oxlint 和 Oxfmt。页面进入、表针和返回当前时间的刻度动画使用 framer-motion，并遵循系统的减少动态效果设置。依赖版本与 pnpm 锁文件保存在仓库中。
+
+## Cloudflare Pages 部署
+
+项目通过 Cloudflare Pages 的 Git 集成连接 `lainbo/timezones`，推送到 `main` 后自动构建并发布到 <https://tongke-timezones.pages.dev/>。
+
+| 配置         | 值                                      |
+| ------------ | --------------------------------------- |
+| Pages 项目   | `tongke-timezones`                      |
+| 生产分支     | `main`                                  |
+| 根目录       | 仓库根目录                              |
+| 构建命令     | `pnpm build`                            |
+| 构建输出目录 | `dist`                                  |
+| Node.js      | `.node-version` 中的 `24.20.0`          |
+| 构建环境变量 | `PNPM_VERSION=12.5.1`（生产和预览环境） |
+
+部署设置在 Cloudflare Pages 控制台维护。升级 Node.js 或 pnpm 时，同步更新版本文件、`packageManager`、锁文件和相关构建环境变量。构建环境变量说明见 [Cloudflare 构建镜像文档](https://developers.cloudflare.com/pages/configuration/build-image/)。
 
 ## 文档与参考
 
