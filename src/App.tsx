@@ -157,12 +157,14 @@ export default function App() {
                 aria-label="时间显示格式"
               >
                 <button
+                  className="rounded-md!"
                   aria-pressed={!hour12}
                   onClick={() => setPreferences((current) => ({ ...current, hour12: false }))}
                 >
                   24 小时
                 </button>
                 <button
+                  className="rounded-md!"
                   aria-pressed={hour12}
                   onClick={() => setPreferences((current) => ({ ...current, hour12: true }))}
                 >
