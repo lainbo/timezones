@@ -58,7 +58,7 @@ export const zoneIds = [
   ]),
 ]
 export const zones = zoneIds.map(zoneInfo)
-export const defaultZones = ['Asia/Taipei', 'America/Los_Angeles', 'Europe/London', 'Asia/Tokyo']
+export const defaultZones = ['Asia/Singapore', 'America/Los_Angeles', 'America/New_York', 'UTC']
 
 export function catalogAt(instant: Instant) {
   return zones.map((zone) => ({

@@ -88,7 +88,7 @@ export default function App() {
     setPreferences((current) => ({
       ...current,
       zones: next,
-      base: next.includes(current.base) ? current.base : (next[0] ?? 'Asia/Taipei'),
+      base: next.includes(current.base) ? current.base : (next[0] ?? 'Asia/Singapore'),
     }))
   }
   function changeTime(next: Instant, source: string) {
@@ -194,7 +194,7 @@ export default function App() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    {(zones.length ? zones : ['Asia/Taipei']).map((id) => (
+                    {(zones.length ? zones : ['Asia/Singapore']).map((id) => (
                       <SelectItem key={id} value={id}>
                         {zoneInfo(id).city}
                       </SelectItem>
