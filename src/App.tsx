@@ -23,7 +23,6 @@ import {
   ChevronRight,
   Clock3,
   Globe2,
-  GripVertical,
   Plus,
   RotateCcw,
 } from 'lucide-react'
