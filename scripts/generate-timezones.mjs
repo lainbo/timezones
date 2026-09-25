@@ -18,7 +18,11 @@ for (const [key, value] of Object.entries(aliases)) {
   const source = ids.map((id) => names[id]).find(Boolean)
   if (!source) continue
   const country = (value._region || key.slice(0, 2)).toUpperCase()
-  for (const id of ids) names[id] = { city: source.city, country }
+  for (const id of ids) {
+    names[id] = { city: source.city, country }
+    // Chrome 列出的是 CLDR 规范标识符（如 Asia/Calcutta），记录 IANA 现行名称供英文名和搜索使用。
+    if (value._iana && id !== value._iana) names[id].iana = value._iana
+  }
 }
 names.UTC = { city: '协调世界时', country: '' }
 writeFileSync(

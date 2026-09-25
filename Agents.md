@@ -79,7 +79,7 @@ React 19、TypeScript 6、Vite 8（Rolldown）、Tailwind CSS 4、shadcn/ui（Ra
 
 时区目录通过 `Intl.supportedValuesOf('timeZone')` 获取，并补充 `UTC` 及 UTC−12 至 UTC+14 的整小时固定偏移。`Etc/GMT` 标识符的正负号与显示的 UTC 偏移相反，处理时保持现有转换语义。
 
-中文名称来自 Unicode CLDR，搜索还包含项目维护的常见别名。修改数据生成逻辑后运行 `pnpm data:timezones`，检查生成文件并保留 `public/UNICODE-LICENSE.txt`。浏览器只加载提取后的数据，不加载完整 CLDR 包。可选时区数量随浏览器数据库变化，不要写死数量。
+中文名称来自 Unicode CLDR，搜索还包含项目维护的常见别名。Chrome 的时区列表使用 `Asia/Calcutta` 等 CLDR 规范标识符，生成数据为这类标识符记录 IANA 现行名称（`iana` 字段），英文名和搜索使用该名称。修改数据生成逻辑后运行 `pnpm data:timezones`，检查生成文件并保留 `public/UNICODE-LICENSE.txt`。浏览器只加载提取后的数据，不加载完整 CLDR 包。可选时区数量随浏览器数据库变化，不要写死数量。
 
 ## 界面与交互约定
 

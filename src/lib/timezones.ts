@@ -1,7 +1,7 @@
 import rawNames from '../data/timezone-names.json'
 import { Temporal, offsetText, type Instant } from './temporal'
 
-type ZoneName = { city: string; country: string }
+type ZoneName = { city: string; country: string; iana?: string }
 const names: Record<string, ZoneName> = rawNames
 const countries = new Intl.DisplayNames(['zh-CN'], { type: 'region' })
 const aliases: Record<string, string> = {
@@ -35,14 +35,15 @@ export function zoneInfo(id: string) {
       .formatToParts(0)
       .find((part) => part.type === 'timeZoneName')?.value ??
     id
-  const english = id.split('/').at(-1)!.replaceAll('_', ' ')
+  const english = (data?.iana ?? id).split('/').at(-1)!.replaceAll('_', ' ')
   const region = data?.country ? countries.of(data.country)! : '世界时区'
   return {
     id,
     city,
     english,
     region,
-    search: `${city} ${region} ${id} ${english} ${aliases[id] ?? ''}`.toLowerCase(),
+    search:
+      `${city} ${region} ${id} ${data?.iana ?? ''} ${english} ${aliases[id] ?? ''}`.toLowerCase(),
   }
 }
 

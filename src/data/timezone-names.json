@@ -25,11 +25,13 @@
   },
   "Pacific/Truk": {
     "city": "特鲁克群岛",
-    "country": "FM"
+    "country": "FM",
+    "iana": "Pacific/Chuuk"
   },
   "Pacific/Ponape": {
     "city": "波纳佩岛",
-    "country": "FM"
+    "country": "FM",
+    "iana": "Pacific/Pohnpei"
   },
   "Pacific/Kosrae": {
     "city": "库赛埃",
@@ -41,7 +43,8 @@
   },
   "Pacific/Enderbury": {
     "city": "坎顿岛",
-    "country": "KI"
+    "country": "KI",
+    "iana": "Pacific/Kanton"
   },
   "Pacific/Kiritimati": {
     "city": "基里地马地岛",
@@ -377,7 +380,8 @@
   },
   "Europe/Kiev": {
     "city": "基辅",
-    "country": "UA"
+    "country": "UA",
+    "iana": "Europe/Kyiv"
   },
   "Europe/Simferopol": {
     "city": "辛菲罗波尔",
@@ -465,7 +469,8 @@
   },
   "Asia/Calcutta": {
     "city": "加尔各答",
-    "country": "IN"
+    "country": "IN",
+    "iana": "Asia/Kolkata"
   },
   "Asia/Baghdad": {
     "city": "巴格达",
@@ -545,7 +550,8 @@
   },
   "Asia/Rangoon": {
     "city": "仰光",
-    "country": "MM"
+    "country": "MM",
+    "iana": "Asia/Yangon"
   },
   "Asia/Hovd": {
     "city": "科布多",
@@ -569,7 +575,8 @@
   },
   "Asia/Katmandu": {
     "city": "加德满都",
-    "country": "NP"
+    "country": "NP",
+    "iana": "Asia/Kathmandu"
   },
   "Asia/Muscat": {
     "city": "马斯喀特",
@@ -709,7 +716,8 @@
   },
   "Asia/Saigon": {
     "city": "胡志明市",
-    "country": "VN"
+    "country": "VN",
+    "iana": "Asia/Ho_Chi_Minh"
   },
   "Asia/Aden": {
     "city": "亚丁",
@@ -753,23 +761,28 @@
   },
   "America/Mendoza": {
     "city": "门多萨",
-    "country": "AR"
+    "country": "AR",
+    "iana": "America/Argentina/Mendoza"
   },
   "America/Catamarca": {
     "city": "卡塔马卡",
-    "country": "AR"
+    "country": "AR",
+    "iana": "America/Argentina/Catamarca"
   },
   "America/Jujuy": {
     "city": "胡胡伊",
-    "country": "AR"
+    "country": "AR",
+    "iana": "America/Argentina/Jujuy"
   },
   "America/Cordoba": {
     "city": "科尔多瓦",
-    "country": "AR"
+    "country": "AR",
+    "iana": "America/Argentina/Cordoba"
   },
   "America/Buenos_Aires": {
     "city": "布宜诺斯艾利斯",
-    "country": "AR"
+    "country": "AR",
+    "iana": "America/Argentina/Buenos_Aires"
   },
   "America/Aruba": {
     "city": "阿鲁巴",
@@ -921,7 +934,8 @@
   },
   "America/Coral_Harbour": {
     "city": "阿蒂科肯",
-    "country": "CA"
+    "country": "CA",
+    "iana": "America/Atikokan"
   },
   "America/Toronto": {
     "city": "多伦多",
@@ -1009,7 +1023,8 @@
   },
   "America/Godthab": {
     "city": "努克",
-    "country": "GL"
+    "country": "GL",
+    "iana": "America/Nuuk"
   },
   "America/Scoresbysund": {
     "city": "斯科列斯比桑德",
@@ -1253,11 +1268,13 @@
   },
   "America/Indianapolis": {
     "city": "印第安纳波利斯",
-    "country": "US"
+    "country": "US",
+    "iana": "America/Indiana/Indianapolis"
   },
   "America/Louisville": {
     "city": "路易斯维尔",
-    "country": "US"
+    "country": "US",
+    "iana": "America/Kentucky/Louisville"
   },
   "America/Kentucky/Monticello": {
     "city": "肯塔基州蒙蒂塞洛",
@@ -1353,7 +1370,8 @@
   },
   "Africa/Asmera": {
     "city": "阿斯马拉",
-    "country": "ER"
+    "country": "ER",
+    "iana": "Africa/Asmara"
   },
   "Africa/Ceuta": {
     "city": "休达",
@@ -1605,7 +1623,8 @@
   },
   "Atlantic/Faeroe": {
     "city": "法罗",
-    "country": "FO"
+    "country": "FO",
+    "iana": "Atlantic/Faroe"
   },
   "Atlantic/South_Georgia": {
     "city": "南乔治亚",
@@ -1689,7 +1708,8 @@
   },
   "America/Rosario": {
     "city": "科尔多瓦",
-    "country": "AR"
+    "country": "AR",
+    "iana": "America/Argentina/Cordoba"
   },
   "America/Argentina/Catamarca": {
     "city": "卡塔马卡",
@@ -1697,7 +1717,8 @@
   },
   "America/Argentina/ComodRivadavia": {
     "city": "卡塔马卡",
-    "country": "AR"
+    "country": "AR",
+    "iana": "America/Argentina/Catamarca"
   },
   "America/Argentina/Jujuy": {
     "city": "胡胡伊",
@@ -1917,7 +1938,8 @@
   },
   "Pacific/Yap": {
     "city": "特鲁克群岛",
-    "country": "FM"
+    "country": "FM",
+    "iana": "Pacific/Chuuk"
   },
   "Atlantic/Faroe": {
     "city": "法罗",
@@ -2105,11 +2127,13 @@
   },
   "Europe/Zaporozhye": {
     "city": "基辅",
-    "country": "UA"
+    "country": "UA",
+    "iana": "Europe/Kyiv"
   },
   "Europe/Uzhgorod": {
     "city": "基辅",
-    "country": "UA"
+    "country": "UA",
+    "iana": "Europe/Kyiv"
   },
   "Factory": {
     "city": "未知地点",
@@ -2169,7 +2193,8 @@
   },
   "America/Fort_Wayne": {
     "city": "印第安纳波利斯",
-    "country": "US"
+    "country": "US",
+    "iana": "America/Indiana/Indianapolis"
   },
   "America/Indiana/Indianapolis": {
     "city": "印第安纳波利斯",
@@ -2177,7 +2202,8 @@
   },
   "US/East-Indiana": {
     "city": "印第安纳波利斯",
-    "country": "US"
+    "country": "US",
+    "iana": "America/Indiana/Indianapolis"
   },
   "America/Knox_IN": {
     "city": "印第安纳州诺克斯",
