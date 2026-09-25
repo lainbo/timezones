@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { DatePicker } from '@/components/date-picker'
-import { resolveLocalTime, timeText, type Instant } from '@/lib/temporal'
+import { dateText, offsetText, resolveLocalTime, timeText, type Instant } from '@/lib/temporal'
 import { zoneInfo } from '@/lib/timezones'
 
 type Props = {
@@ -24,7 +24,11 @@ export function TimeEditor({ zone, instant, onClose, onSave }: Props) {
   const info = zoneInfo(zone)
   const [date, setDate] = useState(current.toPlainDate().toString())
   const [time, setTime] = useState(timeText(current))
-  const [occurrence, setOccurrence] = useState<'earlier' | 'later' | null>(null)
+  const [occurrence, setOccurrence] = useState<'earlier' | 'later' | null>(() => {
+    const initial = resolveLocalTime(zone, current.toPlainDate().toString(), timeText(current))
+    if (initial.kind !== 'overlap') return null
+    return initial.later.offsetNanoseconds === current.offsetNanoseconds ? 'later' : 'earlier'
+  })
   let resolution: ReturnType<typeof resolveLocalTime> | null = null
   try {
     if (date && time) resolution = resolveLocalTime(zone, date, time)
@@ -99,14 +103,15 @@ export function TimeEditor({ zone, instant, onClose, onSave }: Props) {
             >
               <Info size={18} />
               <p>
-                这段当地时间因夏令时跳转而不存在。请改选 {timeText(resolution.later)}{' '}
-                或其他有效时间。
+                这个当地时间因时钟拨快而不存在。请改选{' '}
+                {!resolution.later.toPlainDate().equals(date) && `${dateText(resolution.later)} `}
+                {timeText(resolution.later)} 或其他有效时间。
               </p>
             </div>
           )}
           {resolution?.kind === 'overlap' && (
             <fieldset className="border-0 p-0 text-xs text-muted-foreground [&_legend]:mb-2.5 [&_legend]:text-xs [&_label]:mt-2 [&_label]:flex [&_label]:items-center [&_label]:gap-2 [&_label]:rounded-[7px] [&_label]:border [&_label]:border-border [&_label]:p-2.5 [&_label>span]:ml-auto [&_label>span]:tabular-nums [&_input]:accent-selected-foreground">
-              <legend>夏令时结束，这个时间出现两次，请选择：</legend>
+              <legend>时钟回拨，这个时间出现两次，请选择：</legend>
               {(['earlier', 'later'] as const).map((choice, index) => (
                 <label key={choice}>
                   <input
@@ -115,7 +120,8 @@ export function TimeEditor({ zone, instant, onClose, onSave }: Props) {
                     checked={occurrence === choice}
                     onChange={() => setOccurrence(choice)}
                   />
-                  第 {index + 1} 次<span>UTC{resolution[choice].offset}</span>
+                  第 {index + 1} 次
+                  <span>{offsetText(resolution[choice].offsetNanoseconds / 60e9)}</span>
                 </label>
               ))}
             </fieldset>

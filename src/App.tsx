@@ -99,7 +99,8 @@ export default function App() {
     const next = reference.add({ days })
     if (next.year < 1900 || next.year > 2100) return
     changeTime(next.toInstant(), base)
-    if (next.hour !== reference.hour) setNotice('这一天存在夏令时跳转，已调整到有效的当地时间。')
+    if (!next.toPlainDateTime().equals(reference.toPlainDateTime().add({ days })))
+      setNotice('这个当地时间在所选日期不存在，已顺延到有效时间。')
   }
   function changeDate(date: string) {
     const days = reference.toPlainDate().until(Temporal.PlainDate.from(date)).days
