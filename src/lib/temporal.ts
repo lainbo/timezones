@@ -17,14 +17,15 @@ export function timeText(time: ZonedDateTime, hour12 = false) {
 }
 
 export function dateText(time: ZonedDateTime) {
-  return time
-    .toPlainDate()
-    .toLocaleString('zh-CN', { month: 'long', day: 'numeric', weekday: 'short' })
+  // Chrome 用 zh-CN 格式化 Temporal 日期时会忽略 month: 'long' 并输出 11/1，因此直接拼接日期字段。
+  return `${time.month}月${time.day}日周${'一二三四五六日'[time.dayOfWeek - 1]}`
 }
 
 export function offsetText(minutes: number) {
-  const absolute = Math.abs(minutes)
-  const hours = Math.floor(absolute / 60)
-  const rest = Math.round(absolute % 60)
-  return `UTC${minutes < 0 ? '−' : '+'}${hours}${rest ? `:${String(rest).padStart(2, '0')}` : ''}`
+  const offset = Temporal.Duration.from({ nanoseconds: Math.round(minutes * 60e9) }).round({
+    largestUnit: 'hour',
+    smallestUnit: 'minute',
+  })
+  const rest = Math.abs(offset.minutes)
+  return `UTC${offset.sign < 0 ? '−' : '+'}${Math.abs(offset.hours)}${rest ? `:${String(rest).padStart(2, '0')}` : ''}`
 }
