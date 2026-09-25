@@ -115,6 +115,16 @@ export function TimezoneCard({
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0 [&>p]:mt-[5px] [&>p]:flex [&>p]:flex-wrap [&>p]:items-center [&>p]:gap-1.5 [&>p]:text-[11px] [&>p]:text-muted-foreground [&>p>span]:text-muted-foreground max-[700px]:[&>p]:text-[9px] max-[480px]:[&>p]:text-[11px]">
           <div className="flex items-center gap-[9px] [&>h2]:m-0 [&>h2]:text-[17px] [&>h2]:leading-[25px] [&>h2]:font-[560] [&>h2]:tracking-[0.3px] max-[700px]:[&>h2]:text-[15px] max-[480px]:[&>h2]:text-lg">
+            <button
+              ref={setActivatorNodeRef}
+              {...attributes}
+              {...listeners}
+              className="-my-0.5 -mr-1.5 -ml-2 inline-flex h-7 w-6 shrink-0 items-center justify-center rounded-md border-0 bg-transparent text-muted-foreground hover:bg-accent/40 hover:text-foreground touch-none cursor-grab active:cursor-grabbing"
+              aria-label={`拖拽排序：${info.city}`}
+              title="拖拽排序；也可按空格后使用方向键"
+            >
+              <GripVertical size={18} />
+            </button>
             <h2>{info.city}</h2>
             {isBase && (
               <span className="rounded border border-border px-[5px] py-0.5 text-[9px] tracking-[0.4px] whitespace-nowrap text-muted-foreground">
@@ -130,17 +140,7 @@ export function TimezoneCard({
         </div>
         <div className="-mt-1 -mr-2 flex max-[700px]:-mr-[9px] max-[700px]:[&>button]:w-[22px]">
           <button
-            ref={setActivatorNodeRef}
-            {...attributes}
-            {...listeners}
-            className="inline-flex size-7 shrink-0 items-center justify-center rounded-md border-0 bg-transparent text-muted-foreground hover:bg-accent/40 hover:text-foreground touch-none cursor-grab active:cursor-grabbing"
-            aria-label={`拖拽排序：${info.city}`}
-            title="拖拽排序；也可按空格后使用方向键"
-          >
-            <GripVertical size={19} />
-          </button>
-          <button
-            className="inline-flex size-7 shrink-0 items-center justify-center rounded-md border-0 bg-transparent text-muted-foreground hover:bg-accent/40 hover:text-foreground opacity-0 group-hover/card:opacity-100 group-focus-within/card:opacity-100 hover:bg-destructive/10 hover:text-primary max-[700px]:opacity-100 [@media(hover:none)]:opacity-100"
+            className="inline-flex size-7 shrink-0 items-center justify-center rounded-md border-0 bg-transparent text-muted-foreground hover:bg-accent/40 hover:text-foreground opacity-0 group-hover/card:opacity-100 group-has-focus-visible/card:opacity-100 hover:bg-destructive/10 hover:text-primary max-[700px]:opacity-100 [@media(hover:none)]:opacity-100"
             aria-label={`移除${info.city}`}
             onClick={() => onRemove(id)}
           >
