@@ -49,7 +49,7 @@ export function TimeEditor({ zone, instant, onClose, onSave }: Props) {
           <div className="mb-3 flex items-center gap-[7px] text-[10px] tracking-[1.7px] text-muted-foreground">
             <Clock3 size={17} /> CONVERT TIME
           </div>
-          <DialogTitle className="text-2xl font-[550] tracking-[-0.5px]">
+          <DialogTitle className="text-2xl font-medium tracking-[-0.5px]">
             设置{info.city}时间
           </DialogTitle>
           <DialogDescription className="mt-[7px] text-xs leading-[1.7] text-muted-foreground">

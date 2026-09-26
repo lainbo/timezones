@@ -114,7 +114,7 @@ export function TimezoneCard({
     >
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0 [&>p]:mt-[5px] [&>p]:flex [&>p]:flex-wrap [&>p]:items-center [&>p]:gap-1.5 [&>p]:text-[11px] [&>p]:text-muted-foreground [&>p>span]:text-muted-foreground max-[700px]:[&>p]:text-[9px] max-[480px]:[&>p]:text-[11px]">
-          <div className="flex items-center gap-[9px] [&>h2]:m-0 [&>h2]:text-[17px] [&>h2]:leading-[25px] [&>h2]:font-[560] [&>h2]:tracking-[0.3px] max-[700px]:[&>h2]:text-[15px] max-[480px]:[&>h2]:text-lg">
+          <div className="flex items-center gap-[9px] [&>h2]:m-0 [&>h2]:text-[17px] [&>h2]:leading-[25px] [&>h2]:font-medium [&>h2]:tracking-[0.3px] max-[700px]:[&>h2]:text-[15px] max-[480px]:[&>h2]:text-lg">
             <button
               ref={setActivatorNodeRef}
               {...attributes}
@@ -150,7 +150,7 @@ export function TimezoneCard({
       </div>
       <div className="mt-[23px] flex items-center justify-between gap-1.5 min-[1450px]:mt-[27px] max-[700px]:mt-[21px] max-[480px]:mt-[22px]">
         <button
-          className="group/time relative flex items-baseline gap-[7px] border-0 bg-transparent p-0 text-left text-foreground group-data-[night=true]/card:text-night-foreground hover:text-primary [&>span:first-child]:font-['SF_Pro_Display','Helvetica_Neue',Arial,sans-serif] [&>span:first-child]:text-[clamp(35px,4.4vw,61px)] [&>span:first-child]:leading-[1.1] [&>span:first-child]:font-normal [&>span:first-child]:tracking-[-3.2px] [&>span:first-child]:tabular-nums max-[1100px]:[&>span:first-child]:text-[63px] max-[700px]:[&>span:first-child]:text-[46px] max-[700px]:[&>span:first-child]:tracking-[-2.5px] max-[480px]:[&>span:first-child]:text-[64px]"
+          className="group/time relative flex items-baseline gap-[7px] border-0 bg-transparent p-0 text-left text-foreground group-data-[night=true]/card:text-night-foreground hover:text-primary [&>span:first-child]:text-[clamp(35px,4.4vw,61px)] [&>span:first-child]:leading-[1.1] [&>span:first-child]:font-medium [&>span:first-child]:tabular-nums max-[1100px]:[&>span:first-child]:text-[63px] max-[700px]:[&>span:first-child]:text-[46px] max-[480px]:[&>span:first-child]:text-[64px]"
           onClick={() => onEdit(id)}
           aria-label={`修改${info.city}时间`}
           title="点击设置当地日期和时间"

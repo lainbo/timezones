@@ -128,7 +128,7 @@ export default function App() {
             className="flex h-[92px] items-center justify-between gap-5 border-b border-border max-[1100px]:h-[90px] max-[700px]:h-[79px]"
           >
             <a
-              className="flex items-center gap-[13px] text-[23px] font-[650] tracking-[1px] text-inherit no-underline [&>span:last-child]:flex [&>span:last-child]:items-center [&>span:last-child]:gap-[15px] max-[700px]:gap-2.5 max-[700px]:text-[21px]"
+              className="flex items-center gap-[13px] text-[23px] font-medium tracking-[1px] text-inherit no-underline [&>span:last-child]:flex [&>span:last-child]:items-center [&>span:last-child]:gap-[15px] max-[700px]:gap-2.5 max-[700px]:text-[21px]"
               href="/"
               aria-label="同刻首页"
             >
@@ -324,7 +324,7 @@ export default function App() {
           </m.main>
           <footer className="flex flex-wrap items-center justify-between gap-5 border-t border-border pt-[25px] pb-[27px] text-[10px] tracking-[0.1px] text-muted-foreground [&>div]:flex [&>div]:items-center [&>div]:gap-3 max-[700px]:gap-[13px] max-[700px]:py-5 max-[700px]:text-[9px] max-[700px]:[&>div]:gap-2 max-[700px]:[&>span:last-child]:ml-auto">
             <div>
-              <span className="text-[13px] font-semibold tracking-[1px] text-muted-foreground">
+              <span className="text-[13px] font-medium tracking-[1px] text-muted-foreground">
                 同刻
               </span>
               <span>不同的时区，同一个此刻。</span>

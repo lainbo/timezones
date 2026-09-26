@@ -89,7 +89,7 @@ export function ZonePicker({ selected, instant, onClose, onSave }: Props) {
           <div className="mb-3 flex items-center gap-[7px] text-[10px] tracking-[1.7px] text-muted-foreground">
             <Globe2 size={17} /> YOUR WORLD
           </div>
-          <DialogTitle className="text-2xl font-[550] tracking-[-0.5px]">添加时区</DialogTitle>
+          <DialogTitle className="text-2xl font-medium tracking-[-0.5px]">添加时区</DialogTitle>
           <DialogDescription
             className="mt-[7px] text-xs leading-[1.7] text-muted-foreground"
             id="zone-description"
@@ -143,7 +143,7 @@ export function ZonePicker({ selected, instant, onClose, onSave }: Props) {
             </div>
           )}
         </div>
-        <div className="mt-3.5 flex items-center justify-between gap-3 border-t border-border px-[25px] pt-[17px] pb-[7px] text-xs text-muted-foreground [&_strong]:px-0.5 [&_strong]:font-[550] [&_strong]:text-selected-foreground [&>div]:flex [&>div]:gap-1.5 [&_button]:text-xs max-[480px]:px-5">
+        <div className="mt-3.5 flex items-center justify-between gap-3 border-t border-border px-[25px] pt-[17px] pb-[7px] text-xs text-muted-foreground [&_strong]:px-0.5 [&_strong]:font-medium [&_strong]:text-selected-foreground [&>div]:flex [&>div]:gap-1.5 [&_button]:text-xs max-[480px]:px-5">
           <span>
             已选 <strong>{draft.length}</strong> 个时区
             <span className="text-[10px] text-muted-foreground max-[480px]:hidden">
