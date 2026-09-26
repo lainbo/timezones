@@ -7,6 +7,7 @@ import { CSS } from '@dnd-kit/utilities'
 import { ArrowUpRight, GripVertical, Moon, Sun, X } from 'lucide-react'
 import { dateText, offsetText, timeText, type Instant } from '@/lib/temporal'
 import { zoneInfo } from '@/lib/timezones'
+import { NightSky } from '@/components/night-sky'
 
 type Props = {
   id: string
@@ -112,6 +113,7 @@ export function TimezoneCard({
       )}
       aria-label={`${info.city}时区卡片`}
     >
+      <NightSky id={id} night={night} />
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0 [&>p]:mt-[5px] [&>p]:flex [&>p]:flex-wrap [&>p]:items-center [&>p]:gap-1.5 [&>p]:text-[11px] [&>p]:text-muted-foreground [&>p>span]:text-muted-foreground max-[700px]:[&>p]:text-[9px] max-[480px]:[&>p]:text-[11px]">
           <div className="flex items-center gap-[9px] [&>h2]:m-0 [&>h2]:text-[17px] [&>h2]:leading-[25px] [&>h2]:font-medium [&>h2]:tracking-[0.3px] max-[700px]:[&>h2]:text-[15px] max-[480px]:[&>h2]:text-lg">
