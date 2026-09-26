@@ -105,7 +105,7 @@ export function TimezoneCard({
       style={{ transform: CSS.Transform.toString(transform), transition }}
       data-night={night}
       className={cn(
-        'group/card relative isolate min-w-0 rounded-[15px] border px-[23px] pt-[23px] pb-[17px] text-foreground shadow-xs transition-[box-shadow,border-color] duration-200 min-[1450px]:px-[27px] min-[1450px]:pt-[26px] min-[1450px]:pb-5 max-[1100px]:p-6 max-[700px]:rounded-xl max-[700px]:px-[17px] max-[700px]:pt-[19px] max-[700px]:pb-4 max-[480px]:px-[23px] max-[480px]:pt-[23px] max-[480px]:pb-[18px]',
+        'group/card relative isolate min-w-0 rounded-[15px] border px-[23px] pt-[23px] pb-[17px] text-foreground shadow-xs transition-day-night motion-reduce:transition-none min-[1450px]:px-[27px] min-[1450px]:pt-[26px] min-[1450px]:pb-5 max-[1100px]:p-6 max-[700px]:rounded-xl max-[700px]:px-[17px] max-[700px]:pt-[19px] max-[700px]:pb-4 max-[480px]:px-[23px] max-[480px]:pt-[23px] max-[480px]:pb-[18px]',
         night ? 'dark border-night-border bg-night' : 'border-border bg-card',
         isBase && 'border-selected-border ring-1 ring-selected-border',
         isDragging && 'z-20 shadow-2xl',
@@ -150,7 +150,7 @@ export function TimezoneCard({
       </div>
       <div className="mt-[23px] flex items-center justify-between gap-1.5 min-[1450px]:mt-[27px] max-[700px]:mt-[21px] max-[480px]:mt-[22px]">
         <button
-          className="group/time relative flex items-baseline gap-[7px] border-0 bg-transparent p-0 text-left text-foreground group-data-[night=true]/card:text-night-foreground hover:text-primary [&>span:first-child]:text-[clamp(35px,4.4vw,61px)] [&>span:first-child]:leading-[1.1] [&>span:first-child]:font-medium [&>span:first-child]:tabular-nums max-[1100px]:[&>span:first-child]:text-[63px] max-[700px]:[&>span:first-child]:text-[46px] max-[480px]:[&>span:first-child]:text-[64px]"
+          className="group/time relative flex items-baseline gap-[7px] border-0 bg-transparent p-0 text-left text-foreground hover:text-primary [&>span:first-child]:text-[clamp(35px,4.4vw,61px)] [&>span:first-child]:leading-[1.1] [&>span:first-child]:font-medium [&>span:first-child]:tabular-nums max-[1100px]:[&>span:first-child]:text-[63px] max-[700px]:[&>span:first-child]:text-[46px] max-[480px]:[&>span:first-child]:text-[64px]"
           onClick={() => onEdit(id)}
           aria-label={`修改${info.city}时间`}
           title="点击设置当地日期和时间"
@@ -167,7 +167,7 @@ export function TimezoneCard({
           />
         </button>
         <div
-          className="relative mr-0.5 size-[49px] shrink-0 rounded-full border border-border bg-clock-face group-data-[night=true]/card:border-night-border group-data-[night=true]/card:bg-clock-night max-[700px]:mr-0 max-[700px]:size-9 max-[480px]:size-[49px]"
+          className="relative mr-0.5 size-[49px] shrink-0 rounded-full border border-border bg-clock-face transition-[background-color,border-color] duration-500 group-data-[night=true]/card:border-night-border group-data-[night=true]/card:bg-clock-night motion-reduce:transition-none max-[700px]:mr-0 max-[700px]:size-9 max-[480px]:size-[49px]"
           aria-hidden="true"
         >
           <div className="absolute inset-1 rounded-full bg-[repeating-conic-gradient(var(--clock-tick)_0deg_2deg,transparent_2deg_30deg)] [mask:radial-gradient(transparent_64%,#000_65%)]" />

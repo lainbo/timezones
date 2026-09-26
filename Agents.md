@@ -102,11 +102,13 @@ React 19、TypeScript 6、Vite 8（Rolldown）、Tailwind CSS 4、shadcn/ui（Ra
 - 页面进入、表针旋转和回到当前时间的刻度动画使用 framer-motion，现有入口是 `LazyMotion`、`domAnimation` 和 `framer-motion/m`。
 - 表针保留连续角度，通过最短角度路径平滑旋转，特别注意 59 分跨整点。卡片拖拽的位移由 dnd-kit 管理，避免其他动画覆盖同一元素的 transform。
 - 点击“回到现在”时，各卡片刻度指示器平滑移动；拖动滑杆时及时跟随用户输入。
+- 卡片在当地时间跨越 06:00 或 18:00 时，颜色在 500ms 内渐变。卡片内使用且会被 `.dark` 改写的颜色变量在 `src/index.css` 中用 `@property` 注册为 `<color>`，由卡片上的 `transition-day-night` 过渡，内部元素继承过渡中的值；钟面按昼夜换用不同变量，自带同样时长的过渡。卡片内新增随昼夜变化的颜色变量时，同时注册并加入过渡列表。
 - 首次访问跟随系统颜色；用户手动切换后，以本地保存的主题为准。系统变化只影响尚未手动选择主题的页面。
 - 主题入口为单个日月按钮：太阳表示当前浅色，月亮表示当前深色。点击直接切换。
 - 主题切换使用原生 `document.startViewTransition`，通过 `flushSync` 同步提交主题和图标。两个切换方向均在 `::view-transition-new(root)` 上从按钮圆心向外展开，持续 500ms。
+- `applyTheme` 切换主题时给根元素临时添加 `theme-changing` 类并强制计算一次样式，期间关闭所有 CSS 过渡，使卡片的昼夜渐变不在切换主题时出现。
 - `index.html` 在 React 加载前恢复主题，组件负责后续切换；二者使用一致的存储键、根元素 `.dark` 类、`data-theme` 和 `theme-color`。
-- 尊重系统“减少动态效果”偏好，主题切换在此情况下直接更新。
+- 尊重系统“减少动态效果”偏好，主题切换和卡片昼夜颜色在此情况下直接更新。
 
 ## 本地持久化
 

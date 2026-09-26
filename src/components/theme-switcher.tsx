@@ -4,10 +4,15 @@ import { Moon, Sun } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 function applyTheme(dark: boolean) {
-  document.documentElement.classList.toggle('dark', dark)
+  const root = document.documentElement
+  root.classList.add('theme-changing')
+  root.classList.toggle('dark', dark)
   document
     .querySelector('meta[name="theme-color"]')
     ?.setAttribute('content', dark ? '#111111' : '#f7f7f7')
+  // 在关闭过渡时强制计算一次新主题样式，移除类名后颜色已是终值，不会再触发渐变。
+  root.getBoundingClientRect()
+  root.classList.remove('theme-changing')
 }
 
 export function ThemeSwitcher() {

@@ -13,6 +13,78 @@
   isolation: auto;
 }
 
+/* 卡片切换 .dark 时会改写这些变量；注册为颜色后，它们才能渐变，并由卡片内元素继承过渡中的值 */
+@property --background {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: transparent;
+}
+@property --foreground {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: transparent;
+}
+@property --card {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: transparent;
+}
+@property --primary {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: transparent;
+}
+@property --muted-foreground {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: transparent;
+}
+@property --accent {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: transparent;
+}
+@property --border {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: transparent;
+}
+@property --ring {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: transparent;
+}
+@property --clock-tick {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: transparent;
+}
+@property --clock-hour {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: transparent;
+}
+@property --clock-minute {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: transparent;
+}
+@property --ruler-day {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: transparent;
+}
+@property --ruler-night {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: transparent;
+}
+@property --marker {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: transparent;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -37,7 +109,6 @@
   --color-selected-foreground: var(--selected-foreground);
   --color-day-icon: var(--day-icon);
   --color-night: var(--night);
-  --color-night-foreground: var(--night-foreground);
   --color-night-border: var(--night-border);
   --color-clock-face: var(--clock-face);
   --color-clock-night: var(--clock-night);
@@ -65,6 +136,15 @@
 /* Medium 字体只有 500 字重，请求 600 时由浏览器在其基础上模拟加粗 */
 @utility font-medium {
   font-weight: 600;
+}
+
+@utility transition-day-night {
+  transition-property:
+    background-color, border-color, box-shadow, --background, --foreground, --card, --primary,
+    --muted-foreground, --accent, --border, --ring, --clock-tick, --clock-hour, --clock-minute,
+    --ruler-day, --ruler-night, --marker;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 :root {
   font-family:
@@ -102,7 +182,6 @@
   --selected-foreground: #262626;
   --day-icon: var(--foreground);
   --night: #050505;
-  --night-foreground: #f5f5f5;
   --night-border: #3d3d3d;
   --clock-face: #f5f5f5;
   --clock-night: #262626;
@@ -167,6 +246,10 @@
   }
   button {
     @apply cursor-pointer disabled:cursor-default;
+  }
+  /* 切换主题时直接应用新颜色，卡片的昼夜渐变只在当地时间跨越昼夜时出现 */
+  .theme-changing * {
+    transition: none !important;
   }
   button:not([data-slot]):focus-visible,
   a:focus-visible,
