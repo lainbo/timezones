@@ -195,7 +195,7 @@
   --clock-tick: #a3a3a3;
   --clock-hour: #262626;
   --clock-minute: #737373;
-  --ruler-day: #e5e5e5;
+  --ruler-day: #dcdcdc;
   --ruler-night: #525252;
   --ruler-tick: #a3a3a380;
   --marker: #171717;
@@ -229,8 +229,8 @@
   --clock-tick: #737373;
   --clock-hour: #f5f5f5;
   --clock-minute: #b3b3b3;
-  --ruler-day: #b3b3b3;
-  --ruler-night: #404040;
+  --ruler-day: #d4d4d4;
+  --ruler-night: #666;
   --ruler-tick: #a3a3a380;
   --marker: #fff;
   --warning: #3b2d16;
