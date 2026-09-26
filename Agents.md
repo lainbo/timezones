@@ -127,7 +127,6 @@ React 19、TypeScript 6、Vite 8（Rolldown）、Tailwind CSS 4、shadcn/ui（Ra
 - 部署通过 Cloudflare Pages 的 Git 集成连接该仓库，推送到 `main` 自动发布生产版本。部署配置在 Pages 控制台维护。
 - 构建在仓库根目录执行 `pnpm build`，发布目录为 `dist`。Node.js 由 `.node-version` 固定为 `24.20.0`；生产和预览环境使用 `PNPM_VERSION=12.5.1`，与 `packageManager` 保持一致。
 - 发布前检查待提交文件，凭据、本地环境文件、`node_modules`、`dist` 和 `.wrangler` 由 `.gitignore` 排除。提交及推送应在当前任务授权范围内进行。
-- 发布后确认 Pages 部署成功且关联正确的 Git 提交，再检查线上页面；本地构建通过不能单独代表远端部署完成。
 
 ## 修改与验证
 
