@@ -1,3 +1,4 @@
+import { useI18n } from '@/lib/i18n'
 import { useEffect, useState, type MouseEvent } from 'react'
 import { flushSync } from 'react-dom'
 import { Moon, Sun } from 'lucide-react'
@@ -16,6 +17,7 @@ function applyTheme(dark: boolean) {
 }
 
 export function ThemeSwitcher() {
+  const { t } = useI18n()
   const [dark, setDark] = useState(() => document.documentElement.classList.contains('dark'))
   const [switching, setSwitching] = useState(false)
 
@@ -75,7 +77,7 @@ export function ThemeSwitcher() {
     }
   }
 
-  const label = dark ? '切换到浅色模式' : '切换到深色模式'
+  const label = dark ? t.lightTheme : t.darkTheme
 
   return (
     <Button

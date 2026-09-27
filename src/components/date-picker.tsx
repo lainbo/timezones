@@ -1,6 +1,7 @@
+import { useI18n } from '@/lib/i18n'
 import { lazy, Suspense, useState } from 'react'
 import { CalendarDays } from 'lucide-react'
-import { zhCN } from 'react-day-picker/locale'
+import { enUS, zhCN } from 'react-day-picker/locale'
 import { Button } from '@/components/ui/button'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Temporal } from '@/lib/temporal'
@@ -21,6 +22,7 @@ type Props = {
 }
 
 export function DatePicker({ value, timeZone, onChange, label, id, className }: Props) {
+  const { locale, t } = useI18n()
   const [open, setOpen] = useState(false)
   // Calendar 接收 Date；固定 UTC 传递日期，避免设备时区改变所选日历日。
   const selected = new Date(`${value}T00:00:00Z`)
@@ -47,7 +49,7 @@ export function DatePicker({ value, timeZone, onChange, label, id, className }: 
               className="flex h-80 w-72 items-center justify-center text-sm text-muted-foreground"
               role="status"
             >
-              加载日历…
+              {t.loadingCalendar}
             </div>
           }
         >
@@ -58,19 +60,22 @@ export function DatePicker({ value, timeZone, onChange, label, id, className }: 
             defaultMonth={selected}
             today={today}
             timeZone="UTC"
-            locale={zhCN}
+            locale={locale === 'en' ? enUS : zhCN}
             captionLayout="dropdown"
             startMonth={startMonth}
             endMonth={endMonth}
             autoFocus
-            formatters={{ formatMonthDropdown: (date) => `${date.getUTCMonth() + 1}月` }}
+            formatters={{
+              formatMonthDropdown: (date) =>
+                date.toLocaleString(locale, { month: 'short', timeZone: 'UTC' }),
+            }}
             labels={{
-              labelPrevious: () => '上个月',
-              labelNext: () => '下个月',
-              labelMonthDropdown: () => '选择月份',
-              labelYearDropdown: () => '选择年份',
+              labelPrevious: () => t.previousMonth,
+              labelNext: () => t.nextMonth,
+              labelMonthDropdown: () => t.chooseMonth,
+              labelYearDropdown: () => t.chooseYear,
               labelDayButton: (date, modifiers) =>
-                `${date.toISOString().slice(0, 10)}${modifiers.today ? '，今天' : ''}${modifiers.selected ? '，已选择' : ''}`,
+                `${date.toISOString().slice(0, 10)}${modifiers.today ? t.todaySuffix : ''}${modifiers.selected ? t.selectedSuffix : ''}`,
             }}
             onSelect={(date) => {
               onChange(date.toISOString().slice(0, 10))

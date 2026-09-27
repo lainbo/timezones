@@ -1,3 +1,4 @@
+import { useI18n } from '@/lib/i18n'
 import { useState } from 'react'
 import { ArrowRight, Clock3, Info } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -20,8 +21,9 @@ type Props = {
   onSave: (instant: Instant, zone: string) => void
 }
 export function TimeEditor({ zone, instant, onClose, onSave }: Props) {
+  const { locale, t } = useI18n()
   const current = instant.toZonedDateTimeISO(zone)
-  const info = zoneInfo(zone)
+  const info = zoneInfo(zone, locale)
   const [date, setDate] = useState(current.toPlainDate().toString())
   const [time, setTime] = useState(timeText(current))
   const [occurrence, setOccurrence] = useState<'earlier' | 'later' | null>(() => {
@@ -44,16 +46,16 @@ export function TimeEditor({ zone, instant, onClose, onSave }: Props) {
         if (!open) onClose()
       }}
     >
-      <DialogContent className="max-w-[480px] gap-0 rounded-[18px] bg-popover p-0 pt-[29px] sm:max-w-[480px] [&_form]:px-7 [&_form]:pb-[25px] max-[700px]:[&_form]:px-[22px]">
-        <DialogHeader className="px-7 text-left max-[700px]:px-[22px]">
+      <DialogContent className="max-h-[calc(100dvh-32px)] w-[calc(100vw-32px)] max-w-[480px] gap-0 overflow-y-auto rounded-[18px] bg-popover p-0 pt-[29px] sm:max-w-[480px] [&_form]:px-7 [&_form]:pb-[25px] max-[700px]:[&_form]:px-[22px]">
+        <DialogHeader className="pr-12 pl-7 text-left max-[700px]:pl-[22px]">
           <div className="mb-3 flex items-center gap-[7px] text-[10px] tracking-[1.7px] text-muted-foreground">
-            <Clock3 size={17} /> CONVERT TIME
+            <Clock3 size={17} /> {t.convertLabel}
           </div>
-          <DialogTitle className="text-2xl font-medium tracking-[-0.5px]">
-            设置{info.city}时间
+          <DialogTitle className="text-2xl leading-tight font-medium tracking-[-0.5px] [overflow-wrap:anywhere]">
+            {t.setTime(info.city)}
           </DialogTitle>
           <DialogDescription className="mt-[7px] text-xs leading-[1.7] text-muted-foreground">
-            输入当地日期和时间，其他时区会同步换算。
+            {t.editorHint}
           </DialogDescription>
         </DialogHeader>
         <form
@@ -62,16 +64,16 @@ export function TimeEditor({ zone, instant, onClose, onSave }: Props) {
             if (resolution && valid) onSave(resolution[occurrence ?? 'earlier'].toInstant(), zone)
           }}
         >
-          <div className="mt-[13px] flex items-center justify-between gap-2.5 border-b border-border py-3.5 text-xs text-foreground [&>span:last-child]:text-[11px] [&>span:last-child]:text-muted-foreground">
+          <div className="mt-[13px] flex flex-wrap items-center justify-between gap-2.5 [overflow-wrap:anywhere] border-b border-border py-3.5 text-xs text-foreground [&>span:last-child]:text-[11px] [&>span:last-child]:text-muted-foreground">
             <span>{info.city}</span>
             <span>{zone}</span>
           </div>
-          <div className="my-[22px] flex gap-3.5 [&>label]:flex [&>label]:min-w-0 [&>label]:flex-1 [&>label]:flex-col [&>label]:gap-[9px] [&>label]:text-xs [&>label]:text-muted-foreground">
+          <div className="my-[22px] flex flex-col gap-3.5 min-[480px]:flex-row [&>label]:flex [&>label]:min-w-0 [&>label]:flex-1 [&>label]:flex-col [&>label]:gap-[9px] [&>label]:text-xs [&>label]:text-muted-foreground">
             <div className="flex min-w-0 flex-1 flex-col gap-[9px] text-xs text-muted-foreground [&>button]:h-[43px] [&>button]:justify-between [&>button]:bg-card [&>button]:px-2.5 [&>button]:py-0 [&>button]:text-sm [&>button]:text-foreground [&>button]:shadow-none">
-              <label htmlFor="local-date">当地日期</label>
+              <label htmlFor="local-date">{t.localDate}</label>
               <DatePicker
                 id="local-date"
-                label="选择当地日期"
+                label={t.chooseLocalDate}
                 timeZone={zone}
                 value={date}
                 onChange={(value) => {
@@ -81,7 +83,7 @@ export function TimeEditor({ zone, instant, onClose, onSave }: Props) {
               />
             </div>
             <label>
-              当地时间（24 小时制）
+              {t.localTime}
               <Input
                 className="h-[43px] min-w-0 bg-card px-2.5 py-0 text-sm text-foreground"
                 autoFocus
@@ -103,15 +105,15 @@ export function TimeEditor({ zone, instant, onClose, onSave }: Props) {
             >
               <Info size={18} />
               <p>
-                这个当地时间因时钟拨快而不存在。请改选{' '}
-                {!resolution.later.toPlainDate().equals(date) && `${dateText(resolution.later)} `}
-                {timeText(resolution.later)} 或其他有效时间。
+                {t.gap(
+                  `${!resolution.later.toPlainDate().equals(date) ? `${dateText(resolution.later, locale)} ` : ''}${timeText(resolution.later)}`,
+                )}
               </p>
             </div>
           )}
           {resolution?.kind === 'overlap' && (
             <fieldset className="border-0 p-0 text-xs text-muted-foreground [&_legend]:mb-2.5 [&_legend]:text-xs [&_label]:mt-2 [&_label]:flex [&_label]:items-center [&_label]:gap-2 [&_label]:rounded-[7px] [&_label]:border [&_label]:border-border [&_label]:p-2.5 [&_label>span]:ml-auto [&_label>span]:tabular-nums [&_input]:accent-selected-foreground">
-              <legend>时钟回拨，这个时间出现两次，请选择：</legend>
+              <legend>{t.overlap}</legend>
               {(['earlier', 'later'] as const).map((choice, index) => (
                 <label key={choice}>
                   <input
@@ -120,7 +122,7 @@ export function TimeEditor({ zone, instant, onClose, onSave }: Props) {
                     checked={occurrence === choice}
                     onChange={() => setOccurrence(choice)}
                   />
-                  第 {index + 1} 次
+                  {t.occurrence(index)}
                   <span>{offsetText(resolution[choice].offsetNanoseconds / 60e9)}</span>
                 </label>
               ))}
@@ -128,10 +130,10 @@ export function TimeEditor({ zone, instant, onClose, onSave }: Props) {
           )}
           <div className="mt-[26px] flex justify-end gap-2.5 [&_button]:text-xs">
             <Button type="button" variant="ghost" onClick={onClose}>
-              取消
+              {t.cancel}
             </Button>
             <Button type="submit" disabled={!valid}>
-              换算时间
+              {t.convertTime}
               <ArrowRight size={16} />
             </Button>
           </div>

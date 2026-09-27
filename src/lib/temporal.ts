@@ -1,3 +1,5 @@
+import type { Locale } from './i18n'
+
 export const Temporal = globalThis.Temporal
 export type Instant = globalThis.Temporal.Instant
 export type ZonedDateTime = globalThis.Temporal.ZonedDateTime
@@ -16,7 +18,9 @@ export function timeText(time: ZonedDateTime, hour12 = false) {
   return `${String(hour12 ? time.hour % 12 || 12 : time.hour).padStart(2, '0')}:${String(time.minute).padStart(2, '0')}`
 }
 
-export function dateText(time: ZonedDateTime) {
+export function dateText(time: ZonedDateTime, locale: Locale) {
+  if (locale === 'en')
+    return time.toLocaleString('en-US', { month: 'short', day: 'numeric', weekday: 'short' })
   // Chrome 用 zh-CN 格式化 Temporal 日期时会忽略 month: 'long' 并输出 11/1，因此直接拼接日期字段。
   return `${time.month}月${time.day}日周${'一二三四五六日'[time.dayOfWeek - 1]}`
 }

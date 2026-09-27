@@ -1,3 +1,4 @@
+import { useI18n, type Messages } from '@/lib/i18n'
 import { useState } from 'react'
 import { useReducedMotion } from 'framer-motion'
 import * as m from 'framer-motion/m'
@@ -28,15 +29,15 @@ function isDaylight(hour: number) {
   return hour >= 6 && hour < 18
 }
 
-function dayPart(hour: number, minute: number) {
+function dayPart(hour: number, minute: number, t: Messages) {
   const minutes = hour * 60 + minute
-  if (minutes < 60) return { name: '半夜', range: '00:00–01:00' }
-  if (minutes < 6 * 60) return { name: '凌晨', range: '01:00–06:00' }
-  if (minutes < 12 * 60) return { name: '上午', range: '06:00–12:00' }
-  if (minutes < 13 * 60) return { name: '中午', range: '12:00–13:00' }
-  if (minutes < 18 * 60) return { name: '下午', range: '13:00–18:00' }
-  if (minutes < 19 * 60) return { name: '傍晚', range: '18:00–19:00' }
-  return { name: '晚上', range: '19:00–24:00' }
+  if (minutes < 60) return { name: t.midnight, range: '00:00–01:00' }
+  if (minutes < 6 * 60) return { name: t.earlyMorning, range: '01:00–06:00' }
+  if (minutes < 12 * 60) return { name: t.morning, range: '06:00–12:00' }
+  if (minutes < 13 * 60) return { name: t.noon, range: '12:00–13:00' }
+  if (minutes < 18 * 60) return { name: t.afternoon, range: '13:00–18:00' }
+  if (minutes < 19 * 60) return { name: t.evening, range: '18:00–19:00' }
+  return { name: t.lateEvening, range: '19:00–24:00' }
 }
 
 export function TimezoneCard({
@@ -49,6 +50,7 @@ export function TimezoneCard({
   onRemove,
   onSlide,
 }: Props) {
+  const { locale, t } = useI18n()
   const reducedMotion = useReducedMotion()
   const handTransition = reducedMotion
     ? { duration: 0 }
@@ -62,7 +64,7 @@ export function TimezoneCard({
     transition,
     isDragging,
   } = useSortable({ id })
-  const info = zoneInfo(id)
+  const info = zoneInfo(id, locale)
   const time = instant.toZonedDateTimeISO(id)
   const clockMinutes = time.hour * 60 + time.minute
   const [hands, setHands] = useState({
@@ -87,7 +89,7 @@ export function TimezoneCard({
   const elapsed = (instant.epochMilliseconds - start.epochMilliseconds) / 60000
   const daylight = isDaylight(time.hour)
   const night = !daylight
-  const part = dayPart(time.hour, time.minute)
+  const part = dayPart(time.hour, time.minute, t)
   const isBase = id === base
   const ticks = Array.from({ length: Math.ceil(totalMinutes / 60) }, (_, index) => {
     const tick = start.add({ hours: index })
@@ -95,8 +97,8 @@ export function TimezoneCard({
   })
   const difference =
     offsetDifference === 0
-      ? '时差 0 小时'
-      : `${offsetDifference > 0 ? '快' : '慢'} ${Number(Math.abs(offsetDifference).toFixed(2))} 小时`
+      ? t.sameTime
+      : (offsetDifference > 0 ? t.ahead : t.behind)(Number(Math.abs(offsetDifference).toFixed(2)))
   return (
     <m.article
       ref={setNodeRef}
@@ -106,56 +108,60 @@ export function TimezoneCard({
       style={{ transform: CSS.Transform.toString(transform), transition }}
       data-night={night}
       className={cn(
-        'group/card relative isolate min-w-0 rounded-[15px] border px-[23px] pt-[23px] pb-[17px] text-foreground shadow-xs transition-day-night motion-reduce:transition-none min-[1450px]:px-[27px] min-[1450px]:pt-[26px] min-[1450px]:pb-5 max-[1100px]:p-6 max-[700px]:rounded-xl max-[700px]:px-[17px] max-[700px]:pt-[19px] max-[700px]:pb-4 max-[480px]:px-[23px] max-[480px]:pt-[23px] max-[480px]:pb-[18px]',
+        '@container group/card relative isolate flex min-w-0 flex-col rounded-[15px] border px-[23px] pt-[23px] pb-[17px] text-foreground shadow-xs transition-day-night motion-reduce:transition-none min-[1450px]:px-[27px] min-[1450px]:pt-[26px] min-[1450px]:pb-5 max-[1100px]:p-6 max-[700px]:rounded-xl max-[700px]:px-[17px] max-[700px]:pt-[19px] max-[700px]:pb-4 max-[480px]:px-[23px] max-[480px]:pt-[23px] max-[480px]:pb-[18px]',
         night ? 'dark border-night-border bg-night' : 'border-border bg-card',
         isBase && 'border-selected-border ring-1 ring-selected-border',
         isDragging && 'z-20 shadow-2xl',
       )}
-      aria-label={`${info.city}时区卡片`}
+      aria-label={t.card(info.city)}
     >
       <NightSky id={id} night={night} />
-      <div className="flex items-start justify-between gap-2">
-        <div className="min-w-0 [&>p]:mt-[5px] [&>p]:flex [&>p]:flex-wrap [&>p]:items-center [&>p]:gap-1.5 [&>p]:text-[11px] [&>p]:text-muted-foreground [&>p>span]:text-muted-foreground max-[700px]:[&>p]:text-[9px] max-[480px]:[&>p]:text-[11px]">
-          <div className="flex items-center gap-[9px] [&>h2]:m-0 [&>h2]:text-[17px] [&>h2]:leading-[25px] [&>h2]:font-medium [&>h2]:tracking-[0.3px] max-[700px]:[&>h2]:text-[15px] max-[480px]:[&>h2]:text-lg">
+      <div className="flex min-h-[76px] items-start justify-between gap-2">
+        <div className="min-w-0 flex-1 [overflow-wrap:anywhere] [&>p]:mt-[5px] [&>p]:flex [&>p]:flex-wrap [&>p]:items-center [&>p]:gap-1.5 [&>p]:text-[11px] [&>p]:text-muted-foreground [&>p>span]:text-muted-foreground max-[700px]:[&>p]:text-[9px] max-[480px]:[&>p]:text-[11px]">
+          <div className="flex items-start gap-[9px] [&>h2]:m-0 [&>h2]:text-[17px] [&>h2]:leading-[25px] [&>h2]:font-medium [&>h2]:tracking-[0.3px] max-[700px]:[&>h2]:text-[15px] max-[480px]:[&>h2]:text-lg">
             <button
               ref={setActivatorNodeRef}
               {...attributes}
               {...listeners}
               className="-my-0.5 -mr-1.5 -ml-2 inline-flex h-7 w-6 shrink-0 items-center justify-center rounded-md border-0 bg-transparent text-muted-foreground hover:bg-accent/40 hover:text-foreground touch-none cursor-grab active:cursor-grabbing"
-              aria-label={`拖拽排序：${info.city}`}
-              title="拖拽排序；也可按空格后使用方向键"
+              aria-label={t.reorder(info.city)}
+              title={t.reorderHint}
             >
               <GripVertical size={18} />
             </button>
-            <h2>{info.city}</h2>
-            {isBase && (
-              <span className="rounded border border-border px-[5px] py-0.5 text-[9px] tracking-[0.4px] whitespace-nowrap text-muted-foreground">
-                基准
-              </span>
-            )}
+            <h2 className="min-w-0 flex-1 [overflow-wrap:anywhere]">{info.city}</h2>
           </div>
           <p>
-            {info.english}
-            <span>·</span>
+            {locale === 'zh-CN' && (
+              <>
+                {info.english}
+                <span>·</span>
+              </>
+            )}
             {info.region}
+            {isBase && (
+              <span className="rounded border border-border px-[5px] py-0.5 text-[9px] tracking-[0.4px] whitespace-nowrap text-muted-foreground">
+                {t.baseBadge}
+              </span>
+            )}
           </p>
         </div>
-        <div className="-mt-1 -mr-2 flex max-[700px]:-mr-[9px] max-[700px]:[&>button]:w-[22px]">
+        <div className="-mt-1 -mr-2 flex shrink-0 max-[700px]:-mr-[9px] max-[700px]:[&>button]:w-[22px]">
           <button
             className="inline-flex size-7 shrink-0 items-center justify-center rounded-md border-0 bg-transparent text-muted-foreground hover:bg-accent/40 hover:text-foreground opacity-0 group-hover/card:opacity-100 group-has-focus-visible/card:opacity-100 hover:bg-destructive/10 hover:text-primary max-[700px]:opacity-100 [@media(hover:none)]:opacity-100"
-            aria-label={`移除${info.city}`}
+            aria-label={t.remove(info.city)}
             onClick={() => onRemove(id)}
           >
             <X size={17} />
           </button>
         </div>
       </div>
-      <div className="mt-[23px] flex items-center justify-between gap-1.5 min-[1450px]:mt-[27px] max-[700px]:mt-[21px] max-[480px]:mt-[22px]">
+      <div className="mt-auto flex items-center justify-between gap-1.5 pt-5">
         <button
-          className="group/time relative flex items-baseline gap-[7px] border-0 bg-transparent p-0 text-left text-foreground hover:text-primary [&>span:first-child]:text-[clamp(35px,4.4vw,61px)] [&>span:first-child]:leading-[1.1] [&>span:first-child]:font-medium [&>span:first-child]:tabular-nums max-[1100px]:[&>span:first-child]:text-[63px] max-[700px]:[&>span:first-child]:text-[46px] max-[480px]:[&>span:first-child]:text-[64px]"
+          className="group/time relative flex min-w-0 items-baseline gap-[7px] border-0 bg-transparent p-0 text-left text-foreground hover:text-primary [&>span:first-child]:text-[clamp(32px,22cqi,64px)] [&>span:first-child]:leading-[1.1] [&>span:first-child]:font-medium [&>span:first-child]:tabular-nums"
           onClick={() => onEdit(id)}
-          aria-label={`修改${info.city}时间`}
-          title="点击设置当地日期和时间"
+          aria-label={t.editTime(info.city)}
+          title={t.editTimeHint}
         >
           <span>{timeText(time, hour12)}</span>
           {hour12 && (
@@ -188,16 +194,16 @@ export function TimezoneCard({
           <i className="absolute top-[calc(50%-2px)] left-[calc(50%-2px)] size-1 rounded-full bg-primary" />
         </div>
       </div>
-      <div className="mt-[9px] mb-[23px] flex min-h-5 items-center gap-[7px] text-[11px] text-muted-foreground max-[700px]:gap-1 max-[700px]:text-[10px] max-[480px]:mb-[22px] max-[480px]:text-[11px]">
-        <span>{dateText(time)}</span>
+      <div className="mt-[9px] mb-[23px] flex min-h-5 flex-wrap items-center @max-[240px]:min-h-[46px] gap-x-[7px] gap-y-2 text-[11px] text-muted-foreground max-[700px]:gap-1 max-[700px]:text-[10px] max-[480px]:mb-[22px] max-[480px]:text-[11px]">
+        <span>{dateText(time, locale)}</span>
         {dayDifference !== 0 && (
           <span className="rounded bg-accent px-[5px] py-0.5 text-[9px] font-medium text-foreground">
-            {dayDifference > 0 ? `+${dayDifference} 天` : `${dayDifference} 天`}
+            {t.dayDifference(dayDifference)}
           </span>
         )}
         <span
           className="ml-auto inline-flex shrink-0 items-center gap-1 rounded-full border border-border bg-accent/60 px-2 py-1 text-[10px] leading-none font-medium text-foreground"
-          title={`当地时间 ${part.range}`}
+          title={t.localRange(part.range)}
         >
           {daylight ? (
             <Sun size={12} className="text-day-icon" aria-hidden="true" />
@@ -230,8 +236,8 @@ export function TimezoneCard({
           max={totalMinutes - 1}
           step="5"
           value={Math.min(totalMinutes - 1, Math.floor(elapsed))}
-          aria-label={`调整${info.city}时间`}
-          aria-valuetext={`${timeText(time)}，UTC${time.offset}`}
+          aria-label={t.adjustTime(info.city)}
+          aria-valuetext={`${timeText(time)}, UTC${time.offset}`}
           onChange={(event) =>
             onSlide(start.add({ minutes: Number(event.target.value) }).toInstant(), id)
           }
@@ -250,9 +256,9 @@ export function TimezoneCard({
           <span />
         </m.div>
       </div>
-      <div className="flex justify-between border-t border-border pt-3 text-[10px] tracking-[0.2px] text-muted-foreground group-data-[night=true]/card:border-border [&>span:first-child]:text-muted-foreground [&>span:first-child]:tabular-nums [&>span:last-child]:text-[10px] max-[700px]:text-[9px] max-[700px]:[&>span:last-child]:text-[9px] max-[480px]:text-[11px] max-[480px]:[&>span:last-child]:text-[10px]">
+      <div className="flex flex-wrap justify-between gap-x-2 gap-y-1 border-t border-border pt-3 text-[10px] tracking-[0.2px] text-muted-foreground group-data-[night=true]/card:border-border [&>span:first-child]:text-muted-foreground [&>span:first-child]:tabular-nums [&>span:last-child]:text-[10px] max-[700px]:text-[9px] max-[700px]:[&>span:last-child]:text-[9px] max-[480px]:text-[11px] max-[480px]:[&>span:last-child]:text-[10px]">
         <span>{offsetText(time.offsetNanoseconds / 60e9)}</span>
-        <span>{isBase ? '当前换算基准' : difference}</span>
+        <span>{isBase ? t.currentReference : difference}</span>
       </div>
     </m.article>
   )

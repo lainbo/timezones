@@ -1,9 +1,13 @@
+import { messages, type Locale } from './i18n'
 import rawNames from '../data/timezone-names.json'
 import { Temporal, offsetText, type Instant } from './temporal'
 
 type ZoneName = { city: string; country: string; iana?: string }
 const names: Record<string, ZoneName> = rawNames
-const countries = new Intl.DisplayNames(['zh-CN'], { type: 'region' })
+const countries = {
+  en: new Intl.DisplayNames(['en'], { type: 'region' }),
+  'zh-CN': new Intl.DisplayNames(['zh-CN'], { type: 'region' }),
+}
 const aliases: Record<string, string> = {
   'America/Los_Angeles':
     '美西 美国西部 太平洋时间 旧金山 旧金山时间 san francisco pacific PT PST PDT',
@@ -14,20 +18,28 @@ const aliases: Record<string, string> = {
   'Europe/London': '英国 UK GMT BST',
 }
 
-export function zoneInfo(id: string) {
+export function zoneInfo(id: string, locale: Locale = 'en') {
+  const t = messages[locale]
   const data = names[id]
   if (id === 'UTC')
     return {
       id,
-      city: '协调世界时',
-      english: 'Universal time',
-      region: '全球标准',
-      search: 'utc gmt 协调世界时 世界标准时间 格林尼治',
+      city: t.utc,
+      english: 'Coordinated Universal Time',
+      region: t.globalStandard,
+      search:
+        'utc gmt coordinated universal time global standard 协调世界时 全球标准 世界标准时间 格林尼治',
     }
   if (id.startsWith('Etc/GMT')) {
     const offset = -Number(id.slice(7)) * 60
     const city = offsetText(offset)
-    return { id, city, english: 'Fixed offset', region: '固定偏移', search: `${city} 固定偏移` }
+    return {
+      id,
+      city,
+      english: 'Fixed offset',
+      region: t.fixedOffset,
+      search: `${city} fixed offset 固定偏移`.toLowerCase(),
+    }
   }
   const city =
     data?.city ??
@@ -36,14 +48,18 @@ export function zoneInfo(id: string) {
       .find((part) => part.type === 'timeZoneName')?.value ??
     id
   const english = (data?.iana ?? id).split('/').at(-1)!.replaceAll('_', ' ')
-  const region = data?.country ? countries.of(data.country)! : '世界时区'
+  const chineseRegion = data?.country
+    ? countries['zh-CN'].of(data.country)!
+    : messages['zh-CN'].worldZone
+  const englishRegion = data?.country ? countries.en.of(data.country)! : messages.en.worldZone
+  const region = locale === 'en' ? englishRegion : chineseRegion
   return {
     id,
-    city,
+    city: locale === 'en' ? english : city,
     english,
     region,
     search:
-      `${city} ${region} ${id} ${data?.iana ?? ''} ${english} ${aliases[id] ?? ''}`.toLowerCase(),
+      `${city} ${chineseRegion} ${englishRegion} ${id} ${data?.iana ?? ''} ${english} ${aliases[id] ?? ''}`.toLowerCase(),
   }
 }
 
@@ -58,11 +74,14 @@ export const zoneIds = [
     'Etc/GMT-14',
   ]),
 ]
-export const zones = zoneIds.map(zoneInfo)
+const zones = {
+  en: zoneIds.map((id) => zoneInfo(id, 'en')),
+  'zh-CN': zoneIds.map((id) => zoneInfo(id, 'zh-CN')),
+}
 export const defaultZones = ['Asia/Singapore', 'America/Los_Angeles', 'America/New_York', 'UTC']
 
-export function catalogAt(instant: Instant) {
-  return zones.map((zone) => ({
+export function catalogAt(instant: Instant, locale: Locale) {
+  return zones[locale].map((zone) => ({
     ...zone,
     offset: instant.toZonedDateTimeISO(zone.id).offsetNanoseconds / 60e9,
   }))

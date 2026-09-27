@@ -16,9 +16,10 @@
 
 ## 项目概况
 
-- 名称：同刻（Same Moment），中文世界时钟与时区换算工具，纯前端应用。
+- 名称：同刻（Same Moment），中英文世界时钟与时区换算工具，纯前端应用。
 - 核心用途：修改任意城市的当地日期或时间，其他时区同步换算，显示 UTC 偏移、相对时差和跨日提示。
 - 设计参考：<https://www.timezones.digital/>。具体交互遵循本项目现有约定。
+- 默认语言为英文；右上角的语言按钮在英文与简体中文之间切换，并保存到本地。
 - 默认卡片：新加坡、洛杉矶、纽约、协调世界时（UTC）；默认基准为 `Asia/Singapore`，默认使用 24 小时制。
 - 用户交流和维护说明使用简体中文。用户未明确指定时区和时间制时，按 `Asia/Taipei` 的 24 小时制理解。
 - 开发环境：macOS、zsh、Zed。文件统一使用 LF 换行。
@@ -48,24 +49,28 @@ React 19、TypeScript 6、Vite 8（Rolldown）、Tailwind CSS 4、shadcn/ui（Ra
 
 ## 代码导航
 
-| 文件                                | 职责                                                           |
-| ----------------------------------- | -------------------------------------------------------------- |
-| `index.html`                        | 加载在线字体，React 启动前恢复主题，设置根元素和浏览器主题色   |
-| `src/main.tsx`                      | 检测原生 Temporal，再动态加载应用；不支持时显示提示            |
-| `src/App.tsx`                       | 共享时间点、实时模式、换算基准、卡片顺序和弹窗状态             |
-| `src/lib/temporal.ts`               | 原生 Temporal 导出、当地时间解析和显示格式                     |
-| `src/lib/timezones.ts`              | 时区枚举、中文信息、搜索、偏移计算及校验                       |
-| `src/lib/preferences.ts`            | 卡片与显示偏好的读取、校验和保存                               |
-| `src/components/timezone-card.tsx`  | 单张卡片、拖拽手柄、表针和时间刻度                             |
-| `src/components/night-sky.tsx`      | 夜晚卡片背景的星空                                             |
-| `src/components/time-editor.tsx`    | 精确输入当地时间，处理夏令时歧义                               |
-| `src/components/zone-picker.tsx`    | 时区多选弹窗、搜索和草稿选择                                   |
-| `src/components/date-picker.tsx`    | 中文日期选择器及日历组件的日期适配                             |
-| `src/components/theme-switcher.tsx` | 日月按钮、主题保存和原生主题过渡                               |
-| `src/components/ui/`                | 项目内的 shadcn/ui 组件源码                                    |
-| `src/index.css`                     | Tailwind 入口、主题变量、基础样式和 View Transition 伪元素规则 |
-| `src/data/timezone-names.json`      | 生成的中文城市、地区和时区别名数据                             |
-| `scripts/generate-timezones.mjs`    | 从 Unicode CLDR 提取中文时区数据                               |
+| 文件                                     | 职责                                                           |
+| ---------------------------------------- | -------------------------------------------------------------- |
+| `index.html`                             | 加载在线字体，React 启动前恢复主题，设置根元素和浏览器主题色   |
+| `src/main.tsx`                           | 检测原生 Temporal，再动态加载应用；不支持时显示提示            |
+| `src/App.tsx`                            | 共享时间点、实时模式、换算基准、卡片顺序和弹窗状态             |
+| `src/lib/temporal.ts`                    | 原生 Temporal 导出、当地时间解析和显示格式                     |
+| `src/lib/timezones.ts`                   | 时区枚举、中英文信息、搜索、偏移计算及校验                     |
+| `src/lib/i18n.ts`                        | 类型约束的中英文文案、语言读取及 Context                       |
+| `src/components/language-provider.tsx`   | 语言状态、保存及页面元信息更新                                 |
+| `src/components/language-switcher.tsx`   | 右上角语言切换按钮                                             |
+| `src/components/unsupported-browser.tsx` | 支持语言切换的浏览器升级提示                                   |
+| `src/lib/preferences.ts`                 | 卡片与显示偏好的读取、校验和保存                               |
+| `src/components/timezone-card.tsx`       | 单张卡片、拖拽手柄、表针和时间刻度                             |
+| `src/components/night-sky.tsx`           | 夜晚卡片背景的星空                                             |
+| `src/components/time-editor.tsx`         | 精确输入当地时间，处理夏令时歧义                               |
+| `src/components/zone-picker.tsx`         | 时区多选弹窗、搜索和草稿选择                                   |
+| `src/components/date-picker.tsx`         | 中英文日期选择器及日历组件的日期适配                           |
+| `src/components/theme-switcher.tsx`      | 日月按钮、主题保存和原生主题过渡                               |
+| `src/components/ui/`                     | 项目内的 shadcn/ui 组件源码                                    |
+| `src/index.css`                          | Tailwind 入口、主题变量、基础样式和 View Transition 伪元素规则 |
+| `src/data/timezone-names.json`           | 生成的中文城市、地区和时区别名数据                             |
+| `scripts/generate-timezones.mjs`         | 从 Unicode CLDR 提取中文时区数据                               |
 
 ## 时间与时区约定
 
@@ -83,6 +88,10 @@ React 19、TypeScript 6、Vite 8（Rolldown）、Tailwind CSS 4、shadcn/ui（Ra
 中文名称来自 Unicode CLDR，搜索还包含项目维护的常见别名。Chrome 的时区列表使用 `Asia/Calcutta` 等 CLDR 规范标识符，生成数据为这类标识符记录 IANA 现行名称（`iana` 字段），英文名和搜索使用该名称。修改数据生成逻辑后运行 `pnpm data:timezones`，检查生成文件并保留 `public/UNICODE-LICENSE.txt`。浏览器只加载提取后的数据，不加载完整 CLDR 包。可选时区数量随浏览器数据库变化，不要写死数量。
 
 ## 界面与交互约定
+
+- 界面文案集中在 `src/lib/i18n.ts`，中文词典与英文词典保持相同的键和参数类型。组件通过 `useI18n` 读取语言，纯函数显式接收语言；语言模块不得依赖 Temporal，以便浏览器升级提示也能切换语言。语言变化同步更新根元素 `lang`、页面标题和描述。
+- 英文城市名称使用 IANA 现行名称，地区名通过 `Intl.DisplayNames` 按界面语言显示；两种语言均可搜索中英文城市与地区名。
+- 英文长名称允许换行，卡片时间字号根据卡片容器宽度调整；工具栏、日期行和弹窗在窄屏下允许换行或堆叠，保持控件可操作。
 
 - 页面以工具栏和时区卡片为主，宽度达到 Tailwind `xl`（1280px）时每行四张卡片，更小宽度逐级减少列数。
 - 排序只能由城市名称前的专用拖拽手柄触发，保持键盘排序和 Escape 取消能力，避免与大号时间及滑杆操作冲突。
@@ -116,6 +125,7 @@ React 19、TypeScript 6、Vite 8（Rolldown）、Tailwind CSS 4、shadcn/ui（Ra
 | localStorage 键              | 内容                                                                  |
 | ---------------------------- | --------------------------------------------------------------------- |
 | `same-moment.preferences.v1` | `zones`：时区及其顺序；`base`：基准城市；`hour12`：是否使用 12 小时制 |
+| `same-moment.language`       | `en` 或 `zh-CN`；没有有效值时使用英文                                 |
 | `same-moment.theme`          | 用户手动选择的 `light` 或 `dark`；没有有效值时跟随系统                |
 
 读取偏好时校验时区并去重，移除基准城市后选取可用基准。存储不可用时，当前页面操作仍应生效。自定义换算时间不持久化，刷新后回到实时时间。修改存储结构时考虑已有浏览器数据。
