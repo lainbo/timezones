@@ -128,10 +128,10 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
-            className="flex min-h-[92px] flex-wrap items-center justify-between gap-x-5 gap-y-3 border-b border-border py-4 max-[700px]:min-h-[79px]"
+            className="flex min-h-[92px] flex-wrap items-center justify-between gap-x-5 gap-y-3 border-b border-border py-4 max-[700px]:min-h-[79px] max-[480px]:gap-x-2.5"
           >
             <a
-              className="flex min-w-0 items-center gap-[13px] text-[23px] font-medium tracking-[1px] text-inherit no-underline [&>span:last-child]:flex [&>span:last-child]:items-center [&>span:last-child]:gap-[15px] max-[700px]:gap-2.5 max-[700px]:text-[21px]"
+              className="flex min-w-0 items-center gap-[13px] text-[23px] font-medium tracking-[1px] text-inherit no-underline [&>span:last-child]:flex [&>span:last-child]:items-center [&>span:last-child]:gap-[15px] max-[700px]:gap-2.5 max-[700px]:text-[21px] max-[480px]:gap-2 max-[480px]:text-[18px] max-[480px]:tracking-normal"
               href="/"
               aria-label={t.home}
             >
@@ -147,9 +147,9 @@ export default function App() {
                 </span>
               </span>
             </a>
-            <div className="ml-auto flex shrink-0 items-center gap-3 max-[700px]:gap-2">
+            <div className="ml-auto flex shrink-0 items-center gap-3 max-[700px]:gap-2 max-[480px]:gap-1.5">
               <div
-                className="flex gap-0.5 rounded-lg bg-muted p-1 [&>button]:rounded-[5px] [&>button]:border-0 [&>button]:bg-transparent [&>button]:px-2.5 [&>button]:py-1.5 [&>button]:text-xs [&>button]:text-muted-foreground [&>button[aria-pressed=true]]:bg-card [&>button[aria-pressed=true]]:text-foreground [&>button[aria-pressed=true]]:shadow-sm max-[700px]:[&>button]:px-[7px] max-[700px]:[&>button]:py-[5px] max-[700px]:[&>button]:text-[10px]"
+                className="flex gap-0.5 rounded-lg bg-muted p-1 [&>button]:rounded-[5px] [&>button]:border-0 [&>button]:bg-transparent [&>button]:px-2.5 [&>button]:py-1.5 [&>button]:text-xs [&>button]:text-muted-foreground [&>button[aria-pressed=true]]:bg-card [&>button[aria-pressed=true]]:text-foreground [&>button[aria-pressed=true]]:shadow-sm max-[700px]:[&>button]:px-[7px] max-[700px]:[&>button]:py-[5px] max-[700px]:[&>button]:text-[10px] max-[480px]:[&>button]:px-1.5 max-[480px]:[&>button>span:first-child]:hidden min-[480px]:[&>button>span:last-child]:hidden"
                 aria-label={t.timeFormat}
               >
                 <button
@@ -157,14 +157,16 @@ export default function App() {
                   aria-pressed={!hour12}
                   onClick={() => setPreferences((current) => ({ ...current, hour12: false }))}
                 >
-                  {t.hour24}
+                  <span>{t.hour24}</span>
+                  <span>{t.hour24Short}</span>
                 </button>
                 <button
                   className="rounded-md!"
                   aria-pressed={hour12}
                   onClick={() => setPreferences((current) => ({ ...current, hour12: true }))}
                 >
-                  {t.hour12}
+                  <span>{t.hour12}</span>
+                  <span>{t.hour12Short}</span>
                 </button>
               </div>
               <LanguageSwitcher />
