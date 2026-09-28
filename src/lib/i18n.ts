@@ -9,7 +9,7 @@ const en = {
   description:
     'Compare world clocks and convert time zones. Search cities, IANA time zones or UTC offsets in English and Chinese.',
   home: 'Same Moment home',
-  switchLanguage: 'Switch to Chinese',
+  language: 'Language',
   timeFormat: 'Time format',
   hour24: '24 hour',
   hour12: '12 hour',
@@ -121,7 +121,7 @@ const zh = {
   description:
     '同刻：简洁的世界时钟与时区换算工具。支持中英文城市、IANA 时区或 UTC 偏移搜索，轻松比较世界各地的时间。',
   home: '同刻首页',
-  switchLanguage: '切换到英文',
+  language: '语言',
   timeFormat: '时间显示格式',
   hour24: '24 小时',
   hour12: '12 小时',

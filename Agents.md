@@ -19,7 +19,7 @@
 - 名称：同刻（Same Moment），中英文世界时钟与时区换算工具，纯前端应用。
 - 核心用途：修改任意城市的当地日期或时间，其他时区同步换算，显示 UTC 偏移、相对时差和跨日提示。
 - 设计参考：<https://www.timezones.digital/>。具体交互遵循本项目现有约定。
-- 默认语言为英文；右上角的语言按钮在英文与简体中文之间切换，并保存到本地。
+- 默认语言为英文；右上角的语言图标按钮打开下拉菜单，可选 English 或简体中文，选择结果保存到本地。
 - 默认卡片：新加坡、洛杉矶、纽约、协调世界时（UTC）；默认基准为 `Asia/Singapore`，默认使用 24 小时制。
 - 用户交流和维护说明使用简体中文。用户未明确指定时区和时间制时，按 `Asia/Taipei` 的 24 小时制理解。
 - 开发环境：macOS、zsh、Zed。文件统一使用 LF 换行。
@@ -58,7 +58,7 @@ React 19、TypeScript 6、Vite 8（Rolldown）、Tailwind CSS 4、shadcn/ui（Ra
 | `src/lib/timezones.ts`                   | 时区枚举、中英文信息、搜索、偏移计算及校验                     |
 | `src/lib/i18n.ts`                        | 类型约束的中英文文案、语言读取及 Context                       |
 | `src/components/language-provider.tsx`   | 语言状态、保存及页面元信息更新                                 |
-| `src/components/language-switcher.tsx`   | 右上角语言切换按钮                                             |
+| `src/components/language-switcher.tsx`   | 右上角语言图标按钮及语言下拉菜单                               |
 | `src/components/unsupported-browser.tsx` | 支持语言切换的浏览器升级提示                                   |
 | `src/lib/preferences.ts`                 | 卡片与显示偏好的读取、校验和保存                               |
 | `src/components/timezone-card.tsx`       | 单张卡片、拖拽手柄、表针和时间刻度                             |
@@ -100,7 +100,7 @@ React 19、TypeScript 6、Vite 8（Rolldown）、Tailwind CSS 4、shadcn/ui（Ra
 - 添加时区使用模态框与 shadcn Checkbox。支持中文城市和地区名、英文名、IANA 标识符，以及 `+8`、`-7`、`UTC+08:00`、`+5:30`、`+5.75` 等偏移搜索。
 - 打开弹窗前已选的时区置顶并保留卡片顺序，其他条目按当前查看时间的 UTC 偏移升序排列。弹窗打开期间使用固定的时间点和已有分组，勾选动作只修改草稿；“完成”才应用，取消或关闭放弃草稿。
 - 添加时区弹窗最大宽度为 760px；视口达到 `sm`（640px）时，各分组内的条目按从左到右、从上到下排列为两列，窄屏使用单列。条目最小高度为 54px，长名称可换行撑高；条目之间保持 `gap-1.5`（6px）间距。深浅主题下，选中行使用较深背景，未选中行悬停时使用较浅背景；选中行悬停时保持选中背景。
-- 日期选择器、Checkbox、Select 和弹窗复用 `src/components/ui/` 中的 shadcn 组件。修改这些组件时检查所有调用位置。
+- 日期选择器、Checkbox、Select、下拉菜单和弹窗复用 `src/components/ui/` 中的 shadcn 组件。修改这些组件时检查所有调用位置。
 - 布局和组件样式使用 Tailwind。全局 CSS 用于主题变量、基础规则和必要的伪元素样式；动态角度、拖拽位移等值可以使用运行时样式。
 - 主题以黑白灰为主，警告与删除状态保留语义提示色。当地 06:00–18:00 为白天：卡片随页面主题调整明度，钟面为浅色表盘，时段图标为太阳，时间刻度中这段小时使用浅灰。18:00–次日 06:00 为夜晚：卡片使用 `.dark` 主题变量，采用炭黑底与浅色文字，钟面为深色表盘，时段图标为月亮，时间刻度中这段小时使用深灰。夜晚卡片背景显示星空：以时区 ID 为种子生成固定的星点、银河暗星带和少量带光晕的亮星，同一城市每次显示相同；星空集中在右上角，向左下方渐隐，减少与左侧文字的重叠。深色模式下太阳图标使用 `day-icon` 浅金黄色。卡片时段标签按当地时间显示：半夜 00:00–01:00、凌晨 01:00–06:00、上午 06:00–12:00、中午 12:00–13:00、下午 13:00–18:00、傍晚 18:00–19:00、晚上 19:00–24:00，含起始时刻、不含结束时刻。
 - 全站字体为 B 站 CDN 提供的 HarmonyOS Sans SC，由 `index.html` 引入 Regular 与 Medium 两份样式表，并通过 `referrer` meta 不发送来源。正文使用 `HarmonyOS_Regular`；需要加粗时只使用 `font-medium`（包括卡片大号时间）：主题变量 `--font-medium` 使它切换到 `HarmonyOS_Medium` 字体，`src/index.css` 中同名的 `@utility` 再设置 600 字重。Medium 字体只有 500 字重，600 由浏览器在其基础上模拟加粗。不要使用 `font-semibold`、`font-bold` 或数字字重。该字体的 `calt` 规则会把两个数字之间的冒号替换为垂直居中的字形；Chrome 在字距不为 0 时会停用 `calt`，因此卡片大号时间不设置 `letter-spacing`。
