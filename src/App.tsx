@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import { domAnimation, LazyMotion, MotionConfig } from 'framer-motion'
+import { domAnimation, LazyMotion, MotionConfig, useReducedMotion } from 'framer-motion'
 import * as m from 'framer-motion/m'
 import {
   closestCenter,
   DndContext,
+  DragOverlay,
   KeyboardSensor,
   PointerSensor,
   useSensor,
@@ -35,7 +36,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { TimezoneCard } from '@/components/timezone-card'
+import { SortableTimezoneCard, TimezoneCard } from '@/components/timezone-card'
 import { TimeEditor } from '@/components/time-editor'
 import { ZonePicker } from '@/components/zone-picker'
 import { LanguageSwitcher } from '@/components/language-switcher'
@@ -51,11 +52,13 @@ function now() {
 
 export default function App() {
   const { locale, t, languageStorageOk } = useI18n()
+  const reducedMotion = useReducedMotion()
   const [preferences, setPreferencesState] = useState(readPreferences)
   const [instant, setInstant] = useState(now)
   const [live, setLive] = useState(true)
   const [pickerInstant, setPickerInstant] = useState<Instant | null>(null)
   const [editing, setEditing] = useState<string | null>(null)
+  const [dragging, setDragging] = useState<string | null>(null)
   const [storageOk, setStorageOk] = useState(true)
   const [notice, setNotice] = useState<'adjustedDate' | 'returnedToNow' | null>(null)
   const { zones, base, hour12 } = preferences
@@ -110,6 +113,7 @@ export default function App() {
     changeDay(days)
   }
   function onDragEnd({ active, over }: DragEndEvent) {
+    setDragging(null)
     if (!over || active.id === over.id) return
     setPreferences((current) => ({
       ...current,
@@ -254,6 +258,8 @@ export default function App() {
                 <DndContext
                   sensors={sensors}
                   collisionDetection={closestCenter}
+                  onDragStart={({ active }) => setDragging(String(active.id))}
+                  onDragCancel={() => setDragging(null)}
                   onDragEnd={onDragEnd}
                   accessibility={{
                     screenReaderInstructions: {
@@ -275,7 +281,7 @@ export default function App() {
                   <SortableContext items={zones} strategy={rectSortingStrategy}>
                     <div className="grid grid-cols-3 items-stretch gap-[18px] xl:grid-cols-4 max-[1100px]:grid-cols-2 max-[700px]:gap-[13px] max-[480px]:grid-cols-1">
                       {zones.map((id) => (
-                        <TimezoneCard
+                        <SortableTimezoneCard
                           key={id}
                           id={id}
                           instant={instant}
@@ -304,6 +310,31 @@ export default function App() {
                       </button>
                     </div>
                   </SortableContext>
+                  <DragOverlay
+                    zIndex={20}
+                    transition={reducedMotion ? 'none' : undefined}
+                    dropAnimation={
+                      reducedMotion
+                        ? null
+                        : { duration: 300, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' }
+                    }
+                  >
+                    {dragging && (
+                      <TimezoneCard
+                        id={dragging}
+                        instant={instant}
+                        base={base}
+                        hour12={hour12}
+                        animateRuler={live}
+                        onEdit={setEditing}
+                        onRemove={(removed) =>
+                          updateZones(zones.filter((zone) => zone !== removed))
+                        }
+                        onSlide={changeTime}
+                        dragOverlay
+                      />
+                    )}
+                  </DragOverlay>
                 </DndContext>
               ) : (
                 <div className="rounded-2xl border border-dashed border-border px-5 py-[65px] text-center text-muted-foreground [&>svg]:m-auto [&_h2]:mt-5 [&_h2]:mb-3 [&_h2]:text-[21px] [&_h2]:text-foreground [&_p]:mb-6 [&_p]:text-[13px]">

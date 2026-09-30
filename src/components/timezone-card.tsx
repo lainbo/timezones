@@ -1,5 +1,5 @@
 import { useI18n, type Messages } from '@/lib/i18n'
-import { useState } from 'react'
+import { useState, type ComponentProps } from 'react'
 import { useReducedMotion } from 'framer-motion'
 import * as m from 'framer-motion/m'
 import { cn } from '@/lib/utils'
@@ -40,6 +40,36 @@ function dayPart(hour: number, minute: number, t: Messages) {
   return { name: t.lateEvening, range: '19:00–24:00' }
 }
 
+export function SortableTimezoneCard(props: Props) {
+  const reducedMotion = useReducedMotion()
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    setActivatorNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: props.id, transition: reducedMotion ? null : undefined })
+
+  return (
+    <div
+      ref={setNodeRef}
+      className="min-w-0"
+      style={{
+        transform: CSS.Transform.toString(transform),
+        transition,
+        opacity: isDragging ? 0 : undefined,
+      }}
+    >
+      <TimezoneCard
+        {...props}
+        dragHandleProps={{ ref: setActivatorNodeRef, ...attributes, ...listeners }}
+      />
+    </div>
+  )
+}
+
 export function TimezoneCard({
   id,
   instant,
@@ -49,21 +79,14 @@ export function TimezoneCard({
   onEdit,
   onRemove,
   onSlide,
-}: Props) {
+  dragHandleProps,
+  dragOverlay = false,
+}: Props & { dragHandleProps?: ComponentProps<'button'>; dragOverlay?: boolean }) {
   const { locale, t } = useI18n()
   const reducedMotion = useReducedMotion()
   const handTransition = reducedMotion
     ? { duration: 0 }
     : { type: 'spring' as const, stiffness: 420, damping: 36, mass: 0.7 }
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    setActivatorNodeRef,
-    transform,
-    transition,
-    isDragging,
-  } = useSortable({ id })
   const info = zoneInfo(id, locale)
   const time = instant.toZonedDateTimeISO(id)
   const clockMinutes = time.hour * 60 + time.minute
@@ -101,17 +124,17 @@ export function TimezoneCard({
       : (offsetDifference > 0 ? t.ahead : t.behind)(Number(Math.abs(offsetDifference).toFixed(2)))
   return (
     <m.article
-      ref={setNodeRef}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: isDragging ? 0.95 : 1 }}
+      initial={dragOverlay ? false : { opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: reducedMotion ? 0 : 0.3 }}
-      style={{ transform: CSS.Transform.toString(transform), transition }}
+      inert={dragOverlay}
+      aria-hidden={dragOverlay || undefined}
       data-night={night}
       className={cn(
-        '@container group/card relative isolate flex min-w-0 flex-col rounded-[15px] border px-[23px] pt-[23px] pb-[17px] text-foreground shadow-xs transition-day-night motion-reduce:transition-none min-[1450px]:px-[27px] min-[1450px]:pt-[26px] min-[1450px]:pb-5 max-[1100px]:p-6 max-[700px]:rounded-xl max-[700px]:px-[17px] max-[700px]:pt-[19px] max-[700px]:pb-4 max-[480px]:px-[23px] max-[480px]:pt-[23px] max-[480px]:pb-[18px]',
+        '@container group/card relative isolate flex h-full min-w-0 flex-col rounded-[15px] border px-[23px] pt-[23px] pb-[17px] text-foreground shadow-xs transition-day-night motion-reduce:transition-none min-[1450px]:px-[27px] min-[1450px]:pt-[26px] min-[1450px]:pb-5 max-[1100px]:p-6 max-[700px]:rounded-xl max-[700px]:px-[17px] max-[700px]:pt-[19px] max-[700px]:pb-4 max-[480px]:px-[23px] max-[480px]:pt-[23px] max-[480px]:pb-[18px]',
         night ? 'dark border-night-border bg-night' : 'border-border bg-card',
         isBase && 'border-selected-border ring-1 ring-selected-border',
-        isDragging && 'z-20 shadow-2xl',
+        dragOverlay && 'shadow-2xl',
       )}
       aria-label={t.card(info.city)}
     >
@@ -120,9 +143,7 @@ export function TimezoneCard({
         <div className="min-w-0 flex-1 [overflow-wrap:anywhere] [&>p]:mt-[5px] [&>p]:flex [&>p]:flex-wrap [&>p]:items-center [&>p]:gap-1.5 [&>p]:text-[11px] [&>p]:text-muted-foreground [&>p>span]:text-muted-foreground max-[700px]:[&>p]:text-[9px] max-[480px]:[&>p]:text-[11px]">
           <div className="flex items-start gap-[9px] [&>h2]:m-0 [&>h2]:text-[17px] [&>h2]:leading-[25px] [&>h2]:font-medium [&>h2]:tracking-[0.3px] max-[700px]:[&>h2]:text-[15px] max-[480px]:[&>h2]:text-lg">
             <button
-              ref={setActivatorNodeRef}
-              {...attributes}
-              {...listeners}
+              {...dragHandleProps}
               className="-my-0.5 -mr-1.5 -ml-2 inline-flex h-7 w-6 shrink-0 items-center justify-center rounded-md border-0 bg-transparent text-muted-foreground hover:bg-accent/40 hover:text-foreground touch-none cursor-grab active:cursor-grabbing"
               aria-label={t.reorder(info.city)}
               title={t.reorderHint}
