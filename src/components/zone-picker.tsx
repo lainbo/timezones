@@ -11,7 +11,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
-import { catalogAt, matchesZone, zoneInfo } from '@/lib/timezones'
+import { catalogAt, matchesZone, withOffset, zoneInfo } from '@/lib/timezones'
 import { offsetText, type Instant } from '@/lib/temporal'
 
 type Props = {
@@ -28,11 +28,7 @@ export function ZonePicker({ selected, instant, onClose, onSave }: Props) {
   const catalog = useMemo(() => {
     const rows = catalogAt(instant, locale)
     for (const id of selected) {
-      if (!rows.some((row) => row.id === id))
-        rows.push({
-          ...zoneInfo(id, locale),
-          offset: instant.toZonedDateTimeISO(id).offsetNanoseconds / 60e9,
-        })
+      if (!rows.some((row) => row.id === id)) rows.push(withOffset(zoneInfo(id, locale), instant))
     }
     return rows.sort(
       (a, b) =>
@@ -62,9 +58,9 @@ export function ZonePicker({ selected, instant, onClose, onSave }: Props) {
           aria-label={`${zone.city} ${zone.id}`}
         />
         <span className="flex min-w-0 flex-1 flex-col gap-0.5">
-          <span className="flex flex-wrap items-center gap-x-2 text-[13px] leading-[18px] text-foreground [overflow-wrap:anywhere] [&>span]:text-[11px] [&>span]:text-muted-foreground">
+          <span className="flex flex-wrap items-center gap-x-2 text-[13px] leading-[18px] text-foreground [overflow-wrap:anywhere]">
             {zone.city}
-            <span>{zone.region}</span>
+            <span className="text-[11px] text-muted-foreground">{zone.region}</span>
           </span>
           <span className="text-[11px] leading-4 text-muted-foreground [overflow-wrap:anywhere]">
             {zone.id}
@@ -75,6 +71,17 @@ export function ZonePicker({ selected, instant, onClose, onSave }: Props) {
         </span>
       </label>
     ))
+  }
+  function renderSection(title: string, aside: string | number, rows: typeof catalog) {
+    return (
+      <>
+        <div className="flex flex-wrap justify-between gap-2 bg-popover px-[13px] pt-[13px] pb-[9px] text-[11px] text-muted-foreground">
+          <span>{title}</span>
+          <span className="text-[10px]">{aside}</span>
+        </div>
+        <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">{renderRows(rows)}</div>
+      </>
+    )
   }
   return (
     <Dialog
@@ -99,7 +106,7 @@ export function ZonePicker({ selected, instant, onClose, onSave }: Props) {
             {t.chooseCities}
           </DialogDescription>
         </DialogHeader>
-        <div className="mx-6 mt-[23px] mb-[15px] flex shrink-0 items-center gap-[9px] rounded-lg border border-border bg-card px-3 text-muted-foreground focus-within:border-selected-border focus-within:ring-3 focus-within:ring-ring/15 [&>button]:border-0 [&>button]:bg-transparent [&>button]:p-[5px] [&>button]:text-muted-foreground">
+        <div className="mx-6 mt-[23px] mb-[15px] flex shrink-0 items-center gap-[9px] rounded-lg border border-border bg-card px-3 text-muted-foreground focus-within:border-selected-border focus-within:ring-3 focus-within:ring-ring/15">
           <Search size={18} />
           <Input
             className="h-[42px] border-0 pl-0 text-xs shadow-none focus-visible:border-transparent focus-visible:ring-0 md:text-xs dark:bg-transparent"
@@ -110,42 +117,32 @@ export function ZonePicker({ selected, instant, onClose, onSave }: Props) {
             onChange={(event) => setQuery(event.target.value)}
           />
           {query && (
-            <button type="button" aria-label={t.clearSearch} onClick={() => setQuery('')}>
+            <button
+              className="border-0 bg-transparent p-[5px] text-muted-foreground"
+              type="button"
+              aria-label={t.clearSearch}
+              onClick={() => setQuery('')}
+            >
               <X size={16} />
             </button>
           )}
         </div>
         <div className="h-[min(430px,calc(100dvh-330px))] min-h-0 flex-auto overflow-y-auto overscroll-contain px-3 [scrollbar-width:thin] [scrollbar-color:var(--input)_transparent]">
-          {pinned.length > 0 && (
-            <>
-              <div className="flex flex-wrap justify-between gap-2 bg-popover px-[13px] pt-[13px] pb-[9px] text-[11px] text-muted-foreground [&>span:last-child]:text-[10px]">
-                <span>{t.addedZones}</span>
-                <span>{pinned.length}</span>
-              </div>
-              <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">{renderRows(pinned)}</div>
-            </>
-          )}
-          {remaining.length > 0 && (
-            <>
-              <div className="flex flex-wrap justify-between gap-2 bg-popover px-[13px] pt-[13px] pb-[9px] text-[11px] text-muted-foreground [&>span:last-child]:text-[10px]">
-                <span>{query ? t.searchResults : t.allZones}</span>
-                <span>{t.sortedByOffset}</span>
-              </div>
-              <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">{renderRows(remaining)}</div>
-            </>
-          )}
+          {pinned.length > 0 && renderSection(t.addedZones, pinned.length, pinned)}
+          {remaining.length > 0 &&
+            renderSection(query ? t.searchResults : t.allZones, t.sortedByOffset, remaining)}
           {filtered.length === 0 && (
-            <div className="flex min-h-[150px] flex-col items-center justify-center gap-3.5 text-muted-foreground [&>strong]:text-sm [&>strong]:font-medium [&>p]:m-0 [&>p]:text-xs [&_button]:mt-1 [&_button]:text-xs">
+            <div className="flex min-h-[150px] flex-col items-center justify-center gap-3.5 text-muted-foreground">
               <Search size={30} />
-              <strong>{t.noResults}</strong>
-              <p>{t.searchHint}</p>
-              <Button variant="outline" onClick={() => setQuery('')}>
+              <strong className="text-sm font-medium">{t.noResults}</strong>
+              <p className="m-0 text-xs">{t.searchHint}</p>
+              <Button className="mt-1 text-xs" variant="outline" onClick={() => setQuery('')}>
                 {t.clearSearch}
               </Button>
             </div>
           )}
         </div>
-        <div className="mt-3.5 flex shrink-0 flex-wrap items-center justify-between gap-x-3 gap-y-2 border-t border-border px-[25px] pt-[17px] pb-[7px] text-xs text-muted-foreground [&_strong]:px-0.5 [&_strong]:font-medium [&_strong]:text-selected-foreground [&>div]:flex [&>div]:gap-1.5 [&_button]:text-xs max-[480px]:px-5">
+        <div className="mt-3.5 flex shrink-0 flex-wrap items-center justify-between gap-x-3 gap-y-2 border-t border-border px-[25px] pt-[17px] pb-[7px] text-xs text-muted-foreground max-[480px]:px-5">
           <span>
             {t.selectedCount(draft.length)}
             <span className="text-[10px] text-muted-foreground max-[480px]:hidden">
@@ -153,11 +150,11 @@ export function ZonePicker({ selected, instant, onClose, onSave }: Props) {
               {t.availableCount(catalog.length)}
             </span>
           </span>
-          <div>
-            <Button variant="ghost" onClick={onClose}>
+          <div className="flex gap-1.5">
+            <Button className="text-xs" variant="ghost" onClick={onClose}>
               {t.cancel}
             </Button>
-            <Button onClick={() => onSave(draft)}>
+            <Button className="text-xs" onClick={() => onSave(draft)}>
               <Check size={16} />
               {t.done}
             </Button>

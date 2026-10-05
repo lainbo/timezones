@@ -25,6 +25,10 @@ export function dateText(time: ZonedDateTime, locale: Locale) {
   return `${time.month}月${time.day}日周${'一二三四五六日'[time.dayOfWeek - 1]}`
 }
 
+export function offsetMinutes(time: ZonedDateTime) {
+  return time.offsetNanoseconds / 60e9
+}
+
 export function offsetText(minutes: number) {
   const offset = Temporal.Duration.from({ nanoseconds: Math.round(minutes * 60e9) }).round({
     largestUnit: 'hour',

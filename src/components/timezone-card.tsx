@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { ArrowUpRight, GripVertical, Moon, Sun, X } from 'lucide-react'
-import { dateText, offsetText, timeText, type Instant } from '@/lib/temporal'
+import { dateText, offsetMinutes, offsetText, timeText, type Instant } from '@/lib/temporal'
 import { zoneInfo } from '@/lib/timezones'
 import { NightSky } from '@/components/night-sky'
 
@@ -110,8 +110,7 @@ export function TimezoneCard({
   const end = start.add({ days: 1 }).startOfDay()
   const totalMinutes = (end.epochMilliseconds - start.epochMilliseconds) / 60000
   const elapsed = (instant.epochMilliseconds - start.epochMilliseconds) / 60000
-  const daylight = isDaylight(time.hour)
-  const night = !daylight
+  const night = !isDaylight(time.hour)
   const part = dayPart(time.hour, time.minute, t)
   const isBase = id === base
   const ticks = Array.from({ length: Math.ceil(totalMinutes / 60) }, (_, index) => {
@@ -140,8 +139,8 @@ export function TimezoneCard({
     >
       <NightSky id={id} night={night} />
       <div className="flex min-h-[76px] items-start justify-between gap-2">
-        <div className="min-w-0 flex-1 [overflow-wrap:anywhere] [&>p]:mt-[5px] [&>p]:flex [&>p]:flex-wrap [&>p]:items-center [&>p]:gap-1.5 [&>p]:text-[11px] [&>p]:text-muted-foreground [&>p>span]:text-muted-foreground max-[700px]:[&>p]:text-[9px] max-[480px]:[&>p]:text-[11px]">
-          <div className="flex items-start gap-[9px] [&>h2]:m-0 [&>h2]:text-[17px] [&>h2]:leading-[25px] [&>h2]:font-medium [&>h2]:tracking-[0.3px] max-[700px]:[&>h2]:text-[15px] max-[480px]:[&>h2]:text-lg">
+        <div className="min-w-0 flex-1 [overflow-wrap:anywhere]">
+          <div className="flex items-start gap-[9px]">
             <button
               {...dragHandleProps}
               className="-my-0.5 -mr-1.5 -ml-2 inline-flex h-7 w-6 shrink-0 items-center justify-center rounded-md border-0 bg-transparent text-muted-foreground hover:bg-accent/40 hover:text-foreground touch-none cursor-grab active:cursor-grabbing"
@@ -150,9 +149,11 @@ export function TimezoneCard({
             >
               <GripVertical size={18} />
             </button>
-            <h2 className="min-w-0 flex-1 [overflow-wrap:anywhere]">{info.city}</h2>
+            <h2 className="m-0 min-w-0 flex-1 text-[17px] leading-[25px] font-medium tracking-[0.3px] [overflow-wrap:anywhere] max-[700px]:text-[15px] max-[480px]:text-lg">
+              {info.city}
+            </h2>
           </div>
-          <p>
+          <p className="mt-[5px] flex flex-wrap items-center gap-1.5 text-[11px] text-muted-foreground max-[700px]:text-[9px] max-[480px]:text-[11px]">
             {locale === 'zh-CN' && (
               <>
                 {info.english}
@@ -167,9 +168,9 @@ export function TimezoneCard({
             )}
           </p>
         </div>
-        <div className="-mt-1 -mr-2 flex shrink-0 max-[700px]:-mr-[9px] max-[700px]:[&>button]:w-[22px]">
+        <div className="-mt-1 -mr-2 flex shrink-0 max-[700px]:-mr-[9px]">
           <button
-            className="inline-flex size-7 shrink-0 items-center justify-center rounded-md border-0 bg-transparent text-muted-foreground hover:bg-accent/40 hover:text-foreground opacity-0 group-hover/card:opacity-100 group-has-focus-visible/card:opacity-100 hover:bg-destructive/10 hover:text-primary max-[700px]:opacity-100 [@media(hover:none)]:opacity-100"
+            className="inline-flex size-7 shrink-0 items-center justify-center rounded-md border-0 bg-transparent text-muted-foreground opacity-0 group-hover/card:opacity-100 group-has-focus-visible/card:opacity-100 hover:bg-destructive/10 hover:text-primary max-[700px]:w-[22px] max-[700px]:opacity-100 [@media(hover:none)]:opacity-100"
             aria-label={t.remove(info.city)}
             onClick={() => onRemove(id)}
           >
@@ -179,12 +180,14 @@ export function TimezoneCard({
       </div>
       <div className="mt-auto flex items-center justify-between gap-1.5 pt-5">
         <button
-          className="group/time relative flex min-w-0 items-baseline gap-[7px] border-0 bg-transparent p-0 text-left text-foreground hover:text-primary [&>span:first-child]:text-[clamp(32px,22cqi,64px)] [&>span:first-child]:leading-[1.1] [&>span:first-child]:font-medium [&>span:first-child]:tabular-nums"
+          className="group/time relative flex min-w-0 items-baseline gap-[7px] border-0 bg-transparent p-0 text-left text-foreground hover:text-primary"
           onClick={() => onEdit(id)}
           aria-label={t.editTime(info.city)}
           title={t.editTimeHint}
         >
-          <span>{timeText(time, hour12)}</span>
+          <span className="text-[clamp(32px,22cqi,64px)] leading-[1.1] font-medium tabular-nums">
+            {timeText(time, hour12)}
+          </span>
           {hour12 && (
             <span className="text-xs tracking-normal text-muted-foreground">
               {time.hour < 12 ? 'AM' : 'PM'}
@@ -226,33 +229,41 @@ export function TimezoneCard({
           className="ml-auto inline-flex shrink-0 items-center gap-1 rounded-full border border-border bg-accent/60 px-2 py-1 text-[10px] leading-none font-medium text-foreground"
           title={t.localRange(part.range)}
         >
-          {daylight ? (
-            <Sun size={12} className="text-day-icon" aria-hidden="true" />
-          ) : (
+          {night ? (
             <Moon size={12} aria-hidden="true" />
+          ) : (
+            <Sun size={12} className="text-day-icon" aria-hidden="true" />
           )}
           {part.name}
         </span>
       </div>
-      <div className="relative mx-px mb-4 h-[43px] has-[>input:focus-visible]:rounded has-[>input:focus-visible]:outline-2 has-[>input:focus-visible]:outline-offset-4 has-[>input:focus-visible]:outline-ring [&>input]:absolute [&>input]:-top-[7px] [&>input]:left-0 [&>input]:z-3 [&>input]:m-0 [&>input]:h-[38px] [&>input]:w-full [&>input]:cursor-ew-resize [&>input]:touch-pan-y [&>input]:opacity-0">
+      <div className="relative mx-px mb-4 h-[43px] has-[>input:focus-visible]:rounded has-[>input:focus-visible]:outline-2 has-[>input:focus-visible]:outline-offset-4 has-[>input:focus-visible]:outline-ring">
         <div
-          className="absolute inset-x-0 top-0 flex h-6 overflow-visible rounded [&>span]:relative [&>span]:min-w-0 [&>span]:flex-1 [&>span:first-child]:rounded-l [&>span:last-child]:rounded-r [&_em]:absolute [&_em]:top-[31px] [&_em]:left-0 [&_em]:text-[9px] [&_em]:text-muted-foreground [&_em]:not-italic [&_em]:tabular-nums"
+          className="absolute inset-x-0 top-0 flex h-6 overflow-visible rounded"
           aria-hidden="true"
         >
           {ticks.map((tick, index) => (
             <span
-              className={tick.daytime ? 'bg-ruler-day' : 'bg-ruler-night'}
+              className={cn(
+                'relative min-w-0 flex-1 first:rounded-l last:rounded-r',
+                tick.daytime ? 'bg-ruler-day' : 'bg-ruler-night',
+              )}
               key={`${tick.hour}-${tick.offset}`}
             >
               {index > 0 && (
                 <i className="absolute inset-y-0 left-0 w-px bg-background/45 after:absolute after:inset-x-0 after:bottom-0 after:h-[5px] after:bg-ruler-tick" />
               )}
-              {index % 6 === 0 && <em>{String(tick.hour).padStart(2, '0')}</em>}
+              {index % 6 === 0 && (
+                <em className="absolute top-[31px] left-0 text-[9px] text-muted-foreground not-italic tabular-nums">
+                  {String(tick.hour).padStart(2, '0')}
+                </em>
+              )}
             </span>
           ))}
         </div>
         <input
           type="range"
+          className="absolute -top-[7px] left-0 z-3 m-0 h-[38px] w-full cursor-ew-resize touch-pan-y opacity-0"
           min="0"
           max={totalMinutes - 1}
           step="5"
@@ -271,15 +282,15 @@ export function TimezoneCard({
               ? { type: 'spring', stiffness: 160, damping: 26, mass: 0.8 }
               : { duration: 0 }
           }
-          className="pointer-events-none absolute -top-1 z-2 h-[30px] border-l-2 border-marker shadow-[0_0_0_1px_var(--card)] [&>span]:absolute [&>span]:-top-px [&>span]:-left-1 [&>span]:block [&>span]:size-1.5 [&>span]:rounded-full [&>span]:bg-marker [&>span]:ring-2 [&>span]:ring-card"
+          className="pointer-events-none absolute -top-1 z-2 h-[30px] border-l-2 border-marker shadow-[0_0_0_1px_var(--card)]"
           aria-hidden="true"
         >
-          <span />
+          <span className="absolute -top-px -left-1 block size-1.5 rounded-full bg-marker ring-2 ring-card" />
         </m.div>
       </div>
-      <div className="flex flex-wrap justify-between gap-x-2 gap-y-1 border-t border-border pt-3 text-[10px] tracking-[0.2px] text-muted-foreground group-data-[night=true]/card:border-border [&>span:first-child]:text-muted-foreground [&>span:first-child]:tabular-nums [&>span:last-child]:text-[10px] max-[700px]:text-[9px] max-[700px]:[&>span:last-child]:text-[9px] max-[480px]:text-[11px] max-[480px]:[&>span:last-child]:text-[10px]">
-        <span>{offsetText(time.offsetNanoseconds / 60e9)}</span>
-        <span>{isBase ? t.currentReference : difference}</span>
+      <div className="flex flex-wrap justify-between gap-x-2 gap-y-1 border-t border-border pt-3 text-[10px] tracking-[0.2px] text-muted-foreground max-[700px]:text-[9px] max-[480px]:text-[11px]">
+        <span className="tabular-nums">{offsetText(offsetMinutes(time))}</span>
+        <span className="max-[480px]:text-[10px]">{isBase ? t.currentReference : difference}</span>
       </div>
     </m.article>
   )

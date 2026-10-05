@@ -11,8 +11,17 @@ import {
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { DatePicker } from '@/components/date-picker'
-import { dateText, offsetText, resolveLocalTime, timeText, type Instant } from '@/lib/temporal'
+import {
+  dateText,
+  offsetMinutes,
+  offsetText,
+  resolveLocalTime,
+  timeText,
+  type Instant,
+} from '@/lib/temporal'
 import { zoneInfo } from '@/lib/timezones'
+
+const fieldClass = 'flex min-w-0 flex-1 flex-col gap-[9px] text-xs text-muted-foreground'
 
 type Props = {
   zone: string
@@ -46,7 +55,7 @@ export function TimeEditor({ zone, instant, onClose, onSave }: Props) {
         if (!open) onClose()
       }}
     >
-      <DialogContent className="max-h-[calc(100dvh-32px)] w-[calc(100vw-32px)] max-w-[480px] gap-0 overflow-y-auto rounded-[18px] bg-popover p-0 pt-[29px] sm:max-w-[480px] [&_form]:px-7 [&_form]:pb-[25px] max-[700px]:[&_form]:px-[22px]">
+      <DialogContent className="max-h-[calc(100dvh-32px)] w-[calc(100vw-32px)] max-w-[480px] gap-0 overflow-y-auto rounded-[18px] bg-popover p-0 pt-[29px] sm:max-w-[480px]">
         <DialogHeader className="pr-12 pl-7 text-left max-[700px]:pl-[22px]">
           <div className="mb-3 flex items-center gap-[7px] text-[10px] tracking-[1.7px] text-muted-foreground">
             <Clock3 size={17} /> {t.convertLabel}
@@ -59,20 +68,22 @@ export function TimeEditor({ zone, instant, onClose, onSave }: Props) {
           </DialogDescription>
         </DialogHeader>
         <form
+          className="px-7 pb-[25px] max-[700px]:px-[22px]"
           onSubmit={(event) => {
             event.preventDefault()
             if (resolution && valid) onSave(resolution[occurrence ?? 'earlier'].toInstant(), zone)
           }}
         >
-          <div className="mt-[13px] flex flex-wrap items-center justify-between gap-2.5 [overflow-wrap:anywhere] border-b border-border py-3.5 text-xs text-foreground [&>span:last-child]:text-[11px] [&>span:last-child]:text-muted-foreground">
+          <div className="mt-[13px] flex flex-wrap items-center justify-between gap-2.5 [overflow-wrap:anywhere] border-b border-border py-3.5 text-xs text-foreground">
             <span>{info.city}</span>
-            <span>{zone}</span>
+            <span className="text-[11px] text-muted-foreground">{zone}</span>
           </div>
-          <div className="my-[22px] flex flex-col gap-3.5 min-[480px]:flex-row [&>label]:flex [&>label]:min-w-0 [&>label]:flex-1 [&>label]:flex-col [&>label]:gap-[9px] [&>label]:text-xs [&>label]:text-muted-foreground">
-            <div className="flex min-w-0 flex-1 flex-col gap-[9px] text-xs text-muted-foreground [&>button]:h-[43px] [&>button]:justify-between [&>button]:bg-card [&>button]:px-2.5 [&>button]:py-0 [&>button]:text-sm [&>button]:text-foreground [&>button]:shadow-none">
+          <div className="my-[22px] flex flex-col gap-3.5 min-[480px]:flex-row">
+            <div className={fieldClass}>
               <label htmlFor="local-date">{t.localDate}</label>
               <DatePicker
                 id="local-date"
+                className="h-[43px] justify-between bg-card py-0 text-foreground shadow-none has-[>svg]:px-2.5 dark:bg-card"
                 label={t.chooseLocalDate}
                 timeZone={zone}
                 value={date}
@@ -82,7 +93,7 @@ export function TimeEditor({ zone, instant, onClose, onSave }: Props) {
                 }}
               />
             </div>
-            <label>
+            <label className={fieldClass}>
               {t.localTime}
               <Input
                 className="h-[43px] min-w-0 bg-card px-2.5 py-0 text-sm text-foreground"
@@ -100,11 +111,11 @@ export function TimeEditor({ zone, instant, onClose, onSave }: Props) {
           </div>
           {resolution?.kind === 'gap' && (
             <div
-              className="flex items-start gap-2.5 rounded-lg border border-warning-border bg-warning p-3 text-xs leading-[1.6] text-muted-foreground [&>svg]:mt-0.5 [&>svg]:shrink-0 [&>p]:m-0"
+              className="flex items-start gap-2.5 rounded-lg border border-warning-border bg-warning p-3 text-xs leading-[1.6] text-muted-foreground"
               role="alert"
             >
-              <Info size={18} />
-              <p>
+              <Info className="mt-0.5 shrink-0" size={18} />
+              <p className="m-0">
                 {t.gap(
                   `${!resolution.later.toPlainDate().equals(date) ? `${dateText(resolution.later, locale)} ` : ''}${timeText(resolution.later)}`,
                 )}
@@ -112,27 +123,33 @@ export function TimeEditor({ zone, instant, onClose, onSave }: Props) {
             </div>
           )}
           {resolution?.kind === 'overlap' && (
-            <fieldset className="border-0 p-0 text-xs text-muted-foreground [&_legend]:mb-2.5 [&_legend]:text-xs [&_label]:mt-2 [&_label]:flex [&_label]:items-center [&_label]:gap-2 [&_label]:rounded-[7px] [&_label]:border [&_label]:border-border [&_label]:p-2.5 [&_label>span]:ml-auto [&_label>span]:tabular-nums [&_input]:accent-selected-foreground">
-              <legend>{t.overlap}</legend>
+            <fieldset className="border-0 p-0 text-xs text-muted-foreground">
+              <legend className="mb-2.5 text-xs">{t.overlap}</legend>
               {(['earlier', 'later'] as const).map((choice, index) => (
-                <label key={choice}>
+                <label
+                  key={choice}
+                  className="mt-2 flex items-center gap-2 rounded-[7px] border border-border p-2.5"
+                >
                   <input
+                    className="accent-selected-foreground"
                     type="radio"
                     name="occurrence"
                     checked={occurrence === choice}
                     onChange={() => setOccurrence(choice)}
                   />
                   {t.occurrence(index)}
-                  <span>{offsetText(resolution[choice].offsetNanoseconds / 60e9)}</span>
+                  <span className="ml-auto tabular-nums">
+                    {offsetText(offsetMinutes(resolution[choice]))}
+                  </span>
                 </label>
               ))}
             </fieldset>
           )}
-          <div className="mt-[26px] flex justify-end gap-2.5 [&_button]:text-xs">
-            <Button type="button" variant="ghost" onClick={onClose}>
+          <div className="mt-[26px] flex justify-end gap-2.5">
+            <Button className="text-xs" type="button" variant="ghost" onClick={onClose}>
               {t.cancel}
             </Button>
-            <Button type="submit" disabled={!valid}>
+            <Button className="text-xs" type="submit" disabled={!valid}>
               {t.convertTime}
               <ArrowRight size={16} />
             </Button>

@@ -1,6 +1,6 @@
 import { messages, type Locale } from './i18n'
 import rawNames from '../data/timezone-names.json'
-import { Temporal, offsetText, type Instant } from './temporal'
+import { Temporal, offsetMinutes, offsetText, type Instant } from './temporal'
 
 type ZoneName = { city: string; country: string; iana?: string }
 const names: Record<string, ZoneName> = rawNames
@@ -25,10 +25,10 @@ export function zoneInfo(id: string, locale: Locale = 'en') {
     return {
       id,
       city: t.utc,
-      english: 'Coordinated Universal Time',
+      english: messages.en.utc,
       region: t.globalStandard,
       search:
-        'utc gmt coordinated universal time global standard 协调世界时 全球标准 世界标准时间 格林尼治',
+        `utc gmt ${messages.en.utc} ${messages.en.globalStandard} ${messages['zh-CN'].utc} ${messages['zh-CN'].globalStandard} 世界标准时间 格林尼治`.toLowerCase(),
     }
   if (id.startsWith('Etc/GMT')) {
     const offset = -Number(id.slice(7)) * 60
@@ -36,9 +36,9 @@ export function zoneInfo(id: string, locale: Locale = 'en') {
     return {
       id,
       city,
-      english: 'Fixed offset',
+      english: messages.en.fixedOffset,
       region: t.fixedOffset,
-      search: `${city} fixed offset 固定偏移`.toLowerCase(),
+      search: `${city} ${messages.en.fixedOffset} ${messages['zh-CN'].fixedOffset}`.toLowerCase(),
     }
   }
   const city =
@@ -68,23 +68,24 @@ export const zoneIds = [
   ...new Set([
     ...Intl.supportedValuesOf('timeZone'),
     'UTC',
-    ...Array.from({ length: 26 }, (_, i) => i - 12)
+    ...Array.from({ length: 27 }, (_, i) => i - 12)
       .filter((n) => n !== 0)
       .map((n) => `Etc/GMT${n > 0 ? '-' : '+'}${Math.abs(n)}`),
-    'Etc/GMT-14',
   ]),
 ]
 const zones = {
   en: zoneIds.map((id) => zoneInfo(id, 'en')),
   'zh-CN': zoneIds.map((id) => zoneInfo(id, 'zh-CN')),
 }
-export const defaultZones = ['Asia/Singapore', 'America/Los_Angeles', 'America/New_York', 'UTC']
+export const defaultBase = 'Asia/Singapore'
+export const defaultZones = [defaultBase, 'America/Los_Angeles', 'America/New_York', 'UTC']
+
+export function withOffset(zone: ReturnType<typeof zoneInfo>, instant: Instant) {
+  return { ...zone, offset: offsetMinutes(instant.toZonedDateTimeISO(zone.id)) }
+}
 
 export function catalogAt(instant: Instant, locale: Locale) {
-  return zones[locale].map((zone) => ({
-    ...zone,
-    offset: instant.toZonedDateTimeISO(zone.id).offsetNanoseconds / 60e9,
-  }))
+  return zones[locale].map((zone) => withOffset(zone, instant))
 }
 
 export function parseOffsetQuery(query: string) {

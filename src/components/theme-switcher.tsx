@@ -28,7 +28,6 @@ export function ThemeSwitcher() {
       applyTheme(media.matches)
       setDark(media.matches)
     }
-    followSystem()
     media.addEventListener('change', followSystem)
     return () => media.removeEventListener('change', followSystem)
   }, [])

@@ -24,9 +24,11 @@ for (const [key, value] of Object.entries(aliases)) {
     if (value._iana && id !== value._iana) names[id].iana = value._iana
   }
 }
-names.UTC = { city: '协调世界时', country: '' }
 writeFileSync(
   new URL('../src/data/timezone-names.json', import.meta.url),
   JSON.stringify(names, null, 2) + '\n',
 )
-console.log(`已生成 ${Object.keys(names).length} 个时区及别名的中文名称（Unicode CLDR 48.2）。`)
+const { version } = read('cldr-dates-full/package.json')
+console.log(
+  `已生成 ${Object.keys(names).length} 个时区及别名的中文名称（Unicode CLDR ${version}）。`,
+)
