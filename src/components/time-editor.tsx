@@ -9,8 +9,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
 import { DatePicker } from '@/components/date-picker'
+import { TimePicker } from '@/components/time-picker'
 import {
   dateText,
   offsetMinutes,
@@ -93,21 +93,20 @@ export function TimeEditor({ zone, instant, onClose, onSave }: Props) {
                 }}
               />
             </div>
-            <label className={fieldClass}>
-              {t.localTime}
-              <Input
-                className="h-[43px] min-w-0 bg-card px-2.5 py-0 text-sm text-foreground"
+            <div className={fieldClass}>
+              <label htmlFor="local-time">{t.localTime}</label>
+              <TimePicker
+                id="local-time"
+                className="h-[43px] min-w-0 bg-card py-0 pl-2.5 text-sm text-foreground"
+                label={t.chooseLocalTime}
                 autoFocus
-                type="time"
-                required
-                step="60"
                 value={time}
-                onChange={(event) => {
-                  setTime(event.target.value)
+                onChange={(value) => {
+                  setTime(value)
                   setOccurrence(null)
                 }}
               />
-            </label>
+            </div>
           </div>
           {resolution?.kind === 'gap' && (
             <div

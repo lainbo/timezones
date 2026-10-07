@@ -97,6 +97,9 @@ const en = {
   localDate: 'Local date',
   chooseLocalDate: 'Choose local date',
   localTime: 'Local time (24 hour)',
+  chooseLocalTime: 'Choose local time',
+  hour: 'Hour',
+  minute: 'Minute',
   gap: (suggestion: string) =>
     `The clock moves forward and skips this local time. Choose ${suggestion} or another valid time.`,
   overlap: 'The clock moves back, so this time occurs twice. Choose one:',
@@ -208,6 +211,9 @@ const zh = {
   localDate: '当地日期',
   chooseLocalDate: '选择当地日期',
   localTime: '当地时间（24 小时制）',
+  chooseLocalTime: '选择当地时间',
+  hour: '时',
+  minute: '分',
   gap: (suggestion: string) =>
     `这个当地时间因时钟拨快而不存在。请改选 ${suggestion} 或其他有效时间。`,
   overlap: '时钟回拨，这个时间出现两次，请选择：',
