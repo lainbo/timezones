@@ -67,7 +67,7 @@ export function DatePicker({ value, timeZone, onChange, label, id, className }: 
             autoFocus
             formatters={{
               formatMonthDropdown: (date) =>
-                date.toLocaleString(locale, { month: 'short', timeZone: 'UTC' }),
+                date.toLocaleString(locale, { month: 'numeric', timeZone: 'UTC' }),
             }}
             labels={{
               labelPrevious: () => t.previousMonth,

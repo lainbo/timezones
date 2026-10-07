@@ -1,9 +1,21 @@
 import * as React from 'react'
 import { cn } from '@/lib/utils'
 import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
-import { DayPicker, getDefaultClassNames, type DayButton } from 'react-day-picker'
+import {
+  DayPicker,
+  getDefaultClassNames,
+  type DayButton,
+  type DropdownProps,
+} from 'react-day-picker'
 
 import { Button, buttonVariants } from '@/components/ui/button'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
 function Calendar({
   className,
@@ -56,21 +68,10 @@ function Calendar({
           defaultClassNames.month_caption,
         ),
         dropdowns: cn(
-          'flex h-(--cell-size) w-full items-center justify-center gap-1.5 text-sm font-medium',
+          'relative flex h-(--cell-size) w-full items-center justify-center gap-1.5 text-sm font-medium',
           defaultClassNames.dropdowns,
         ),
-        dropdown_root: cn(
-          'relative rounded-md border border-input shadow-xs has-focus:border-ring has-focus:ring-[3px] has-focus:ring-ring/50',
-          defaultClassNames.dropdown_root,
-        ),
-        dropdown: cn('absolute inset-0 bg-popover opacity-0', defaultClassNames.dropdown),
-        caption_label: cn(
-          'font-medium select-none',
-          captionLayout === 'label'
-            ? 'text-sm'
-            : 'flex h-8 items-center gap-1 rounded-md pr-1 pl-2 text-sm [&>svg]:size-3.5 [&>svg]:text-muted-foreground',
-          defaultClassNames.caption_label,
-        ),
+        caption_label: cn('text-sm font-medium select-none', defaultClassNames.caption_label),
         month_grid: cn('w-full border-collapse', defaultClassNames.month_grid),
         weekdays: cn('flex', defaultClassNames.weekdays),
         weekday: cn(
@@ -121,6 +122,8 @@ function Calendar({
           return <ChevronDownIcon className={cn('size-4', className)} {...props} />
         },
         DayButton: CalendarDayButton,
+        Dropdown: CalendarDropdown,
+        DropdownNav: CalendarDropdownNav,
         WeekNumber: ({ children, ...props }) => {
           return (
             <td {...props}>
@@ -134,6 +137,56 @@ function Calendar({
       }}
       {...props}
     />
+  )
+}
+
+function CalendarDropdown({
+  options,
+  value,
+  onChange,
+  disabled,
+  'aria-label': ariaLabel,
+}: DropdownProps) {
+  return (
+    <Select
+      value={String(value)}
+      disabled={disabled}
+      onValueChange={(next) =>
+        // DayPicker 的 onChange 只读取 e.target.value
+        onChange?.({ target: { value: next } } as React.ChangeEvent<HTMLSelectElement>)
+      }
+    >
+      <SelectTrigger size="sm" aria-label={ariaLabel} className="gap-1 px-2">
+        <SelectValue />
+      </SelectTrigger>
+      <SelectContent position="popper" scrollButtons={false} className="max-h-72 min-w-0">
+        {options?.map((option) => (
+          <SelectItem
+            key={option.value}
+            ref={option.value === value ? centerInView : undefined}
+            value={String(option.value)}
+            disabled={option.disabled}
+          >
+            {option.label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  )
+}
+
+// Radix 打开列表时只把选中项滚动到可见区域边缘，这里改为居中
+const centerInView = (node: HTMLElement | null) => node?.scrollIntoView({ block: 'center' })
+
+// DayPicker 按 locale 排列年月下拉框，英文为月在前，这里统一为年在前
+function CalendarDropdownNav({ children, ...props }: React.ComponentProps<'div'>) {
+  const [controls, status] = children as [React.ReactElement[], React.ReactNode]
+
+  return (
+    <div {...props}>
+      {controls.toSorted((control) => (control.key === 'year' ? -1 : 1))}
+      {status}
+    </div>
   )
 }
 
