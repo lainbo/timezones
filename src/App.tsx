@@ -75,11 +75,20 @@ export default function App() {
 
   useEffect(() => {
     if (!live) return
-    const interval = window.setInterval(() => {
-      const current = now()
-      setInstant((previous) => (previous.equals(current) ? previous : current))
-    }, 1000)
-    return () => window.clearInterval(interval)
+    let timeout = 0
+    // 对齐到系统时钟的整秒触发，分钟变化与系统时钟同步；每秒检查一次，休眠唤醒或系统改时后也能在一秒内更正
+    const schedule = () => {
+      timeout = window.setTimeout(
+        () => {
+          const current = now()
+          setInstant((previous) => (previous.equals(current) ? previous : current))
+          schedule()
+        },
+        1000 - (Temporal.Now.instant().epochMilliseconds % 1000),
+      )
+    }
+    schedule()
+    return () => window.clearTimeout(timeout)
   }, [live])
   useEffect(() => {
     if (!notice) return
