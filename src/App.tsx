@@ -168,7 +168,11 @@ export default function App() {
               </span>
             </a>
             <div className="ml-auto flex shrink-0 items-center gap-3 max-[700px]:gap-2 max-[480px]:gap-1.5">
-              <div className="flex gap-0.5 rounded-lg bg-muted p-1" aria-label={t.timeFormat}>
+              <div
+                className="flex gap-0.5 rounded-lg bg-muted p-1"
+                role="group"
+                aria-label={t.timeFormat}
+              >
                 {[
                   { value: false, label: t.hour24, short: t.hour24Short },
                   { value: true, label: t.hour12, short: t.hour12Short },

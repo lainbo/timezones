@@ -106,7 +106,7 @@ export function ZonePicker({ selected, instant, onClose, onSave }: Props) {
             {t.chooseCities}
           </DialogDescription>
         </DialogHeader>
-        <div className="mx-6 mt-[23px] mb-[15px] flex shrink-0 items-center gap-[9px] rounded-lg border border-border bg-card px-3 text-muted-foreground focus-within:border-selected-border focus-within:ring-3 focus-within:ring-ring/15">
+        <search className="mx-6 mt-[23px] mb-[15px] flex shrink-0 items-center gap-[9px] rounded-lg border border-border bg-card px-3 text-muted-foreground focus-within:border-selected-border focus-within:ring-3 focus-within:ring-ring/15">
           <Search size={18} />
           <Input
             className="h-[42px] border-0 pl-0 text-xs shadow-none focus-visible:border-transparent focus-visible:ring-0 md:text-xs dark:bg-transparent"
@@ -126,7 +126,7 @@ export function ZonePicker({ selected, instant, onClose, onSave }: Props) {
               <X size={16} />
             </button>
           )}
-        </div>
+        </search>
         <div className="h-[min(430px,calc(100dvh-330px))] min-h-0 flex-auto overflow-y-auto overscroll-contain px-3 [scrollbar-width:thin] [scrollbar-color:var(--input)_transparent]">
           {pinned.length > 0 && renderSection(t.addedZones, pinned.length, pinned)}
           {remaining.length > 0 &&
