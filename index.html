@@ -3,11 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="referrer" content="no-referrer" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="stylesheet" href="https://s1.hdslb.com/bfs/static/jinkela/long/font/regular.css" />
-    <link rel="stylesheet" href="https://s1.hdslb.com/bfs/static/jinkela/long/font/medium.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#f7f7f7" />
+    <!-- 放在外部样式表之前，脚本不必等待样式表加载即可恢复主题 -->
     <script>
       ;(() => {
         let theme = 'system'
@@ -20,9 +19,14 @@
           (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
         document.documentElement.dataset.theme = theme
         document.documentElement.classList.toggle('dark', dark)
+        document.querySelector('meta[name="color-scheme"]').content =
+          theme === 'system' ? 'light dark' : theme
         document.querySelector('meta[name="theme-color"]').content = dark ? '#111111' : '#f7f7f7'
       })()
     </script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="https://s1.hdslb.com/bfs/static/jinkela/long/font/regular.css" />
+    <link rel="stylesheet" href="https://s1.hdslb.com/bfs/static/jinkela/long/font/medium.css" />
     <meta
       name="description"
       content="Compare world clocks and convert time zones. Search cities, IANA time zones or UTC offsets in English and Chinese."

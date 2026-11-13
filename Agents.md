@@ -121,7 +121,7 @@ React 19、TypeScript 6、Vite 8（Rolldown）、Tailwind CSS 4、shadcn/ui（Ra
 - 主题入口为单个日月按钮：太阳表示当前浅色，月亮表示当前深色。点击直接切换。
 - 主题切换使用原生 `document.startViewTransition`，通过 `flushSync` 同步提交主题和图标。两个切换方向均在 `::view-transition-new(root)` 上从按钮圆心向外展开，持续 500ms。
 - `applyTheme` 切换主题时给根元素临时添加 `theme-changing` 类并强制计算一次样式，期间关闭所有 CSS 过渡，使卡片的昼夜渐变不在切换主题时出现。
-- `index.html` 在 React 加载前恢复主题，组件负责后续切换；二者使用一致的存储键、根元素 `.dark` 类、`data-theme` 和 `theme-color`。
+- `index.html` 在 React 加载前恢复主题，组件负责后续切换；二者使用一致的存储键、根元素 `.dark` 类、`data-theme`、`theme-color` 和 `color-scheme` meta。`color-scheme` meta 在跟随系统时为 `light dark`，手动选择后为 `light` 或 `dark`；`:root` 不声明 `color-scheme`，由该 meta 决定根元素的浏览器原生控件配色，`.dark` 规则再声明深色。恢复主题的内联脚本位于外部样式表之前，不等待样式表加载。
 - 尊重系统“减少动态效果”偏好，主题切换、卡片昼夜颜色和星空在此情况下直接更新，亮星不闪烁。
 
 ## 本地持久化

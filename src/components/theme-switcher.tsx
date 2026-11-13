@@ -37,6 +37,7 @@ export function ThemeSwitcher() {
     const update = () => {
       const theme = nextDark ? 'dark' : 'light'
       document.documentElement.dataset.theme = theme
+      document.querySelector('meta[name="color-scheme"]')?.setAttribute('content', theme)
       applyTheme(nextDark)
       setDark(nextDark)
       try {
