@@ -407,15 +407,18 @@ export default function App() {
               }}
             />
           )}
-          {notice && (
-            <div
-              className="fixed bottom-[30px] left-1/2 z-80 flex max-w-[90vw] -translate-x-1/2 items-center gap-2 rounded-[10px] border border-border bg-card px-[18px] py-3 text-xs text-foreground shadow-lg"
-              role="status"
-            >
-              <Check size={16} />
-              {t[notice]}
-            </div>
-          )}
+          {/* 状态区域常驻页面，屏幕阅读器才能播报之后插入的提示 */}
+          <div
+            className="fixed bottom-[30px] left-1/2 z-80 w-max max-w-[90vw] -translate-x-1/2"
+            role="status"
+          >
+            {notice && (
+              <div className="flex items-center gap-2 rounded-[10px] border border-border bg-card px-[18px] py-3 text-xs text-foreground shadow-lg">
+                <Check className="shrink-0" size={16} />
+                {t[notice]}
+              </div>
+            )}
+          </div>
         </div>
       </MotionConfig>
     </LazyMotion>
